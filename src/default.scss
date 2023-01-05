@@ -1,0 +1,32 @@
+*, ::before, ::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+}
+
+a, a:hover {
+  -webkit-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
