@@ -23,5 +23,21 @@
         margin: 0;
       }
     }
+
+    .callToActions {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      transform: translateY(-50%);
+
+      a {
+        font-size: 1.8rem;
+        line-height: 1;
+        color: black;
+        text-transform: uppercase;
+      }
+    }
   }
 }

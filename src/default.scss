@@ -14,7 +14,11 @@ html, body {
   padding: 0;
 }
 
-html, body, #root, .App {
+html,
+body,
+#root,
+.App,
+.fullHeight {
   height: 100%;
 }
 
@@ -41,4 +45,8 @@ a, a:hover {
   max-width: 1450px;
   padding: 0 10px;
   margin: 0 auto;
+}
+
+li {
+  list-style: none;
 }
