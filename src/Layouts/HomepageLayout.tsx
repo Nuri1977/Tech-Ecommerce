@@ -1,5 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import Footer from '../components/Footer/Footer';
 import Header from '../components/Header/Header';
 
 const HomepageLayout = () => {
@@ -7,6 +8,7 @@ const HomepageLayout = () => {
     <div className="fullHeight">
       <Header />
       <Outlet />
+      <Footer />
     </div>
   );
 };
