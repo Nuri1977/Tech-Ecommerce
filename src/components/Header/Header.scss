@@ -32,12 +32,18 @@
       -moz-transform: translateY(-50%);
       transform: translateY(-50%);
 
-      a {
-        font-size: 1.8rem;
-        line-height: 1;
-        color: black;
-        text-transform: uppercase;
+      li {
+        display: inline-block;
+        margin-left: 1.5rem;
+
+        a {
+          font-size: 1.8rem;
+          line-height: 1;
+          color: black;
+          text-transform: uppercase;
+        }
       }
+
     }
   }
 }
