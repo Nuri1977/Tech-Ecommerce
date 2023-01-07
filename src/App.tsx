@@ -40,7 +40,7 @@ function App() {
           <Route index path="/" element={<Homepage />} />
         </Route>
         <Route path="/" element={<MainLayout currentUser={user} />}>
-          <Route path="/registration" element={<Registration />} />
+          <Route path="/registration" element={user ? <Navigate to="/" /> : <Registration />} />
           <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
         </Route>
       </Routes>

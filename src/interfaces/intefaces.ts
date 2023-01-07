@@ -1,6 +1,8 @@
 export interface CurrentUser {
-  uid: string;
+  uid?: string;
   displayName: string | null;
   email: string | null;
-  photoUrl: string | null;
+  photoUrl?: string | null;
+  password?: string;
+  confirmPassword?: string;
 }

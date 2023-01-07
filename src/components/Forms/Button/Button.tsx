@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes, FC } from 'react';
 import './Button.scss';
 
-const Button = ({ children, ...otherProps }: { children: React.ReactNode }) => {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children?: React.ReactNode;
+}
+
+const Button: FC<ButtonProps> = ({ children, ...otherProps }) => {
   return (
     <button className="btn" {...otherProps}>
       {children}
