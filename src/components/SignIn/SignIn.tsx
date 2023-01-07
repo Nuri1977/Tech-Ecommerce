@@ -7,8 +7,9 @@ import { auth, provider } from '../../firebase/firebaseConfig';
 const SignIn = () => {
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event?.preventDefault();
-    signInWithPopup(auth, provider).then((user) => console.log(user));
+    signInWithPopup(auth, provider);
   };
+
   return (
     <div className="signIn">
       <div className="wrap">
