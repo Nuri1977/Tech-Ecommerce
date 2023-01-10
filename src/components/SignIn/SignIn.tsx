@@ -4,6 +4,7 @@ import Input from '../Forms/Input/Input';
 import Button from '../Forms/Button/Button';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../../firebase/firebaseConfig';
+import { Link } from 'react-router-dom';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -61,6 +62,9 @@ const SignIn = () => {
                   Sing in with google
                 </Button>
               </div>
+            </div>
+            <div>
+              <Link to="/recovery"> Forgot Password?</Link>
             </div>
           </form>
         </div>

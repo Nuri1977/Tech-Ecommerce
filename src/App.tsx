@@ -10,6 +10,7 @@ import { onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from './firebase/firebaseConfig';
 import { CurrentUser } from './interfaces/intefaces';
 import { registerUserApi } from './redux/users/userApiCalls';
+import Recovery from './pages/Recovery/Recovery';
 
 function App() {
   const [user, setUser] = useState<CurrentUser | null>(null);
@@ -42,6 +43,7 @@ function App() {
         <Route path="/" element={<MainLayout currentUser={user} />}>
           <Route path="/registration" element={user ? <Navigate to="/" /> : <Registration />} />
           <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+          <Route path="/recovery" element={user ? <Navigate to="/" /> : <Recovery />} />
         </Route>
       </Routes>
     </div>
