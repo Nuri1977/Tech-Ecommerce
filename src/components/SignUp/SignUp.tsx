@@ -3,7 +3,7 @@ import './SignUp.scss';
 import Button from '../Forms/Button/Button';
 import Input from '../Forms/Input/Input';
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
-import { selectAuth } from '../../redux/authentication/authSlice';
+import { clearAuthErrors, selectAuth } from '../../redux/authentication/authSlice';
 import { signUpEmailPassword } from '../../redux/authentication/authThunk';
 
 const SignUp = () => {
@@ -22,6 +22,7 @@ const SignUp = () => {
   const clearErrors = () => {
     setTimeout(() => {
       setErrors(['']);
+      dispatch(clearAuthErrors());
     }, 3000);
   };
 

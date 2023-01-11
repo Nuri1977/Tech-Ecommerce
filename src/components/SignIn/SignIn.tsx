@@ -1,19 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SignIn.scss';
 import Input from '../Forms/Input/Input';
 import Button from '../Forms/Button/Button';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase/firebaseConfig';
 import { Link } from 'react-router-dom';
-import { useAppDispatch } from '../../redux/app/hooks';
-import { signInPopup } from '../../redux/authentication/authThunk';
+import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
+import { signInEmailPassword, signInPopup } from '../../redux/authentication/authThunk';
+import { clearAuthErrors, selectAuth } from '../../redux/authentication/authSlice';
 
 const SignIn = () => {
   const dispatch = useAppDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
+  const { signInError, signInLoading, signInPopupLoading, signInPopupError } =
+    useAppSelector(selectAuth);
+
+  const clearErrors = () => {
+    setTimeout(() => {
+      setErrors(['']);
+      dispatch(clearAuthErrors());
+    }, 3000);
+  };
+
+  useEffect(() => {
+    if (signInError) setErrors([signInError]);
+    clearErrors();
+  }, [signInError]);
+
+  useEffect(() => {
+    if (signInPopupError) setErrors([signInPopupError]);
+    clearErrors();
+  }, [signInPopupError]);
 
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event?.preventDefault();
@@ -23,10 +40,11 @@ const SignIn = () => {
     } else {
       setErrors([]);
     }
-    setLoading(true);
-    signInWithEmailAndPassword(auth, email, password)
-      .catch((error) => setErrors([error.message]))
-      .finally(() => setLoading(false));
+    dispatch(signInEmailPassword({ email, password }));
+    // setLoading(true);
+    // signInWithEmailAndPassword(auth, email, password)
+    //   .catch((error) => setErrors([error.message]))
+    //   .finally(() => setLoading(false));
   };
 
   const handleGooglePopup = () => {
@@ -55,13 +73,13 @@ const SignIn = () => {
               onChange={(event) => setPassword(event.target.value)}
               placeholder="Password"
             />
-            <Button type="submit" disabled={loading}>
-              {loading ? 'Loading..' : 'Login'}
+            <Button type="submit" disabled={signInLoading}>
+              {signInLoading ? 'Loading..' : 'Login'}
             </Button>
 
             <div className="socialSignIn">
               <div className="row">
-                <Button type="button" disabled={loading} onClick={handleGooglePopup}>
+                <Button type="button" disabled={signInPopupLoading} onClick={handleGooglePopup}>
                   Sing in with google
                 </Button>
               </div>

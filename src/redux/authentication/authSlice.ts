@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { UserState } from '../../interfaces/intefaces';
 import { RootState } from '../app/store';
-import { signInPopup, signOutFun, signUpEmailPassword } from './authThunk';
+import { signInEmailPassword, signInPopup, signOutFun, signUpEmailPassword } from './authThunk';
 
 const initialState: UserState = {
   currentUser: null,
   singUpSuccess: false,
   signUpError: '',
   signUpLoading: false,
-  signInError: false,
+  signInError: '',
   signInLoading: false,
   signInPopupError: '',
   signInPopupLoading: false,
@@ -23,6 +23,12 @@ const authSlice = createSlice({
   reducers: {
     setAuth: (state, action) => {
       state.currentUser = action.payload;
+    },
+    clearAuthErrors: (state) => {
+      state.signUpError = '';
+      state.signInError = '';
+      state.signInPopupError = '';
+      state.logoutError = '';
     }
   },
   extraReducers(builder) {
@@ -66,11 +72,28 @@ const authSlice = createSlice({
       .addCase(signUpEmailPassword.rejected, (state, action) => {
         state.signUpLoading = false;
         state.signUpError = action.error.message;
+      })
+      .addCase(signInEmailPassword.pending, (state) => {
+        state.signInLoading = true;
+        state.signInError = '';
+      })
+      .addCase(signInEmailPassword.fulfilled, (state, action) => {
+        state.signInLoading = false;
+        const { uid, displayName, email } = action.payload;
+        state.currentUser = {
+          uid,
+          displayName,
+          email
+        };
+      })
+      .addCase(signInEmailPassword.rejected, (state, action) => {
+        state.signInLoading = false;
+        state.signInError = action.error.message;
       });
   }
 });
 
-export const { setAuth } = authSlice.actions;
+export const { setAuth, clearAuthErrors } = authSlice.actions;
 
 export const selectAuth = (state: RootState) => state.authUser;
 

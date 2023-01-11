@@ -12,7 +12,7 @@ export interface UserState {
   singUpSuccess: boolean;
   signUpError: string | undefined;
   signUpLoading: boolean;
-  signInError: boolean;
+  signInError: string | undefined;
   signInLoading: boolean;
   signInPopupError: string | undefined;
   signInPopupLoading: boolean;
