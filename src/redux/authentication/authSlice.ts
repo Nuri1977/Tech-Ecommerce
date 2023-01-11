@@ -1,7 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { UserState } from '../../interfaces/intefaces';
 import { RootState } from '../app/store';
-import { signInEmailPassword, signInPopup, signOutFun, signUpEmailPassword } from './authThunk';
+import {
+  signInEmailPassword,
+  signInPopup,
+  signOutFun,
+  signUpEmailPassword,
+  sendResetPassword
+} from './authThunk';
 
 const initialState: UserState = {
   currentUser: null,
@@ -12,9 +18,10 @@ const initialState: UserState = {
   signInLoading: false,
   signInPopupError: '',
   signInPopupLoading: false,
-  resetPasswordError: false,
-  logoutError: '',
-  resetPasswordLoading: false
+  resetPasswordError: '',
+  resetPasswordLoading: false,
+  resetPassword: '',
+  logoutError: ''
 };
 
 const authSlice = createSlice({
@@ -89,6 +96,21 @@ const authSlice = createSlice({
       .addCase(signInEmailPassword.rejected, (state, action) => {
         state.signInLoading = false;
         state.signInError = action.error.message;
+      })
+      .addCase(sendResetPassword.pending, (state) => {
+        state.resetPasswordLoading = true;
+        state.resetPasswordError = '';
+        state.resetPassword = '';
+      })
+      .addCase(sendResetPassword.fulfilled, (state) => {
+        state.resetPasswordLoading = false;
+        state.resetPasswordError = '';
+        state.resetPassword = 'Email was send successfully';
+      })
+      .addCase(sendResetPassword.rejected, (state, action) => {
+        state.resetPasswordLoading = false;
+        state.resetPasswordError = action.error.message;
+        state.resetPassword = '';
       });
   }
 });

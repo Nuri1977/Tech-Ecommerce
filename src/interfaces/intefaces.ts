@@ -16,7 +16,8 @@ export interface UserState {
   signInLoading: boolean;
   signInPopupError: string | undefined;
   signInPopupLoading: boolean;
-  resetPasswordError: boolean;
+  resetPassword: string;
+  resetPasswordError: string | undefined;
   resetPasswordLoading: boolean;
   logoutError: string | undefined;
 }

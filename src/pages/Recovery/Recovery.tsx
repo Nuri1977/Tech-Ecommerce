@@ -1,19 +1,16 @@
-import { sendPasswordResetEmail } from 'firebase/auth';
 import React, { useState } from 'react';
 import Button from '../../components/Forms/Button/Button';
 import Input from '../../components/Forms/Input/Input';
-import { auth } from '../../firebase/firebaseConfig';
+import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
+import { selectAuth } from '../../redux/authentication/authSlice';
+import { sendResetPassword } from '../../redux/authentication/authThunk';
 import './Recovery.scss';
 
 const Reovery = () => {
-  const [email, setEmail] = useState('');
-  const [loading, setLoading] = useState(false);
+  const dispatch = useAppDispatch();
   const [errors, setErrors] = useState<string[]>([]);
-  const [confirm, setConfirm] = useState('');
-
-  const resetConfigSettings = {
-    url: 'http://localhost:3000/login'
-  };
+  const { resetPassword, resetPasswordError, resetPasswordLoading } = useAppSelector(selectAuth);
+  const [email, setEmail] = useState('');
 
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event?.preventDefault();
@@ -23,16 +20,7 @@ const Reovery = () => {
     } else {
       setErrors([]);
     }
-    setLoading(true);
-    sendPasswordResetEmail(auth, email, resetConfigSettings)
-      .then(() => setConfirm('Email was send successfully'))
-      .catch((error) => {
-        setErrors([error.message]), setConfirm('');
-      })
-      .finally(() => {
-        setLoading(false);
-        setEmail('');
-      });
+    dispatch(sendResetPassword(email));
   };
 
   return (
@@ -40,7 +28,8 @@ const Reovery = () => {
       <div className="wrap">
         <h2>Recover Password</h2>
         {errors.length > 0 && errors.map((error, index) => <span key={index}>{error}</span>)}
-        {confirm && <div>{confirm}</div>}
+        {resetPasswordError && <span>{resetPasswordError}</span>}
+        {resetPassword && <div>{resetPassword}</div>}
 
         <div className="formWrap">
           <form onSubmit={(event) => onSubmitHandler(event)}>
@@ -51,8 +40,8 @@ const Reovery = () => {
               onChange={(event) => setEmail(event.target.value)}
               placeholder="Email"
             />
-            <Button type="submit" disabled={loading}>
-              {loading ? 'Loading..' : 'Send email'}
+            <Button type="submit" disabled={resetPasswordLoading}>
+              {resetPasswordLoading ? 'Loading..' : 'Send email'}
             </Button>
           </form>
         </div>

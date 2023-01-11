@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut
@@ -30,5 +31,16 @@ export const signInEmailPassword = createAsyncThunk(
   async ({ email, password }: { email: string; password: string }) => {
     const response = await signInWithEmailAndPassword(auth, email, password);
     return response.user;
+  }
+);
+
+export const sendResetPassword = createAsyncThunk(
+  'users/sendResetPassword',
+  async (email: string) => {
+    const resetConfigSettings = {
+      url: 'http://localhost:3000/login'
+    };
+    const response = await sendPasswordResetEmail(auth, email, resetConfigSettings);
+    return response;
   }
 );
