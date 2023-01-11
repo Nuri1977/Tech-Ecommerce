@@ -6,3 +6,17 @@ export interface CurrentUser {
   password?: string;
   confirmPassword?: string;
 }
+
+export interface UserState {
+  currentUser: CurrentUser | null;
+  singUpSuccess: boolean;
+  signUpError: boolean;
+  signUpLoading: boolean;
+  signInError: boolean;
+  signInLoading: boolean;
+  signInPopupError: string | undefined;
+  signInPopupLoading: boolean;
+  resetPasswordError: boolean;
+  resetPasswordLoading: boolean;
+  logoutError: string | undefined;
+}

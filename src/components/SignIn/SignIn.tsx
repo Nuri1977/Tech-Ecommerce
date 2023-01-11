@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import './SignIn.scss';
 import Input from '../Forms/Input/Input';
 import Button from '../Forms/Button/Button';
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { auth, provider } from '../../firebase/firebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase/firebaseConfig';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../redux/app/hooks';
+import { signInPopup } from '../../redux/authentication/authThunk';
 
 const SignIn = () => {
+  const dispatch = useAppDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -27,7 +30,7 @@ const SignIn = () => {
   };
 
   const handleGooglePopup = () => {
-    signInWithPopup(auth, provider).catch((error) => setErrors([error.message]));
+    dispatch(signInPopup());
   };
 
   return (

@@ -4,7 +4,7 @@ import Button from '../Forms/Button/Button';
 import Input from '../Forms/Input/Input';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/firebaseConfig';
-import { registerUserApi } from '../../redux/users/userApiCalls';
+import { registerUserApi } from '../../redux/authentication/userApiCalls';
 
 const SignUp = () => {
   const [userInput, setUserInput] = useState({

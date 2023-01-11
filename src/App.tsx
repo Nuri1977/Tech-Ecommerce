@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import './default.scss';
 import Homepage from './pages/Homepage/Homepage';
@@ -6,19 +6,22 @@ import Registration from './pages/Registration/Registration';
 import MainLayout from './Layouts/MainLayout';
 import HomepageLayout from './Layouts/HomepageLayout';
 import Login from './pages/Login/Login';
-import { onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from './firebase/firebaseConfig';
-import { CurrentUser } from './interfaces/intefaces';
-import { registerUserApi } from './redux/users/userApiCalls';
 import Recovery from './pages/Recovery/Recovery';
+import { registerUserApi } from './redux/authentication/userApiCalls';
+import { useAppDispatch, useAppSelector } from './redux/app/hooks';
+import { selectAuth, setAuth } from './redux/authentication/authSlice';
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { CurrentUser } from './interfaces/intefaces';
 
 function App() {
-  const [user, setUser] = useState<CurrentUser | null>(null);
+  const dispatch = useAppDispatch();
+  const { currentUser: user } = useAppSelector(selectAuth);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (userAuth: User | null) => {
       if (!userAuth) {
-        setUser(null);
+        dispatch(setAuth(null));
       } else {
         registerUserApi(userAuth);
         const currentUser: CurrentUser = {
@@ -27,7 +30,7 @@ function App() {
           email: userAuth.email,
           photoUrl: userAuth.photoURL
         };
-        setUser(currentUser);
+        dispatch(setAuth(currentUser));
       }
     });
 

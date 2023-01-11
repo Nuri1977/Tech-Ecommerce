@@ -2,11 +2,12 @@ import React from 'react';
 import './Header.scss';
 import Logo from '../../assets/images/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
-import { signOut } from 'firebase/auth';
-import { auth } from '../../firebase/firebaseConfig';
 import { CurrentUser } from '../../interfaces/intefaces';
+import { signOutFun } from '../../redux/authentication/authThunk';
+import { useAppDispatch } from '../../redux/app/hooks';
 
 const Header = ({ currentUser }: { currentUser: CurrentUser | null }) => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   return (
     <header className="header">
@@ -30,7 +31,7 @@ const Header = ({ currentUser }: { currentUser: CurrentUser | null }) => {
           {currentUser && (
             <ul>
               <li>
-                <span onClick={() => signOut(auth)}>Logout</span>
+                <span onClick={() => dispatch(signOutFun())}>Logout</span>
               </li>
             </ul>
           )}
