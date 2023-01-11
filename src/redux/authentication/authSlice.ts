@@ -31,15 +31,12 @@ const authSlice = createSlice({
         state.signInPopupLoading = true;
       })
       .addCase(signInPopup.fulfilled, (state, action) => {
-        // const { uid, displayName, email } = action.payload;
-        const tempUser = {
-          uid: action.payload.uid,
-          displayName: action.payload.displayName,
-          email: action.payload.email
+        const { uid, displayName, email } = action.payload;
+        state.currentUser = {
+          uid,
+          displayName,
+          email
         };
-        state.currentUser = tempUser;
-        const data2 = JSON.parse(JSON.stringify(tempUser));
-        console.log(data2);
         state.signInPopupLoading = false;
       })
       .addCase(signInPopup.rejected, (state, action) => {
