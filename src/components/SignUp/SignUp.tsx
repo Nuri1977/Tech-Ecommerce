@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SignUp.scss';
 import Button from '../Forms/Button/Button';
 import Input from '../Forms/Input/Input';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase/firebaseConfig';
-import { registerUserApi } from '../../redux/authentication/userApiCalls';
+import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
+import { selectAuth } from '../../redux/authentication/authSlice';
+import { signUpEmailPassword } from '../../redux/authentication/authThunk';
 
 const SignUp = () => {
+  const dispatch = useAppDispatch();
+  const { signUpError, signUpLoading } = useAppSelector(selectAuth);
+
   const [userInput, setUserInput] = useState({
     displayName: '',
     email: '',
@@ -14,9 +17,20 @@ const SignUp = () => {
     confirmPassword: ''
   });
   const [errors, setErrors] = useState<string[]>([]);
-  const [loading, setLoading] = useState(false);
 
   const { displayName, email, password, confirmPassword } = userInput;
+  const clearErrors = () => {
+    setTimeout(() => {
+      setErrors(['']);
+    }, 3000);
+  };
+
+  useEffect(() => {
+    if (signUpError) {
+      setErrors([signUpError]);
+      clearErrors();
+    }
+  }, [signUpError]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -31,27 +45,16 @@ const SignUp = () => {
     if (password !== confirmPassword) {
       // eslint-disable-next-line quotes
       setErrors(["Password don't match"]);
+      clearErrors();
       return;
     } else if (!displayName || !email || !password) {
       setErrors(['Fields can not be blank']);
+      clearErrors();
       return;
     } else {
       setErrors([]);
     }
-    setLoading(true);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        registerUserApi(user, { displayName });
-        // ...
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        setErrors([errorMessage]);
-        // ..
-      })
-      .finally(() => setLoading(false));
+    dispatch(signUpEmailPassword({ email, password }));
   };
 
   return (
@@ -90,7 +93,7 @@ const SignUp = () => {
               value={confirmPassword}
               onChange={handleChange}
             />
-            <Button disabled={loading}>{loading ? 'Loading..' : 'Submit'}</Button>
+            <Button disabled={signUpLoading}>{signUpLoading ? 'Loading..' : 'Submit'}</Button>
           </form>
         </div>
       </div>

@@ -10,7 +10,7 @@ export interface CurrentUser {
 export interface UserState {
   currentUser: CurrentUser | null;
   singUpSuccess: boolean;
-  signUpError: boolean;
+  signUpError: string | undefined;
   signUpLoading: boolean;
   signInError: boolean;
   signInLoading: boolean;
