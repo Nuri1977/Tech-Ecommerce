@@ -2,11 +2,12 @@ import React from 'react';
 import './Header.scss';
 import Logo from '../../assets/images/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
-import { CurrentUser } from '../../interfaces/intefaces';
 import { signOutFun } from '../../redux/authentication/authThunk';
 import { useAppDispatch } from '../../redux/app/hooks';
+import useAuth from '../../hooks/useAuth';
 
-const Header = ({ currentUser }: { currentUser: CurrentUser | null }) => {
+const Header = () => {
+  const { currentUser } = useAuth();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   return (

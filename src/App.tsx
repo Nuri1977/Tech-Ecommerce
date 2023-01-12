@@ -9,15 +9,13 @@ import Login from './pages/Login/Login';
 import { auth } from './firebase/firebaseConfig';
 import Recovery from './pages/Recovery/Recovery';
 import { registerUserApi } from './redux/authentication/userApiCalls';
-import { useAppDispatch } from './redux/app/hooks';
 import { setAuth } from './redux/authentication/authSlice';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { CurrentUser } from './interfaces/intefaces';
 import useAuth from './hooks/useAuth';
 
 function App() {
-  const dispatch = useAppDispatch();
-  const { currentUser } = useAuth();
+  const { currentUser, dispatch } = useAuth();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (userAuth: User | null) => {
@@ -41,10 +39,10 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<HomepageLayout currentUser={currentUser} />}>
+        <Route path="/" element={<HomepageLayout />}>
           <Route index path="/" element={<Homepage />} />
         </Route>
-        <Route path="/" element={<MainLayout currentUser={currentUser} />}>
+        <Route path="/" element={<MainLayout />}>
           <Route
             path="/registration"
             element={currentUser ? <Navigate to="/" /> : <Registration />}
