@@ -6,7 +6,7 @@ import { sendResetPassword } from '../../redux/authentication/authThunk';
 import './ResetPassword.scss';
 
 const ResetPassword = () => {
-  const { resetPassword, resetPasswordError, resetPasswordLoading, dispatch } = useAuth();
+  const { resetPassword, authError, loading, dispatch } = useAuth();
 
   const [errors, setErrors] = useState<string[]>([]);
   const [email, setEmail] = useState('');
@@ -27,7 +27,7 @@ const ResetPassword = () => {
       <div className="wrap">
         <h2>Recover Password</h2>
         {errors.length > 0 && errors.map((error, index) => <span key={index}>{error}</span>)}
-        {resetPasswordError && <span>{resetPasswordError}</span>}
+        {authError && <span>{authError}</span>}
         {resetPassword && <div>{resetPassword}</div>}
 
         <div className="formWrap">
@@ -39,8 +39,8 @@ const ResetPassword = () => {
               onChange={(event) => setEmail(event.target.value)}
               placeholder="Email"
             />
-            <Button type="submit" disabled={resetPasswordLoading}>
-              {resetPasswordLoading ? 'Loading..' : 'Send email'}
+            <Button type="submit" disabled={loading}>
+              {loading ? 'Loading..' : 'Send email'}
             </Button>
           </form>
         </div>

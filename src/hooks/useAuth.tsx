@@ -3,34 +3,13 @@ import { selectAuth } from '../redux/authentication/authSlice';
 
 const useAuth = () => {
   const dispatch = useAppDispatch();
-  const {
-    currentUser,
-    singUpSuccess,
-    signUpError,
-    signUpLoading,
-    signInError,
-    signInLoading,
-    signInPopupError,
-    signInPopupLoading,
-    resetPasswordError,
-    resetPasswordLoading,
-    resetPassword,
-    logoutError
-  } = useAppSelector(selectAuth);
+  const { currentUser, loading, authError, resetPassword } = useAppSelector(selectAuth);
 
   return {
     currentUser,
-    singUpSuccess,
-    signUpError,
-    signUpLoading,
-    signInError,
-    signInLoading,
-    signInPopupError,
-    signInPopupLoading,
-    resetPasswordError,
-    resetPasswordLoading,
+    loading,
+    authError,
     resetPassword,
-    logoutError,
     dispatch
   };
 };

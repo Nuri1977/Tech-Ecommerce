@@ -7,7 +7,7 @@ import { signUpEmailPassword } from '../../redux/authentication/authThunk';
 import useAuth from '../../hooks/useAuth';
 
 const SignUp = () => {
-  const { signUpError, signUpLoading, dispatch } = useAuth();
+  const { authError, loading, dispatch } = useAuth();
 
   const [userInput, setUserInput] = useState({
     displayName: '',
@@ -26,11 +26,11 @@ const SignUp = () => {
   };
 
   useEffect(() => {
-    if (signUpError) {
-      setErrors([signUpError]);
+    if (authError) {
+      setErrors([authError]);
       clearErrors();
     }
-  }, [signUpError]);
+  }, [authError]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -93,7 +93,7 @@ const SignUp = () => {
               value={confirmPassword}
               onChange={handleChange}
             />
-            <Button disabled={signUpLoading}>{signUpLoading ? 'Loading..' : 'Submit'}</Button>
+            <Button disabled={loading}>{loading ? 'Loading..' : 'Submit'}</Button>
           </form>
         </div>
       </div>

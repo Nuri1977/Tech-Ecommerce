@@ -11,7 +11,7 @@ const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<string[]>([]);
-  const { signInError, signInLoading, signInPopupError, signInPopupLoading, dispatch } = useAuth();
+  const { loading, authError, dispatch } = useAuth();
   const clearErrors = () => {
     setTimeout(() => {
       setErrors(['']);
@@ -20,14 +20,14 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    if (signInError) setErrors([signInError]);
+    if (authError) setErrors([authError]);
     clearErrors();
-  }, [signInError]);
+  }, [authError]);
 
   useEffect(() => {
-    if (signInPopupError) setErrors([signInPopupError]);
+    if (authError) setErrors([authError]);
     clearErrors();
-  }, [signInPopupError]);
+  }, [authError]);
 
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event?.preventDefault();
@@ -66,13 +66,13 @@ const SignIn = () => {
               onChange={(event) => setPassword(event.target.value)}
               placeholder="Password"
             />
-            <Button type="submit" disabled={signInLoading}>
-              {signInLoading ? 'Loading..' : 'Login'}
+            <Button type="submit" disabled={loading}>
+              {loading ? 'Loading..' : 'Login'}
             </Button>
 
             <div className="socialSignIn">
               <div className="row">
-                <Button type="button" disabled={signInPopupLoading} onClick={handleGooglePopup}>
+                <Button type="button" disabled={loading} onClick={handleGooglePopup}>
                   Sing in with google
                 </Button>
               </div>

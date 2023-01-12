@@ -11,17 +11,9 @@ import {
 
 const initialState: UserState = {
   currentUser: null,
-  singUpSuccess: false,
-  signUpError: '',
-  signUpLoading: false,
-  signInError: '',
-  signInLoading: false,
-  signInPopupError: '',
-  signInPopupLoading: false,
-  resetPasswordError: '',
-  resetPasswordLoading: false,
-  resetPassword: '',
-  logoutError: ''
+  loading: false,
+  authError: '',
+  resetPassword: ''
 };
 
 const authSlice = createSlice({
@@ -30,19 +22,18 @@ const authSlice = createSlice({
   reducers: {
     setAuth: (state, action) => {
       state.currentUser = action.payload;
+      state.loading = false;
+      state.authError = '';
     },
     clearAuthErrors: (state) => {
-      state.signUpError = '';
-      state.signInError = '';
-      state.signInPopupError = '';
-      state.logoutError = '';
+      state.authError = '';
     }
   },
   extraReducers(builder) {
     builder
       .addCase(signInPopup.pending, (state) => {
-        state.signInPopupLoading = true;
-        state.signInPopupError = '';
+        state.loading = true;
+        state.authError = '';
       })
       .addCase(signInPopup.fulfilled, (state, action) => {
         const { uid, displayName, email } = action.payload;
@@ -51,24 +42,26 @@ const authSlice = createSlice({
           displayName,
           email
         };
-        state.signInPopupLoading = false;
+        state.loading = false;
       })
       .addCase(signInPopup.rejected, (state, action) => {
-        state.signInPopupError = action.error.message;
-        state.signInPopupLoading = false;
+        state.authError = action.error.message;
+        state.loading = false;
       })
       .addCase(signOutFun.fulfilled, (state) => {
         state.currentUser = null;
+        state.loading = false;
+        state.authError = '';
       })
       .addCase(signOutFun.rejected, (state, action) => {
-        state.logoutError = action.error?.message;
+        state.authError = action.error?.message;
       })
       .addCase(signUpEmailPassword.pending, (state) => {
-        state.signUpLoading = true;
-        state.signUpError = '';
+        state.loading = true;
+        state.authError = '';
       })
       .addCase(signUpEmailPassword.fulfilled, (state, action) => {
-        state.signUpLoading = false;
+        state.loading = false;
         const { uid, displayName, email } = action.payload;
         state.currentUser = {
           uid,
@@ -77,15 +70,15 @@ const authSlice = createSlice({
         };
       })
       .addCase(signUpEmailPassword.rejected, (state, action) => {
-        state.signUpLoading = false;
-        state.signUpError = action.error.message;
+        state.loading = false;
+        state.authError = action.error.message;
       })
       .addCase(signInEmailPassword.pending, (state) => {
-        state.signInLoading = true;
-        state.signInError = '';
+        state.loading = true;
+        state.authError = '';
       })
       .addCase(signInEmailPassword.fulfilled, (state, action) => {
-        state.signInLoading = false;
+        state.loading = false;
         const { uid, displayName, email } = action.payload;
         state.currentUser = {
           uid,
@@ -94,22 +87,22 @@ const authSlice = createSlice({
         };
       })
       .addCase(signInEmailPassword.rejected, (state, action) => {
-        state.signInLoading = false;
-        state.signInError = action.error.message;
+        state.loading = false;
+        state.authError = action.error.message;
       })
       .addCase(sendResetPassword.pending, (state) => {
-        state.resetPasswordLoading = true;
-        state.resetPasswordError = '';
+        state.loading = true;
+        state.authError = '';
         state.resetPassword = '';
       })
       .addCase(sendResetPassword.fulfilled, (state) => {
-        state.resetPasswordLoading = false;
-        state.resetPasswordError = '';
+        state.loading = false;
+        state.authError = '';
         state.resetPassword = 'Email was send successfully';
       })
       .addCase(sendResetPassword.rejected, (state, action) => {
-        state.resetPasswordLoading = false;
-        state.resetPasswordError = action.error.message;
+        state.loading = false;
+        state.authError = action.error.message;
         state.resetPassword = '';
       });
   }
