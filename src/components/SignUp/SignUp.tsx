@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import './SignUp.scss';
 import Button from '../Forms/Button/Button';
 import Input from '../Forms/Input/Input';
-import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
-import { clearAuthErrors, selectAuth } from '../../redux/authentication/authSlice';
+import { clearAuthErrors } from '../../redux/authentication/authSlice';
 import { signUpEmailPassword } from '../../redux/authentication/authThunk';
+import useAuth from '../../hooks/useAuth';
 
 const SignUp = () => {
-  const dispatch = useAppDispatch();
-  const { signUpError, signUpLoading } = useAppSelector(selectAuth);
+  const { signUpError, signUpLoading, dispatch } = useAuth();
 
   const [userInput, setUserInput] = useState({
     displayName: '',

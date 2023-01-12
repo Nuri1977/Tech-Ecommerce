@@ -9,14 +9,15 @@ import Login from './pages/Login/Login';
 import { auth } from './firebase/firebaseConfig';
 import Recovery from './pages/Recovery/Recovery';
 import { registerUserApi } from './redux/authentication/userApiCalls';
-import { useAppDispatch, useAppSelector } from './redux/app/hooks';
-import { selectAuth, setAuth } from './redux/authentication/authSlice';
+import { useAppDispatch } from './redux/app/hooks';
+import { setAuth } from './redux/authentication/authSlice';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { CurrentUser } from './interfaces/intefaces';
+import useAuth from './hooks/useAuth';
 
 function App() {
   const dispatch = useAppDispatch();
-  const { currentUser: user } = useAppSelector(selectAuth);
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (userAuth: User | null) => {
@@ -40,13 +41,16 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<HomepageLayout currentUser={user} />}>
+        <Route path="/" element={<HomepageLayout currentUser={currentUser} />}>
           <Route index path="/" element={<Homepage />} />
         </Route>
-        <Route path="/" element={<MainLayout currentUser={user} />}>
-          <Route path="/registration" element={user ? <Navigate to="/" /> : <Registration />} />
-          <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
-          <Route path="/recovery" element={user ? <Navigate to="/" /> : <Recovery />} />
+        <Route path="/" element={<MainLayout currentUser={currentUser} />}>
+          <Route
+            path="/registration"
+            element={currentUser ? <Navigate to="/" /> : <Registration />}
+          />
+          <Route path="/login" element={currentUser ? <Navigate to="/" /> : <Login />} />
+          <Route path="/recovery" element={currentUser ? <Navigate to="/" /> : <Recovery />} />
         </Route>
       </Routes>
     </div>

@@ -3,18 +3,15 @@ import './SignIn.scss';
 import Input from '../Forms/Input/Input';
 import Button from '../Forms/Button/Button';
 import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
 import { signInEmailPassword, signInPopup } from '../../redux/authentication/authThunk';
-import { clearAuthErrors, selectAuth } from '../../redux/authentication/authSlice';
+import { clearAuthErrors } from '../../redux/authentication/authSlice';
+import useAuth from '../../hooks/useAuth';
 
 const SignIn = () => {
-  const dispatch = useAppDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<string[]>([]);
-  const { signInError, signInLoading, signInPopupLoading, signInPopupError } =
-    useAppSelector(selectAuth);
-
+  const { signInError, signInLoading, signInPopupError, signInPopupLoading, dispatch } = useAuth();
   const clearErrors = () => {
     setTimeout(() => {
       setErrors(['']);
@@ -41,10 +38,6 @@ const SignIn = () => {
       setErrors([]);
     }
     dispatch(signInEmailPassword({ email, password }));
-    // setLoading(true);
-    // signInWithEmailAndPassword(auth, email, password)
-    //   .catch((error) => setErrors([error.message]))
-    //   .finally(() => setLoading(false));
   };
 
   const handleGooglePopup = () => {
