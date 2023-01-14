@@ -1,7 +1,7 @@
 import { User } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from '../../firebase/firebaseConfig';
-import { CurrentUser } from '../../interfaces/intefaces';
+import { db } from '../../config/firebase/firebaseConfig';
+import { CurrentUser } from '../../config/interfaces/intefaces';
 
 export const registerUserApi = async (userAuth: User | null, otherData?: any) => {
   if (!userAuth) return;

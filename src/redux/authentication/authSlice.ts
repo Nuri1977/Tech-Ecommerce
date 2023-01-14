@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { UserState } from '../../interfaces/intefaces';
+import { UserState } from '../../config/interfaces/intefaces';
 import { RootState } from '../app/store';
 import {
   signInEmailPassword,
