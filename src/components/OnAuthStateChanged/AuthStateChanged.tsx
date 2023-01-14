@@ -1,27 +1,27 @@
 import { onAuthStateChanged, User } from 'firebase/auth';
 import React, { useEffect } from 'react';
 import { auth } from '../../firebase/firebaseConfig';
-import { CurrentUser } from '../../interfaces/intefaces';
 import { setAuth } from '../../redux/authentication/authSlice';
 import { registerUserApi } from '../../redux/authentication/userApiCalls';
 import useAuth from '../../hooks/useAuth';
 
-const AuthStateChanged = () => {
+const AuthStateChanged = ({
+  setIsLoading
+}: {
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const { dispatch } = useAuth();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (userAuth: User | null) => {
       if (!userAuth) {
         dispatch(setAuth(null));
+        setIsLoading(false);
       } else {
-        registerUserApi(userAuth);
-        const currentUser: CurrentUser = {
-          uid: userAuth.uid,
-          displayName: userAuth.displayName,
-          email: userAuth.email,
-          photoUrl: userAuth.photoURL
-        };
-        dispatch(setAuth(currentUser));
+        registerUserApi(userAuth)
+          .then((res) => dispatch(setAuth(res)))
+          .catch((err) => console.log(err))
+          .finally(() => setIsLoading(false));
       }
     });
 

@@ -7,10 +7,15 @@ import {
   signOut
 } from 'firebase/auth';
 import { auth, provider } from '../../firebase/firebaseConfig';
+import { registerUserApi } from './userApiCalls';
 
 export const signInPopup = createAsyncThunk('users/signInPopup', async () => {
   const response = await signInWithPopup(auth, provider);
-  return response.user;
+  if (response.user) {
+    const res: any = await registerUserApi(response.user);
+    return res;
+  }
+  return response;
 });
 
 export const signOutFun = createAsyncThunk('users/signOutFun', async () => {
@@ -20,9 +25,21 @@ export const signOutFun = createAsyncThunk('users/signOutFun', async () => {
 
 export const signUpEmailPassword = createAsyncThunk(
   'users/signUpEmailPassword',
-  async ({ email, password }: { email: string; password: string }) => {
+  async ({
+    email,
+    password,
+    displayName
+  }: {
+    email: string;
+    password: string;
+    displayName: string;
+  }) => {
     const response = await createUserWithEmailAndPassword(auth, email, password);
-    return response.user;
+    if (response.user) {
+      const res: any = await registerUserApi(response.user, { displayName });
+      return res;
+    }
+    return response;
   }
 );
 

@@ -5,9 +5,11 @@ import Input from '../Forms/Input/Input';
 import { clearAuthErrors } from '../../redux/authentication/authSlice';
 import { signUpEmailPassword } from '../../redux/authentication/authThunk';
 import useAuth from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-  const { authError, loading, dispatch } = useAuth();
+  const { currentUser, authError, loading, dispatch } = useAuth();
+  const navigate = useNavigate();
 
   const [userInput, setUserInput] = useState({
     displayName: '',
@@ -24,6 +26,10 @@ const SignUp = () => {
       dispatch(clearAuthErrors());
     }, 3000);
   };
+
+  useEffect(() => {
+    if (currentUser) navigate('/');
+  }, [currentUser]);
 
   useEffect(() => {
     if (authError) {
@@ -54,7 +60,7 @@ const SignUp = () => {
     } else {
       setErrors([]);
     }
-    dispatch(signUpEmailPassword({ email, password }));
+    dispatch(signUpEmailPassword({ email, password, displayName }));
   };
 
   return (

@@ -7,7 +7,7 @@ import { useAppDispatch } from '../../redux/app/hooks';
 import useAuth from '../../hooks/useAuth';
 
 const Header = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, isAdmin } = useAuth();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   return (
@@ -19,23 +19,38 @@ const Header = () => {
           </Link>
         </div>
         <div className="callToActions">
-          {!currentUser && (
-            <ul>
+          <ul>
+            {!currentUser && (
+              <>
+                <li>
+                  <Link to="/registration">Registration</Link>
+                </li>
+                <li>
+                  <Link to="/login">Login</Link>
+                </li>
+              </>
+            )}
+            {currentUser && isAdmin && (
+              <>
+                <li>
+                  <Link to="/admin">Admin</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+              </>
+            )}
+            {currentUser && !isAdmin && (
               <li>
-                <Link to="/registration">Registration</Link>
+                <Link to="/myaccount">My account</Link>
               </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-            </ul>
-          )}
-          {currentUser && (
-            <ul>
+            )}
+            {currentUser && (
               <li>
                 <span onClick={() => dispatch(signOutFun())}>Logout</span>
               </li>
-            </ul>
-          )}
+            )}
+          </ul>
         </div>
       </div>
     </header>

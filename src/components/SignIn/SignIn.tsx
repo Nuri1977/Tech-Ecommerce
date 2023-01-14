@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './SignIn.scss';
 import Input from '../Forms/Input/Input';
 import Button from '../Forms/Button/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { signInEmailPassword, signInPopup } from '../../redux/authentication/authThunk';
 import { clearAuthErrors } from '../../redux/authentication/authSlice';
 import useAuth from '../../hooks/useAuth';
@@ -11,7 +11,9 @@ const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<string[]>([]);
-  const { loading, authError, dispatch } = useAuth();
+  const { currentUser, loading, authError, dispatch } = useAuth();
+  const navigate = useNavigate();
+
   const clearErrors = () => {
     setTimeout(() => {
       setErrors(['']);
@@ -28,6 +30,10 @@ const SignIn = () => {
     if (authError) setErrors([authError]);
     clearErrors();
   }, [authError]);
+
+  useEffect(() => {
+    if (currentUser) navigate('/');
+  }, [currentUser]);
 
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event?.preventDefault();

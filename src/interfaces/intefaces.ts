@@ -5,6 +5,8 @@ export interface CurrentUser {
   photoUrl?: string | null;
   password?: string;
   confirmPassword?: string;
+  timeStamp?: string | null;
+  userRoles?: string[];
 }
 
 export interface UserState {

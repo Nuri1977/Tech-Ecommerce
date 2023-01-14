@@ -36,12 +36,14 @@ const authSlice = createSlice({
         state.authError = '';
       })
       .addCase(signInPopup.fulfilled, (state, action) => {
-        const { uid, displayName, email } = action.payload;
+        const { uid, displayName, email, userRoles } = action.payload;
         state.currentUser = {
           uid,
           displayName,
-          email
+          email,
+          userRoles
         };
+
         state.loading = false;
       })
       .addCase(signInPopup.rejected, (state, action) => {
@@ -62,12 +64,7 @@ const authSlice = createSlice({
       })
       .addCase(signUpEmailPassword.fulfilled, (state, action) => {
         state.loading = false;
-        const { uid, displayName, email } = action.payload;
-        state.currentUser = {
-          uid,
-          displayName,
-          email
-        };
+        state.currentUser = action.payload;
       })
       .addCase(signUpEmailPassword.rejected, (state, action) => {
         state.loading = false;
@@ -79,12 +76,7 @@ const authSlice = createSlice({
       })
       .addCase(signInEmailPassword.fulfilled, (state, action) => {
         state.loading = false;
-        const { uid, displayName, email } = action.payload;
-        state.currentUser = {
-          uid,
-          displayName,
-          email
-        };
+        state.currentUser = action.payload;
       })
       .addCase(signInEmailPassword.rejected, (state, action) => {
         state.loading = false;
