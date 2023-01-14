@@ -10,9 +10,9 @@ import Recovery from './pages/Recovery/Recovery';
 import AuthStateChanged from './components/OnAuthStateChanged/AuthStateChanged';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Admin from './pages/Admin/Admin';
-import WithAdminAuth from './HOC/WithAdminAuth';
+import WithAdminAuth from './pages/HOC/WithAdminAuth';
 import MyAccount from './components/MyAccount/MyAccount';
-import WithAuth from './HOC/WithAuth';
+import WithAuth from './pages/HOC/WithAuth';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);

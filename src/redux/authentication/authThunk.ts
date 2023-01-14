@@ -6,7 +6,7 @@ import {
   signInWithPopup,
   signOut
 } from 'firebase/auth';
-import { auth, provider } from '../../firebase/firebaseConfig';
+import { auth, provider } from '../../config/firebase/firebaseConfig';
 import { registerUserApi } from './userApiCalls';
 
 export const signInPopup = createAsyncThunk('users/signInPopup', async () => {
