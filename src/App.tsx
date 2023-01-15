@@ -13,34 +13,42 @@ import Admin from './pages/Admin/Admin';
 import WithAdminAuth from './pages/HOC/WithAdminAuth';
 import MyAccount from './components/MyAccount/MyAccount';
 import WithAuth from './pages/HOC/WithAuth';
+import useAuth from './hooks/useAuth';
+import AdminLayout from './Layouts/AdminLayout';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const { currentUser, isAdmin } = useAuth();
 
   return (
     <div className="App">
-      <AuthStateChanged setIsLoading={setIsLoading} />
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <Routes>
-          <Route path="/" element={<HomepageLayout />}>
-            <Route index path="/" element={<Homepage />} />
-          </Route>
-          <Route path="/" element={<MainLayout />}>
-            <Route path="/registration" element={<Registration />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/recovery" element={<Recovery />} />
-            <Route element={<WithAuth />}>
-              <Route path="/myaccount" element={<MyAccount />} />
+      <>
+        <AuthStateChanged setIsLoading={setIsLoading} />
+        {console.log({ currentUser }, { isAdmin })}
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <Routes>
+            <Route path="/" element={<HomepageLayout />}>
+              <Route index path="/" element={<Homepage />} />
             </Route>
-            <Route element={<WithAdminAuth />}>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/admin" element={<Admin />} />
+            <Route path="/" element={<MainLayout />}>
+              <Route path="/registration" element={<Registration />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/recovery" element={<Recovery />} />
+              <Route element={<WithAuth />}>
+                <Route path="/myaccount" element={<MyAccount />} />
+              </Route>
             </Route>
-          </Route>
-        </Routes>
-      )}
+            <Route path="/" element={<AdminLayout />}>
+              <Route element={<WithAdminAuth />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/admin" element={<Admin />} />
+              </Route>
+            </Route>
+          </Routes>
+        )}
+      </>
     </div>
   );
 }
