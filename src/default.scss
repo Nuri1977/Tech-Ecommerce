@@ -91,24 +91,24 @@ a, a:hover {
 }
 
 .controlPanel {
-  position: relative;
-  display: inline-block;
+  display: flex;
+  max-width: 1450px;
+  padding: 0 10px;
+  margin: 0 auto;
   width: 100%;
   flex-grow: 1;
-  padding: 3rem 0 6rem 25.0rem;
-  border-bottom: 1px solid #d3d3d3;
 
   .sidebar {
-    position: absolute;
-    top: 0; left: 0;
     width: 25.0rem;
     height: 100%;
-    z-index: 1;
     border-right: 1px solid #d3d3d3;
+    border-left: 1px solid #d3d3d3;
   }
 
   .content {
-    padding: 0 10px;
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
   }
 }
 
