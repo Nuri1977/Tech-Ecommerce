@@ -15,6 +15,7 @@ import MyAccount from './components/MyAccount/MyAccount';
 import WithAuth from './pages/HOC/WithAuth';
 import useAuth from './hooks/useAuth';
 import AdminLayout from './Layouts/AdminLayout';
+import DashboardLayout from './Layouts/DashboardLayout';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -42,8 +43,12 @@ function App() {
             </Route>
             <Route path="/" element={<AdminLayout />}>
               <Route element={<WithAdminAuth />}>
-                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/admin" element={<Admin />} />
+              </Route>
+            </Route>
+            <Route path="/" element={<DashboardLayout />}>
+              <Route element={<WithAdminAuth />}>
+                <Route path="/dashboard" element={<Dashboard />} />
               </Route>
             </Route>
           </Routes>
