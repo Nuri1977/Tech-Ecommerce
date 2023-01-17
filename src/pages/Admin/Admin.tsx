@@ -1,50 +1,45 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Button from '../../components/Forms/Button/Button';
 import FormSelect from '../../components/Forms/FormSelect/FormSelect';
 import Input from '../../components/Forms/Input/Input';
 import Modal from '../../components/Modal/Modal';
-
+import { nanoid } from '@reduxjs/toolkit';
 import './Admin.scss';
-
-const initialProducts: any = [
-  {
-    productId: 1,
-    name: 'Product 1',
-    price: 123,
-    imageUrl: 'image1',
-    categoryId: 2
-  },
-  {
-    productId: 2,
-    name: 'Product 3',
-    price: 456,
-    imageUrl: 'image3',
-    categoryId: 4
-  }
-];
+import { useAppDispatch } from '../../redux/app/hooks';
+import { addProductApi } from '../../redux/products/prouctsThunk';
+import useProducts from '../../hooks/useProducts';
 
 const Admin = () => {
-  const [products, setProducts] = useState([]);
   const [hideModal, setHideModal] = useState(true);
   const [productCategory, setProductCategory] = useState('mens');
   const [productName, setProductName] = useState('');
   const [productThumbnail, setProductThumbnail] = useState('');
   const [productPrice, setProductPrice] = useState(0);
 
-  useEffect(() => {
-    setProducts(initialProducts);
-  }, []);
+  const { products, loading, productsError } = useProducts();
 
-  console.log(products, productCategory);
+  const dispatch = useAppDispatch();
+
   const toggleModal = () => setHideModal(!hideModal);
+
+  console.log(productsError);
 
   const configModal = {
     hideModal,
     toggleModal
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    dispatch(
+      addProductApi({
+        uid: nanoid(),
+        name: productName,
+        imageUrl: productThumbnail,
+        price: productPrice,
+        categoryId: productCategory
+      })
+    );
   };
   return (
     <div className="admin">
@@ -58,7 +53,7 @@ const Admin = () => {
 
       <Modal {...configModal}>
         <div className="addNewProductForm">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={(e) => handleSubmit(e)}>
             <h2>Add new product</h2>
 
             <FormSelect
@@ -75,7 +70,7 @@ const Admin = () => {
                   name: 'Womens'
                 }
               ]}
-              onChange={(e: any) => setProductCategory(e.target.value)}
+              onChange={(e) => setProductCategory(e.target.value)}
             />
 
             <Input
@@ -83,7 +78,7 @@ const Admin = () => {
               label="Name"
               type="text"
               value={productName}
-              onChange={(e: any) => setProductName(e.target.value)}
+              onChange={(e) => setProductName(e.target.value)}
             />
 
             <Input
@@ -91,7 +86,7 @@ const Admin = () => {
               label="Main image URL"
               type="url"
               value={productThumbnail}
-              onChange={(e: any) => setProductThumbnail(e.target.value)}
+              onChange={(e) => setProductThumbnail(e.target.value)}
             />
 
             <Input
@@ -109,6 +104,15 @@ const Admin = () => {
           </form>
         </div>
       </Modal>
+      {loading ? (
+        <div>Loading ....</div>
+      ) : (
+        <div className="productsInfo">
+          <ul>
+            {products && products.map((product) => <li key={product.uid}>{product.name}</li>)}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
