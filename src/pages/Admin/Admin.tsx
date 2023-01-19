@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../../components/Forms/Button/Button';
 import FormSelect from '../../components/Forms/FormSelect/FormSelect';
 import Input from '../../components/Forms/Input/Input';
@@ -6,7 +6,7 @@ import Modal from '../../components/Modal/Modal';
 import { nanoid } from '@reduxjs/toolkit';
 import './Admin.scss';
 import { useAppDispatch } from '../../redux/app/hooks';
-import { addProductApi } from '../../redux/products/prouctsThunk';
+import { addProductApi, fetchProductsApi } from '../../redux/products/prouctsThunk';
 import useProducts from '../../hooks/useProducts';
 
 const Admin = () => {
@@ -19,6 +19,10 @@ const Admin = () => {
   const { products, loading, productsError } = useProducts();
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProductsApi());
+  }, []);
 
   const toggleModal = () => setHideModal(!hideModal);
 
@@ -40,6 +44,7 @@ const Admin = () => {
         categoryId: productCategory
       })
     );
+    toggleModal();
   };
   return (
     <div className="admin">

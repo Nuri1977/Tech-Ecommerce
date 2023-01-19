@@ -1,4 +1,4 @@
-import { addProductApi } from './prouctsThunk';
+import { addProductApi, fetchProductsApi } from './prouctsThunk';
 import { createSlice } from '@reduxjs/toolkit';
 import { ProductState } from '../../config/interfaces/intefaces';
 import { RootState } from '../app/store';
@@ -34,6 +34,19 @@ const productsSlice = createSlice({
         state.productsError = '';
       })
       .addCase(addProductApi.rejected, (state, action) => {
+        state.loading = false;
+        state.productsError = action.error.message;
+      })
+      .addCase(fetchProductsApi.pending, (state) => {
+        state.loading = true;
+        state.productsError = '';
+      })
+      .addCase(fetchProductsApi.fulfilled, (state, action) => {
+        state.products = action.payload;
+        state.loading = false;
+        state.productsError = '';
+      })
+      .addCase(fetchProductsApi.rejected, (state, action) => {
         state.loading = false;
         state.productsError = action.error.message;
       });
