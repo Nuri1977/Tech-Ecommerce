@@ -112,11 +112,21 @@ const Admin = () => {
       {loading ? (
         <div>Loading ....</div>
       ) : (
-        <div className="productsInfo">
-          <ul>
-            {products && products.map((product) => <li key={product.uid}>{product.name}</li>)}
-          </ul>
-        </div>
+        <ul className="productsInfo">
+          {products &&
+            products.map((product) => (
+              <li key={product.uid} className="productCard">
+                <img src={product.imageUrl} alt={product.name} className="productImage" />
+                <h5>{product.name}</h5>
+                <h5>{product.categoryId}</h5>
+                <h5>{product.price}</h5>
+                <div className="buttons">
+                  <Button>Edit</Button>
+                  <Button>Delete</Button>
+                </div>
+              </li>
+            ))}
+        </ul>
       )}
     </div>
   );

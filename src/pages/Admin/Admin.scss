@@ -21,4 +21,40 @@
     }
 
   }
+
+  .productsInfo {
+      display: grid;
+      grid-template-columns: 1fr;
+
+      .productCard {
+        display: grid;
+        grid-template-columns: auto 1fr 1fr 1fr 1fr;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: 5px;
+        border: 1px solid #ccc;
+
+
+        .productImage {
+          height: 50px;
+        }
+
+        h5 {
+          border-right: 1px solid #ccc;
+        }
+
+        .buttons {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0 5px 0 0;
+
+          button {
+            margin-left: 5px;
+          }
+        }
+      }
+  }
+
 }
