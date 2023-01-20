@@ -1,8 +1,12 @@
 import React from 'react';
-import { Product } from '../../../config/interfaces/intefaces';
+import { ProductState } from '../../../config/interfaces/intefaces';
+import { useAppDispatch } from '../../../redux/app/hooks';
+import { deleteProductApi } from '../../../redux/products/prouctsThunk';
 import Button from '../../Forms/Button/Button';
 
-const ProductsInfo = ({ products }: { products: Product[] }) => {
+const ProductsInfo = ({ products, loading, productsError }: ProductState) => {
+  const dispatch = useAppDispatch();
+  console.log(productsError);
   return (
     <ul className="productsInfo">
       {products &&
@@ -13,8 +17,10 @@ const ProductsInfo = ({ products }: { products: Product[] }) => {
             <h5>{product.categoryId}</h5>
             <h5>{product.price}</h5>
             <div className="buttons">
-              <Button>Edit</Button>
-              <Button>Delete</Button>
+              <Button>{loading ? 'Loading...' : 'Edit'}</Button>
+              <Button onClick={() => dispatch(deleteProductApi(product.uid))}>
+                {loading ? 'Loading...' : 'Delete'}
+              </Button>
             </div>
           </li>
         ))}

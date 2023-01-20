@@ -1,4 +1,4 @@
-import { addProductApi, fetchProductsApi } from './prouctsThunk';
+import { addProductApi, deleteProductApi, fetchProductsApi } from './prouctsThunk';
 import { createSlice } from '@reduxjs/toolkit';
 import { ProductState } from '../../config/interfaces/intefaces';
 import { RootState } from '../app/store';
@@ -47,6 +47,20 @@ const productsSlice = createSlice({
         state.productsError = '';
       })
       .addCase(fetchProductsApi.rejected, (state, action) => {
+        state.loading = false;
+        state.productsError = action.error.message;
+      })
+      .addCase(deleteProductApi.pending, (state) => {
+        state.loading = true;
+        state.productsError = '';
+      })
+      .addCase(deleteProductApi.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.products = state.products.filter((item) => item.uid !== action.payload);
+        state.loading = false;
+        state.productsError = '';
+      })
+      .addCase(deleteProductApi.rejected, (state, action) => {
         state.loading = false;
         state.productsError = action.error.message;
       });

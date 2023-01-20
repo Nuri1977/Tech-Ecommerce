@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, setDoc } from 'firebase/firestore';
 import { db } from '../../config/firebase/firebaseConfig';
 import { Product } from '../../config/interfaces/intefaces';
 
@@ -30,3 +30,11 @@ export const fetchProductsApi = createAsyncThunk('products/fetchProductsApi', as
   });
   return response;
 });
+
+export const deleteProductApi = createAsyncThunk(
+  'products/deleteProductApi',
+  async (productId: string) => {
+    const response = deleteDoc(doc(db, 'products', productId)).then(() => productId);
+    return response;
+  }
+);
