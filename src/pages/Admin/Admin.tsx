@@ -20,8 +20,6 @@ const Admin = () => {
 
   const toggleModal = () => setHideModal(!hideModal);
 
-  console.log(productsError);
-
   return (
     <div className="admin">
       <div className="callToActions">
@@ -29,7 +27,11 @@ const Admin = () => {
       </div>
 
       <ProductsModal toggleModal={toggleModal} hideModal={hideModal} />
-      {loading ? <div>Loading ....</div> : <ProductsInfo products={products} />}
+      {loading ? (
+        <div>Loading ....</div>
+      ) : (
+        <ProductsInfo products={products} loading={loading} productsError={productsError} />
+      )}
     </div>
   );
 };
