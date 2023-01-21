@@ -1,30 +1,52 @@
-import React from 'react';
-import { ProductState } from '../../../config/interfaces/intefaces';
+import React, { useState } from 'react';
+import { Product } from '../../../config/interfaces/intefaces';
 import { useAppDispatch } from '../../../redux/app/hooks';
 import { deleteProductApi } from '../../../redux/products/prouctsThunk';
 import Button from '../../Forms/Button/Button';
+import ProductsModal from '../ProductsModal/ProductsModal';
 
-const ProductsInfo = ({ products, loading, productsError }: ProductState) => {
+const ProductsInfo = ({ products, loading }: { products: Product[]; loading: boolean }) => {
   const dispatch = useAppDispatch();
-  console.log(productsError);
+  const [hideModal, setHideModal] = useState(true);
+  const [selectedProduct, setSelectedProduct] = useState<Product>({
+    name: '',
+    uid: '',
+    imageUrl: '',
+    categoryId: '',
+    price: 0
+  });
+
+  const toggleModal = (product?: Product) => {
+    if (product) setSelectedProduct(product);
+    setHideModal(!hideModal);
+  };
   return (
-    <ul className="productsInfo">
-      {products &&
-        products.map((product) => (
-          <li key={product.uid} className="productCard">
-            <img src={product.imageUrl} alt={product.name} className="productImage" />
-            <h5>{product.name}</h5>
-            <h5>{product.categoryId}</h5>
-            <h5>{product.price}</h5>
-            <div className="buttons">
-              <Button>{loading ? 'Loading...' : 'Edit'}</Button>
-              <Button onClick={() => dispatch(deleteProductApi(product.uid))}>
-                {loading ? 'Loading...' : 'Delete'}
-              </Button>
-            </div>
-          </li>
-        ))}
-    </ul>
+    <>
+      <ul className="productsInfo">
+        {products &&
+          products.map((product) => (
+            <li key={product.uid} className="productCard">
+              <img src={product.imageUrl} alt={product.name} className="productImage" />
+              <h5>{product.name}</h5>
+              <h5>{product.categoryId}</h5>
+              <h5>{product.price}</h5>
+              <div className="buttons">
+                <Button onClick={() => toggleModal(product)}>
+                  {loading ? 'Loading...' : 'Edit'}
+                </Button>
+                <Button onClick={() => dispatch(deleteProductApi(product.uid))}>
+                  {loading ? 'Loading...' : 'Delete'}
+                </Button>
+              </div>
+            </li>
+          ))}
+      </ul>
+      <ProductsModal
+        toggleModal={toggleModal}
+        hideModal={hideModal}
+        selectedProduct={selectedProduct}
+      />
+    </>
   );
 };
 

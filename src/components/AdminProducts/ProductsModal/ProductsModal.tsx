@@ -1,31 +1,59 @@
 import { nanoid } from '@reduxjs/toolkit';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Product } from '../../../config/interfaces/intefaces';
 import { useAppDispatch } from '../../../redux/app/hooks';
-import { addProductApi } from '../../../redux/products/prouctsThunk';
+import { addProductApi, updateProductApi } from '../../../redux/products/prouctsThunk';
 import Button from '../../Forms/Button/Button';
 import FormSelect from '../../Forms/FormSelect/FormSelect';
 import Input from '../../Forms/Input/Input';
 import Modal from '../../Modal/Modal';
 
-const ProductsModal = ({ hideModal, toggleModal }: any) => {
-  const [productCategory, setProductCategory] = useState('mens');
-  const [productName, setProductName] = useState('');
-  const [productThumbnail, setProductThumbnail] = useState('');
-  const [productPrice, setProductPrice] = useState(0);
-
+const ProductsModal = ({
+  hideModal,
+  toggleModal,
+  selectedProduct
+}: {
+  hideModal: boolean;
+  toggleModal: () => void;
+  selectedProduct?: Product;
+}) => {
   const dispatch = useAppDispatch();
+
+  const [productCategory, setProductCategory] = useState(selectedProduct?.categoryId || 'mens');
+  const [productName, setProductName] = useState(selectedProduct?.name || '');
+  const [productThumbnail, setProductThumbnail] = useState(selectedProduct?.imageUrl || '');
+  const [productPrice, setProductPrice] = useState(selectedProduct?.price || 0);
+
+  useEffect(() => {
+    setProductCategory(selectedProduct?.categoryId || 'mens');
+    setProductName(selectedProduct?.name || '');
+    setProductThumbnail(selectedProduct?.imageUrl || '');
+    setProductPrice(selectedProduct?.price || 0);
+  }, [selectedProduct]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(
-      addProductApi({
-        uid: nanoid(),
-        name: productName,
-        imageUrl: productThumbnail,
-        price: productPrice,
-        categoryId: productCategory
-      })
-    );
+    if (selectedProduct?.uid) {
+      dispatch(
+        updateProductApi({
+          uid: selectedProduct?.uid || '',
+          name: productName,
+          imageUrl: productThumbnail,
+          price: productPrice,
+          categoryId: productCategory
+        })
+      );
+    } else {
+      dispatch(
+        addProductApi({
+          uid: nanoid(),
+          name: productName,
+          imageUrl: productThumbnail,
+          price: productPrice,
+          categoryId: productCategory
+        })
+      );
+    }
     toggleModal();
   };
 
@@ -34,12 +62,11 @@ const ProductsModal = ({ hideModal, toggleModal }: any) => {
       <Modal hideModal={hideModal} toggleModal={toggleModal}>
         <div className="addNewProductForm">
           <form onSubmit={(e) => handleSubmit(e)}>
-            <h2>Add new product</h2>
-
+            {selectedProduct?.uid ? <h2>Edit poduct</h2> : <h2>Add new product</h2>}
             <FormSelect
               name="category"
               label="Category"
-              defaultValue="mens"
+              defaultValue={selectedProduct?.categoryId || 'mens'}
               options={[
                 {
                   value: 'mens',
@@ -80,7 +107,7 @@ const ProductsModal = ({ hideModal, toggleModal }: any) => {
               onChange={(e: any) => setProductPrice(e.target.value)}
             />
 
-            <Button type="submit">Add product</Button>
+            <Button type="submit">{selectedProduct?.uid ? 'Edit Product' : 'Add product'}</Button>
           </form>
         </div>
       </Modal>

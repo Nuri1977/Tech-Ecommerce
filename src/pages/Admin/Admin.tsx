@@ -10,7 +10,7 @@ import './Admin.scss';
 const Admin = () => {
   const [hideModal, setHideModal] = useState(true);
 
-  const { products, loading, productsError } = useProducts();
+  const { products, loading } = useProducts();
 
   const dispatch = useAppDispatch();
 
@@ -27,11 +27,7 @@ const Admin = () => {
       </div>
 
       <ProductsModal toggleModal={toggleModal} hideModal={hideModal} />
-      {loading ? (
-        <div>Loading ....</div>
-      ) : (
-        <ProductsInfo products={products} loading={loading} productsError={productsError} />
-      )}
+      {loading ? <div>Loading ....</div> : <ProductsInfo products={products} loading={loading} />}
     </div>
   );
 };
