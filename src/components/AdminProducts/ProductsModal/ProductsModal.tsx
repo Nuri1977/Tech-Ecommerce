@@ -1,6 +1,6 @@
 import { nanoid } from '@reduxjs/toolkit';
 import React, { useEffect, useState } from 'react';
-import { Product } from '../../../config/interfaces/intefaces';
+import { Category, Product } from '../../../config/interfaces/intefaces';
 import { useAppDispatch } from '../../../redux/app/hooks';
 import { addProductApi, updateProductApi } from '../../../redux/products/prouctsThunk';
 import Button from '../../Forms/Button/Button';
@@ -11,21 +11,29 @@ import Modal from '../../Modal/Modal';
 const ProductsModal = ({
   hideModal,
   toggleModal,
-  selectedProduct
+  selectedProduct,
+  categories
 }: {
   hideModal: boolean;
   toggleModal: () => void;
   selectedProduct?: Product;
+  categories: Category[];
 }) => {
   const dispatch = useAppDispatch();
 
-  const [productCategory, setProductCategory] = useState(selectedProduct?.categoryId || 'mens');
+  const [productCategory, setProductCategory] = useState<Category>(
+    selectedProduct?.category || { uid: '', name: '' }
+  );
   const [productName, setProductName] = useState(selectedProduct?.name || '');
   const [productThumbnail, setProductThumbnail] = useState(selectedProduct?.imageUrl || '');
   const [productPrice, setProductPrice] = useState(selectedProduct?.price || 0);
 
+  if (categories.length === 0) {
+    console.log(categories);
+  }
+
   useEffect(() => {
-    setProductCategory(selectedProduct?.categoryId || 'mens');
+    setProductCategory(selectedProduct?.category || { uid: '', name: '' });
     setProductName(selectedProduct?.name || '');
     setProductThumbnail(selectedProduct?.imageUrl || '');
     setProductPrice(selectedProduct?.price || 0);
@@ -40,7 +48,7 @@ const ProductsModal = ({
           name: productName,
           imageUrl: productThumbnail,
           price: productPrice,
-          categoryId: productCategory
+          category: productCategory
         })
       );
     } else {
@@ -50,7 +58,7 @@ const ProductsModal = ({
           name: productName,
           imageUrl: productThumbnail,
           price: productPrice,
-          categoryId: productCategory
+          category: productCategory
         })
       );
     }
@@ -66,18 +74,17 @@ const ProductsModal = ({
             <FormSelect
               name="category"
               label="Category"
-              defaultValue={selectedProduct?.categoryId || 'mens'}
-              options={[
-                {
-                  value: 'mens',
-                  name: 'Mens'
-                },
-                {
-                  value: 'womens',
-                  name: 'Womens'
-                }
-              ]}
-              onChange={(e) => setProductCategory(e.target.value)}
+              defaultValue={''}
+              value={selectedProduct?.category?.name}
+              options={categories}
+              onChange={(e) => {
+                const myName =
+                  categories.find((cat) => cat.uid === e.target.value)?.name || 'No name';
+                setProductCategory({
+                  uid: e.target.value,
+                  name: myName
+                });
+              }}
             />
 
             <Input

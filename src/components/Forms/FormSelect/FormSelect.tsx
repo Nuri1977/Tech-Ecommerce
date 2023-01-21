@@ -1,8 +1,9 @@
 import React, { FC, InputHTMLAttributes } from 'react';
+import { Category } from '../../../config/interfaces/intefaces';
 import './FormSelect.scss';
 
 interface SelectProps extends InputHTMLAttributes<HTMLSelectElement> {
-  options: any[];
+  options: Category[];
   name: string;
   defaultValue: string;
   label?: string;
@@ -17,10 +18,10 @@ const FormSelect: FC<SelectProps> = ({ options, defaultValue, onChange, label, .
 
       <select className="formSelect" value={defaultValue} onChange={onChange} {...otherProps}>
         {options.map((option, index) => {
-          const { value, name } = option;
+          const { uid, name } = option;
 
           return (
-            <option key={index} value={value}>
+            <option key={index} value={uid}>
               {name}
             </option>
           );

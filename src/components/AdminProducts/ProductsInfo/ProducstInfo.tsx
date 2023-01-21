@@ -1,18 +1,26 @@
 import React, { useState } from 'react';
-import { Product } from '../../../config/interfaces/intefaces';
+import { Category, Product } from '../../../config/interfaces/intefaces';
 import { useAppDispatch } from '../../../redux/app/hooks';
 import { deleteProductApi } from '../../../redux/products/prouctsThunk';
 import Button from '../../Forms/Button/Button';
 import ProductsModal from '../ProductsModal/ProductsModal';
 
-const ProductsInfo = ({ products, loading }: { products: Product[]; loading: boolean }) => {
+const ProductsInfo = ({
+  products,
+  loading,
+  categories
+}: {
+  products: Product[];
+  loading: boolean;
+  categories: Category[];
+}) => {
   const dispatch = useAppDispatch();
   const [hideModal, setHideModal] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product>({
     name: '',
     uid: '',
     imageUrl: '',
-    categoryId: '',
+    category: { uid: '', name: '' },
     price: 0
   });
 
@@ -28,7 +36,7 @@ const ProductsInfo = ({ products, loading }: { products: Product[]; loading: boo
             <li key={product.uid} className="productCard">
               <img src={product.imageUrl} alt={product.name} className="productImage" />
               <h5>{product.name}</h5>
-              <h5>{product.categoryId}</h5>
+              <h5>{product.category?.name}</h5>
               <h5>{product.price}</h5>
               <div className="buttons">
                 <Button onClick={() => toggleModal(product)}>
@@ -45,6 +53,7 @@ const ProductsInfo = ({ products, loading }: { products: Product[]; loading: boo
         toggleModal={toggleModal}
         hideModal={hideModal}
         selectedProduct={selectedProduct}
+        categories={categories}
       />
     </>
   );

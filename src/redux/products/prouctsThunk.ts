@@ -17,7 +17,7 @@ export const fetchProductsApi = createAsyncThunk('products/fetchProductsApi', as
     querySnapshot.forEach((doc) => {
       res.push({
         name: '',
-        categoryId: '',
+        category: { uid: '', name: '' },
         imageUrl: '',
         price: 0,
         ...doc.data(),
