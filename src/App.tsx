@@ -13,19 +13,16 @@ import Admin from './pages/Admin/Admin';
 import WithAdminAuth from './pages/HOC/WithAdminAuth';
 import MyAccount from './components/MyAccount/MyAccount';
 import WithAuth from './pages/HOC/WithAuth';
-import useAuth from './hooks/useAuth';
 import AdminLayout from './Layouts/AdminLayout';
 import DashboardLayout from './Layouts/DashboardLayout';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const { currentUser, isAdmin } = useAuth();
 
   return (
     <div className="App">
       <>
         <AuthStateChanged setIsLoading={setIsLoading} />
-        {console.log({ currentUser }, { isAdmin })}
         {isLoading ? (
           <div>Loading...</div>
         ) : (

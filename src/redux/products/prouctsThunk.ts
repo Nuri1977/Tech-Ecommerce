@@ -40,7 +40,6 @@ export const deleteProductApi = createAsyncThunk(
 export const updateProductApi = createAsyncThunk(
   'products/updateProductApi',
   async (product: Product) => {
-    console.log(product.uid);
     const response = await updateDoc(doc(db, 'products', product.uid), { ...product }).then(
       () => product
     );

@@ -28,10 +28,6 @@ const ProductsModal = ({
   const [productThumbnail, setProductThumbnail] = useState(selectedProduct?.imageUrl || '');
   const [productPrice, setProductPrice] = useState(selectedProduct?.price || 0);
 
-  if (categories.length === 0) {
-    console.log(categories);
-  }
-
   useEffect(() => {
     setProductCategory(selectedProduct?.category || { uid: '', name: '' });
     setProductName(selectedProduct?.name || '');
@@ -75,7 +71,7 @@ const ProductsModal = ({
               name="category"
               label="Category"
               defaultValue={''}
-              value={selectedProduct?.category?.name}
+              value={productCategory.uid}
               options={categories}
               onChange={(e) => {
                 const myName =

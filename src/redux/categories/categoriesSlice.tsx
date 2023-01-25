@@ -73,7 +73,6 @@ const categoriesSlice = createSlice({
         state.categoriesError = '';
       })
       .addCase(updateCategoryApi.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.categories.forEach((item, index) => {
           if (item.uid === action.payload.uid) state.categories[index] = action.payload;
         });

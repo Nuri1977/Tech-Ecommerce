@@ -5,23 +5,25 @@ import './FormSelect.scss';
 interface SelectProps extends InputHTMLAttributes<HTMLSelectElement> {
   options: Category[];
   name: string;
-  defaultValue: string;
   label?: string;
 }
 
-const FormSelect: FC<SelectProps> = ({ options, defaultValue, onChange, label, ...otherProps }) => {
+const FormSelect: FC<SelectProps> = ({ options, onChange, name, label, ...otherProps }) => {
   if (!Array.isArray(options) || options.length < 1) return null;
 
   return (
     <div className="formRow">
       {label && <label>{label}</label>}
 
-      <select className="formSelect" value={defaultValue} onChange={onChange} {...otherProps}>
-        {options.map((option, index) => {
+      <select className="formSelect" onChange={onChange} {...otherProps}>
+        <option key={'deafult'} value={''}>
+          {`Select a ${name.toLowerCase()} `}
+        </option>
+        {options.map((option) => {
           const { uid, name } = option;
 
           return (
-            <option key={index} value={uid}>
+            <option key={uid} value={uid}>
               {name}
             </option>
           );

@@ -4,8 +4,7 @@ import useAuth from '../../hooks/useAuth';
 
 const WithAdminAuth = () => {
   const navigate = useNavigate();
-  const { currentUser, isAdmin } = useAuth();
-  console.log({ currentUser }, { isAdmin });
+  const { isAdmin } = useAuth();
 
   useEffect(() => {
     if (!isAdmin) navigate('/');

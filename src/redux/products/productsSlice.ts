@@ -73,7 +73,6 @@ const productsSlice = createSlice({
         state.productsError = '';
       })
       .addCase(updateProductApi.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.products.forEach((item, index) => {
           if (item.uid === action.payload.uid) state.products[index] = action.payload;
         });

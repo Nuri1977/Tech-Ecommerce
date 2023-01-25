@@ -39,7 +39,6 @@ export const deleteCategoryApi = createAsyncThunk(
 export const updateCategoryApi = createAsyncThunk(
   'categories/updateCategoryApi',
   async (category: Category) => {
-    console.log(category.uid);
     const response = await updateDoc(doc(db, 'categories', category.uid), { ...category }).then(
       () => category
     );
