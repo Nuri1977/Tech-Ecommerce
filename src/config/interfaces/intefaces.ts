@@ -15,3 +15,28 @@ export interface UserState {
   authError: string | undefined;
   resetPassword: string | undefined;
 }
+
+export interface Product {
+  uid: string;
+  name: string;
+  category: Category;
+  imageUrl: string;
+  price: number;
+}
+
+export interface ProductState {
+  products: Product[];
+  loading: boolean;
+  productsError: string | undefined;
+}
+
+export interface Category {
+  uid: string;
+  name: string;
+}
+
+export interface CategoryState {
+  categories: Category[];
+  loading: boolean;
+  categoriesError: string | undefined;
+}
