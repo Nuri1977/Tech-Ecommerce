@@ -18,7 +18,6 @@ import DashboardLayout from './Layouts/DashboardLayout';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-
   return (
     <div className="App">
       <>
