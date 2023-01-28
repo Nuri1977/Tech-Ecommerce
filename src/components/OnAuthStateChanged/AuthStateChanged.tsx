@@ -19,7 +19,9 @@ const AuthStateChanged = ({
         setIsLoading(false);
       } else {
         registerUserApi(userAuth)
-          .then((res) => dispatch(setAuth(res)))
+          .then((res) => {
+            dispatch(setAuth(res));
+          })
           .catch((err) => console.log(err))
           .finally(() => setIsLoading(false));
       }
