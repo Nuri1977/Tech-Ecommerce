@@ -1,4 +1,6 @@
-*, ::before, ::after {
+*,
+::before,
+::after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -10,7 +12,8 @@ html {
   font-size: 10px;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -35,10 +38,12 @@ a {
   cursor: pointer;
 }
 
-a, a:hover {
-  -webkit-transition: all .4s ease-in-out;
-  -moz-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+a,
+a:hover {
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .main {
@@ -58,9 +63,9 @@ h1 {
   width: 100%;
   padding: 0;
   margin: 0 auto 2rem;
-  font-size: 3.0rem;
+  font-size: 3rem;
   line-height: 3.2rem;
-  color: #000000;
+  color: #000;
   text-align: left;
   font-weight: 400;
   text-transform: uppercase;
@@ -74,7 +79,7 @@ h2 {
   margin: 0 auto 2rem;
   font-size: 2.5rem;
   line-height: 2.7rem;
-  color: #000000;
+  color: #000;
   text-align: left;
   font-weight: 400;
   text-transform: uppercase;
@@ -86,10 +91,12 @@ a {
   cursor: pointer;
 }
 
-a, a:hover {
-  -webkit-transition: all .4s ease-in-out;
-  -moz-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+a,
+a:hover {
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .controlPanel {
@@ -100,9 +107,8 @@ a, a:hover {
   width: 100%;
   flex-grow: 1;
 
-
   .sidebar {
-    width: 25.0rem;
+    width: 25rem;
     height: 100%;
     border-right: 1px solid #d3d3d3;
     border-left: 1px solid #d3d3d3;
