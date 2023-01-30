@@ -15,6 +15,7 @@ import MyAccount from './components/MyAccount/MyAccount';
 import WithAuth from './pages/HOC/WithAuth';
 import AdminLayout from './Layouts/AdminLayout';
 import DashboardLayout from './Layouts/DashboardLayout';
+import Search from './pages/search/Search';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,11 +29,13 @@ function App() {
           <Routes>
             <Route path="/" element={<HomepageLayout />}>
               <Route index path="/" element={<Homepage />} />
+              <Route index path="/" element={<Search />} />
             </Route>
             <Route path="/" element={<MainLayout />}>
               <Route path="/registration" element={<Registration />} />
               <Route path="/login" element={<Login />} />
               <Route path="/recovery" element={<Recovery />} />
+              <Route index path="/search" element={<Search />} />
               <Route element={<WithAuth />}>
                 <Route path="/myaccount" element={<MyAccount />} />
               </Route>
