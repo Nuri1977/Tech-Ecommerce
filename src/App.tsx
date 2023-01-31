@@ -29,13 +29,13 @@ function App() {
           <Routes>
             <Route path="/" element={<HomepageLayout />}>
               <Route index path="/" element={<Homepage />} />
-              <Route index path="/" element={<Search />} />
             </Route>
             <Route path="/" element={<MainLayout />}>
               <Route path="/registration" element={<Registration />} />
               <Route path="/login" element={<Login />} />
               <Route path="/recovery" element={<Recovery />} />
-              <Route index path="/search" element={<Search />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/search/:filter" element={<Search />} />
               <Route element={<WithAuth />}>
                 <Route path="/myaccount" element={<MyAccount />} />
               </Route>

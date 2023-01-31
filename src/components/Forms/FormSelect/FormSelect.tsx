@@ -8,16 +8,16 @@ interface SelectProps extends InputHTMLAttributes<HTMLSelectElement> {
   label?: string;
 }
 
-const FormSelect: FC<SelectProps> = ({ options, onChange, name, label, ...otherProps }) => {
+const FormSelect: FC<SelectProps> = ({ options, name, label, ...otherProps }) => {
   if (!Array.isArray(options) || options.length < 1) return null;
 
   return (
     <div className="formRow">
       {label && <label>{label}</label>}
 
-      <select className="formSelect" onChange={onChange} {...otherProps}>
+      <select className="formSelect" {...otherProps}>
         <option key={'deafult'} value={''}>
-          {`Select a ${name.toLowerCase()} `}
+          {`Select ${name.toLowerCase()} `}
         </option>
         {options.map((option) => {
           const { uid, name } = option;

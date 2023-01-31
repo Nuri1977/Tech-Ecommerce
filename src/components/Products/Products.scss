@@ -1,6 +1,10 @@
 .productsContainer {
   padding: 20px 0;
 
+  h1 {
+    margin-bottom: 0px;
+  }
+
   .products {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -17,17 +21,19 @@
       }
 
       .details {
-        padding: 0 5px;
-        text-align: left;
+        padding: 5px 10px;
+        display: flex;
+        justify-content: space-between;
 
         .name {
           font-size: 2.4rem;
           line-height: 1.2;
           font-weight: 400;
+          text-transform: uppercase;
         }
 
         .price {
-          font-size: 1.6rem;
+          font-size: 2.4rem;
           line-height: 1.2;
           font-weight: 400;
           padding: 5px 0;

@@ -2,7 +2,7 @@ import { Timestamp } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { Category, Product } from '../../../config/interfaces/intefaces';
 import { useAppDispatch } from '../../../redux/app/hooks';
-import { deleteProductApi } from '../../../redux/products/prouctsThunk';
+import { deleteProductApi } from '../../../redux/products/productsThunk';
 import Button from '../../Forms/Button/Button';
 import ProductsModal from '../ProductsModal/ProductsModal';
 

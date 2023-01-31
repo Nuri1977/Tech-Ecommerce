@@ -3,7 +3,7 @@ import { Timestamp } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { Category, Product } from '../../../config/interfaces/intefaces';
 import { useAppDispatch } from '../../../redux/app/hooks';
-import { addProductApi, updateProductApi } from '../../../redux/products/prouctsThunk';
+import { addProductApi, updateProductApi } from '../../../redux/products/productsThunk';
 import Button from '../../Forms/Button/Button';
 import FormSelect from '../../Forms/FormSelect/FormSelect';
 import Input from '../../Forms/Input/Input';
