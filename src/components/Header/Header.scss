@@ -24,6 +24,31 @@
       }
     }
 
+    nav {
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      ul {
+        text-align: center;
+        height: 100%;
+
+        li {
+          display: inline-block;
+          height: 100%;
+          margin: 0 1rem;
+
+          a {
+            font-size: 1.8rem;
+            line-height: 6.5rem;
+            vertical-align: middle;
+            color: black;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+
     .callToActions {
       position: absolute;
       right: 10px;
