@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import useProducts from '../../hooks/useProducts';
 import { useAppDispatch } from '../../redux/app/hooks';
 import { fetchProductsApi } from '../../redux/products/prouctsThunk';
-import ProductDetail from './ProductDetail/ProductDetail';
+import OneProduct from './OneProduct/OneProduct';
 import './Products.scss';
 
 const Products = () => {
@@ -22,7 +22,7 @@ const Products = () => {
       <h1>Browse products</h1>
       <div className="products">
         {products.length > 0 ? (
-          products.map((product) => <ProductDetail product={product} key={product.uid} />)
+          products.map((product) => <OneProduct product={product} key={product.uid} />)
         ) : (
           <div>No products</div>
         )}

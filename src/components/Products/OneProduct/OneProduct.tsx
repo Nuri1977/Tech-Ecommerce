@@ -1,7 +1,8 @@
 import React from 'react';
 import { Product } from '../../../config/interfaces/intefaces';
+import Button from '../../Forms/Button/Button';
 
-const ProductDetail = ({ product }: { product: Product }) => {
+const OneProduct = ({ product }: { product: Product }) => {
   const { name, imageUrl, price } = product;
   return (
     <div className="product">
@@ -13,8 +14,9 @@ const ProductDetail = ({ product }: { product: Product }) => {
 
         <div className="price">${price}</div>
       </div>
+      <Button>Add to cart</Button>
     </div>
   );
 };
 
-export default ProductDetail;
+export default OneProduct;
