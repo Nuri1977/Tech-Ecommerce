@@ -5,14 +5,14 @@
   .menu {
     margin: 3rem auto 0;
 
-    ul, li {
+    ul,
+    li {
       margin: 0;
       padding: 0;
       list-style-type: none;
     }
 
     ul {
-
       li {
         width: 100%;
         border-bottom: 1px solid #d3d3d3;
@@ -21,7 +21,8 @@
           border-top: 1px solid #d3d3d3;
         }
 
-        a, span {
+        a,
+        span {
           display: block;
           width: 100%;
           padding: 2rem;
@@ -35,7 +36,6 @@
           background-color: #d3d3d3;
         }
       }
-
     }
   }
 }

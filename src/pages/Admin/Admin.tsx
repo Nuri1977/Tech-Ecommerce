@@ -6,7 +6,7 @@ import useCategories from '../../hooks/useCategory';
 import useProducts from '../../hooks/useProducts';
 import { useAppDispatch } from '../../redux/app/hooks';
 import { fetchCategoriesApi } from '../../redux/categories/categoriesThunk';
-import { fetchProductsApi } from '../../redux/products/prouctsThunk';
+import { fetchProductsApi } from '../../redux/products/productsThunk';
 import './Admin.scss';
 
 const Admin = () => {

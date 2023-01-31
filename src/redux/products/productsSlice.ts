@@ -3,7 +3,7 @@ import {
   deleteProductApi,
   fetchProductsApi,
   updateProductApi
-} from './prouctsThunk';
+} from './productsThunk';
 import { createSlice } from '@reduxjs/toolkit';
 import { ProductState } from '../../config/interfaces/intefaces';
 import { RootState } from '../app/store';

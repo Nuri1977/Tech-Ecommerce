@@ -1,14 +1,16 @@
 .modalOverlay {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .modal {
   position: absolute;
-  top: 50%; left: 50%;
+  top: 50%;
+  left: 50%;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -17,5 +19,5 @@
   padding: 2rem;
   max-width: 60rem;
   height: auto;
-  min-height: 40.0rem;
+  min-height: 40rem;
 }
