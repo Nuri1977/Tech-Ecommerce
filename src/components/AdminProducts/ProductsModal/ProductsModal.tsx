@@ -1,4 +1,5 @@
 import { nanoid } from '@reduxjs/toolkit';
+import { Timestamp } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { Category, Product } from '../../../config/interfaces/intefaces';
 import { useAppDispatch } from '../../../redux/app/hooks';
@@ -44,7 +45,8 @@ const ProductsModal = ({
           name: productName,
           imageUrl: productThumbnail,
           price: productPrice,
-          category: productCategory
+          category: productCategory,
+          createDate: Timestamp.now()
         })
       );
     } else {
@@ -54,10 +56,15 @@ const ProductsModal = ({
           name: productName,
           imageUrl: productThumbnail,
           price: productPrice,
-          category: productCategory
+          category: productCategory,
+          createDate: Timestamp.now()
         })
       );
     }
+    setProductCategory({ uid: '', name: '' });
+    setProductName('');
+    setProductThumbnail('');
+    setProductPrice(0);
     toggleModal();
   };
 

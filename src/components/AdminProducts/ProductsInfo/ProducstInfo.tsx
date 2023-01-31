@@ -1,3 +1,4 @@
+import { Timestamp } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { Category, Product } from '../../../config/interfaces/intefaces';
 import { useAppDispatch } from '../../../redux/app/hooks';
@@ -21,7 +22,8 @@ const ProductsInfo = ({
     uid: '',
     imageUrl: '',
     category: { uid: '', name: '' },
-    price: 0
+    price: 0,
+    createDate: Timestamp.now()
   });
 
   const toggleModal = (product?: Product) => {

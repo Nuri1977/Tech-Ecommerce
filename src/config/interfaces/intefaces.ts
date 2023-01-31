@@ -1,3 +1,5 @@
+import { Timestamp } from 'firebase/firestore';
+
 export interface CurrentUser {
   uid?: string;
   displayName: string | null;
@@ -22,6 +24,7 @@ export interface Product {
   category: Category;
   imageUrl: string;
   price: number;
+  createDate: Timestamp;
 }
 
 export interface ProductState {

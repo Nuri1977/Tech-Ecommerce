@@ -1,5 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { collection, deleteDoc, doc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+  setDoc,
+  Timestamp,
+  updateDoc
+} from 'firebase/firestore';
 import { db } from '../../config/firebase/firebaseConfig';
 import { Product } from '../../config/interfaces/intefaces';
 
@@ -12,7 +22,9 @@ export const addProductApi = createAsyncThunk(
 );
 
 export const fetchProductsApi = createAsyncThunk('products/fetchProductsApi', async () => {
-  const response = await getDocs(collection(db, 'products')).then((querySnapshot) => {
+  const productsRef = collection(db, 'products');
+  const q = query(productsRef, orderBy('createDate', 'desc'));
+  const response = await getDocs(q).then((querySnapshot) => {
     const res: Product[] = [];
     querySnapshot.forEach((doc) => {
       res.push({
@@ -20,6 +32,7 @@ export const fetchProductsApi = createAsyncThunk('products/fetchProductsApi', as
         category: { uid: '', name: '' },
         imageUrl: '',
         price: 0,
+        createDate: Timestamp.now(),
         ...doc.data(),
         uid: doc.id
       });
