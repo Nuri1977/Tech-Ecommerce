@@ -1,3 +1,4 @@
+import { DocumentData, QueryDocumentSnapshot } from '@firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import useCategories from '../../hooks/useCategory';
@@ -13,13 +14,23 @@ const Products = () => {
   const navigate = useNavigate();
   const { filter } = useParams();
   const [filterValue, setFilterValeu] = useState('');
-  const { products, loading, productsError } = useProducts();
+  const [paginateArray, satePaginateArray] = useState<
+    (QueryDocumentSnapshot<DocumentData> | null)[]
+  >([]);
+  const [page, satePage] = useState(1);
+  const { products, loading, productsError, paginateNext } = useProducts();
   const dispatch = useAppDispatch();
   const { categories } = useCategories();
 
   useEffect(() => {
-    dispatch(fetchProductsApi(filter));
+    dispatch(fetchProductsApi({ pagNext: paginateNext, categoryUid: filter }));
   }, [filter]);
+
+  useEffect(() => {
+    const result = paginateArray.find((obj) => obj?.id === paginateNext?.id);
+    if (!result && paginateNext !== null && paginateNext !== undefined)
+      satePaginateArray([...paginateArray, paginateNext]);
+  }, [paginateNext]);
 
   useEffect(() => {
     dispatch(fetchCategoriesApi());
@@ -32,6 +43,19 @@ const Products = () => {
       navigate('/search');
     }
   }, [filterValue]);
+
+  const paginate = () => {
+    dispatch(fetchProductsApi({ pagNext: paginateNext, categoryUid: filter }));
+    if (paginateNext !== undefined) satePage(page + 1);
+  };
+
+  const goBack = () => {
+    console.log('nuri:', paginateArray[page - 1]);
+    dispatch(fetchProductsApi({ pagNext: paginateArray[1 - page], categoryUid: filter }));
+    if (paginateNext !== undefined) satePage(page - 1);
+  };
+
+  console.log({ paginateArray });
 
   if (productsError) return <h2>{productsError}</h2>;
 
@@ -55,6 +79,11 @@ const Products = () => {
       ) : (
         <div>Loading...</div>
       )}
+      <button onClick={() => goBack()}>Back</button>
+      <span>Page: {page}</span>
+      <button onClick={() => paginate()} disabled={paginateNext === undefined}>
+        Next
+      </button>
     </div>
   );
 };

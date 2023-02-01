@@ -10,6 +10,8 @@ import { RootState } from '../app/store';
 
 const initialState: ProductState = {
   products: [],
+  paginatePrevious: null,
+  paginateNext: null,
   loading: false,
   productsError: ''
 };
@@ -44,15 +46,20 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProductsApi.pending, (state) => {
         state.loading = true;
+        state.paginatePrevious = null;
+        state.paginateNext = null;
         state.productsError = '';
       })
       .addCase(fetchProductsApi.fulfilled, (state, action) => {
-        state.products = action.payload;
+        state.products = action.payload.products;
+        state.paginateNext = action.payload.paginateNext;
         state.loading = false;
         state.productsError = '';
       })
       .addCase(fetchProductsApi.rejected, (state, action) => {
         state.loading = false;
+        state.paginatePrevious = null;
+        state.paginateNext = null;
         state.productsError = action.error.message;
       })
       .addCase(deleteProductApi.pending, (state) => {

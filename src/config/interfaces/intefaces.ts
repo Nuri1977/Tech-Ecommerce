@@ -1,4 +1,4 @@
-import { Timestamp } from 'firebase/firestore';
+import { DocumentData, QueryDocumentSnapshot, Timestamp } from 'firebase/firestore';
 
 export interface CurrentUser {
   uid?: string;
@@ -29,6 +29,8 @@ export interface Product {
 
 export interface ProductState {
   products: Product[];
+  paginatePrevious: QueryDocumentSnapshot<DocumentData> | null;
+  paginateNext: QueryDocumentSnapshot<DocumentData> | null;
   loading: boolean;
   productsError: string | undefined;
 }

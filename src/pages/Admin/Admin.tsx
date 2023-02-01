@@ -12,13 +12,13 @@ import './Admin.scss';
 const Admin = () => {
   const [hideModal, setHideModal] = useState(true);
 
-  const { products, loading } = useProducts();
+  const { products, loading, paginateNext } = useProducts();
   const { categories } = useCategories();
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchProductsApi());
+    dispatch(fetchProductsApi({ pagNext: paginateNext }));
     dispatch(fetchCategoriesApi());
   }, []);
 

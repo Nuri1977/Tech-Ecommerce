@@ -6,10 +6,15 @@ import {
   getDocs,
   orderBy,
   query,
+  limit,
   setDoc,
-  Timestamp,
+  // Timestamp,
   updateDoc,
-  where
+  where,
+  Timestamp,
+  QueryDocumentSnapshot,
+  DocumentData,
+  startAfter
 } from 'firebase/firestore';
 import { db } from '../../config/firebase/firebaseConfig';
 import { Product } from '../../config/interfaces/intefaces';
@@ -24,15 +29,59 @@ export const addProductApi = createAsyncThunk(
 
 export const fetchProductsApi = createAsyncThunk(
   'products/fetchProductsApi',
-  async (limit?: string) => {
+  async ({
+    pagNext,
+    categoryUid = undefined
+  }: {
+    pagNext: QueryDocumentSnapshot<DocumentData> | null;
+    categoryUid?: string;
+  }) => {
+    console.log('Ardit:', pagNext);
     const productsRef = collection(db, 'products');
-    let q = query(productsRef, orderBy('createDate', 'desc'));
-    if (limit !== undefined)
-      q = query(productsRef, where('category.uid', '==', limit), orderBy('createDate', 'desc'));
-    const response = await getDocs(q).then((querySnapshot) => {
-      const res: Product[] = [];
-      querySnapshot.forEach((doc) => {
-        res.push({
+    let first = query(productsRef, orderBy('createDate', 'desc'), limit(4));
+    if (categoryUid !== undefined)
+      first = query(
+        productsRef,
+        where('category.uid', '==', categoryUid),
+        orderBy('createDate', 'desc'),
+        limit(4)
+      );
+
+    if (pagNext) {
+      if (categoryUid !== undefined) {
+        first = query(
+          productsRef,
+          where('category.uid', '==', categoryUid),
+          orderBy('createDate', 'desc'),
+          startAfter(pagNext),
+          limit(4)
+        );
+      } else {
+        first = query(productsRef, orderBy('createDate', 'desc'), startAfter(pagNext), limit(4));
+      }
+    } else {
+      if (categoryUid !== undefined) {
+        first = query(
+          productsRef,
+          where('category.uid', '==', categoryUid),
+          orderBy('createDate', 'desc'),
+          limit(4)
+        );
+      } else {
+        first = query(productsRef, orderBy('createDate', 'desc'), limit(4));
+      }
+    }
+
+    const response = await getDocs(first).then((documentSnapshots) => {
+      const res: {
+        products: Product[];
+        paginateNext: QueryDocumentSnapshot<DocumentData> | null;
+      } = {
+        products: [],
+        paginateNext: null
+      };
+      documentSnapshots.forEach((doc) => {
+        res.products.push({
           name: '',
           category: { uid: '', name: '' },
           imageUrl: '',
@@ -42,6 +91,7 @@ export const fetchProductsApi = createAsyncThunk(
           uid: doc.id
         });
       });
+      res.paginateNext = documentSnapshots.docs[documentSnapshots.docs.length - 1];
       return res;
     });
     return response;
