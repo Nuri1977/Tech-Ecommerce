@@ -16,15 +16,17 @@ const Products = () => {
   const [filterValue, setFilterValeu] = useState('');
   const [paginateArray, satePaginateArray] = useState<
     (QueryDocumentSnapshot<DocumentData> | null)[]
-  >([]);
+  >([null]);
   const [page, satePage] = useState(1);
   const { products, loading, productsError, paginateNext } = useProducts();
   const dispatch = useAppDispatch();
   const { categories } = useCategories();
 
   useEffect(() => {
-    dispatch(fetchProductsApi({ pagNext: paginateNext, categoryUid: filter }));
-  }, [filter]);
+    dispatch(fetchProductsApi({ pagNext: null, categoryUid: filterValue }));
+    satePage(1);
+    satePaginateArray([null]);
+  }, [filterValue]);
 
   useEffect(() => {
     const result = paginateArray.find((obj) => obj?.id === paginateNext?.id);
@@ -51,7 +53,7 @@ const Products = () => {
 
   const goBack = () => {
     console.log('nuri:', paginateArray[page - 1]);
-    dispatch(fetchProductsApi({ pagNext: paginateArray[1 - page], categoryUid: filter }));
+    dispatch(fetchProductsApi({ pagNext: paginateArray[page - 2], categoryUid: filter }));
     if (paginateNext !== undefined) satePage(page - 1);
   };
 
@@ -79,9 +81,11 @@ const Products = () => {
       ) : (
         <div>Loading...</div>
       )}
-      <button onClick={() => goBack()}>Back</button>
+      <button onClick={() => goBack()} disabled={page < 2}>
+        Back
+      </button>
       <span>Page: {page}</span>
-      <button onClick={() => paginate()} disabled={paginateNext === undefined}>
+      <button onClick={() => paginate()} disabled={products.length < 4}>
         Next
       </button>
     </div>

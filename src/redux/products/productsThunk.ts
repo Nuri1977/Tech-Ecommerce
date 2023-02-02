@@ -38,37 +38,30 @@ export const fetchProductsApi = createAsyncThunk(
   }) => {
     console.log('Ardit:', pagNext);
     const productsRef = collection(db, 'products');
-    let first = query(productsRef, orderBy('createDate', 'desc'), limit(4));
-    if (categoryUid !== undefined)
-      first = query(
-        productsRef,
-        where('category.uid', '==', categoryUid),
-        orderBy('createDate', 'desc'),
-        limit(4)
-      );
+    let first = query(productsRef, orderBy('createDate', 'desc'), limit(8));
 
     if (pagNext) {
-      if (categoryUid !== undefined) {
+      if (categoryUid !== undefined && categoryUid !== '') {
         first = query(
           productsRef,
           where('category.uid', '==', categoryUid),
           orderBy('createDate', 'desc'),
           startAfter(pagNext),
-          limit(4)
+          limit(8)
         );
       } else {
-        first = query(productsRef, orderBy('createDate', 'desc'), startAfter(pagNext), limit(4));
+        first = query(productsRef, orderBy('createDate', 'desc'), startAfter(pagNext), limit(8));
       }
     } else {
-      if (categoryUid !== undefined) {
+      if (categoryUid !== undefined && categoryUid !== '') {
         first = query(
           productsRef,
           where('category.uid', '==', categoryUid),
           orderBy('createDate', 'desc'),
-          limit(4)
+          limit(8)
         );
       } else {
-        first = query(productsRef, orderBy('createDate', 'desc'), limit(4));
+        first = query(productsRef, orderBy('createDate', 'desc'), limit(8));
       }
     }
 
