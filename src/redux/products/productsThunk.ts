@@ -31,14 +31,16 @@ export const fetchProductsApi = createAsyncThunk(
   'products/fetchProductsApi',
   async ({
     pagNext,
+    pageSize,
     categoryUid = undefined
   }: {
     pagNext: QueryDocumentSnapshot<DocumentData> | null;
+    pageSize: number;
     categoryUid?: string;
   }) => {
     console.log('Ardit:', pagNext);
     const productsRef = collection(db, 'products');
-    let first = query(productsRef, orderBy('createDate', 'desc'), limit(8));
+    let first = query(productsRef, orderBy('createDate', 'desc'), limit(pageSize));
 
     if (pagNext) {
       if (categoryUid !== undefined && categoryUid !== '') {
@@ -47,10 +49,15 @@ export const fetchProductsApi = createAsyncThunk(
           where('category.uid', '==', categoryUid),
           orderBy('createDate', 'desc'),
           startAfter(pagNext),
-          limit(8)
+          limit(pageSize)
         );
       } else {
-        first = query(productsRef, orderBy('createDate', 'desc'), startAfter(pagNext), limit(8));
+        first = query(
+          productsRef,
+          orderBy('createDate', 'desc'),
+          startAfter(pagNext),
+          limit(pageSize)
+        );
       }
     } else {
       if (categoryUid !== undefined && categoryUid !== '') {
@@ -58,10 +65,10 @@ export const fetchProductsApi = createAsyncThunk(
           productsRef,
           where('category.uid', '==', categoryUid),
           orderBy('createDate', 'desc'),
-          limit(8)
+          limit(pageSize)
         );
       } else {
-        first = query(productsRef, orderBy('createDate', 'desc'), limit(8));
+        first = query(productsRef, orderBy('createDate', 'desc'), limit(pageSize));
       }
     }
 

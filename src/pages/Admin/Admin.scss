@@ -6,6 +6,13 @@
     padding: 5px;
   }
 
+  .selectBoxes {
+    width: 200px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
   .productsInfo {
     display: grid;
     grid-template-columns: 1fr;
@@ -36,6 +43,24 @@
         button {
           margin-left: 5px;
         }
+      }
+    }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+
+    .paginationWraper {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      width: 300px;
+
+      span {
+        padding: 4px 5px;
       }
     }
   }

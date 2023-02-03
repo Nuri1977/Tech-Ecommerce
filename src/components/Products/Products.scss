@@ -5,6 +5,13 @@
     margin-bottom: 0px;
   }
 
+  .selectBoxes {
+    display: flex;
+    width: 200px;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
   .products {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -38,6 +45,24 @@
           font-weight: 400;
           padding: 5px 0;
         }
+      }
+    }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+
+    .paginationWraper {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      width: 300px;
+
+      span {
+        padding: 4px 5px;
       }
     }
   }
