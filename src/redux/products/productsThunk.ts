@@ -85,6 +85,7 @@ export const fetchProductsApi = createAsyncThunk(
           category: { uid: '', name: '' },
           imageUrl: '',
           price: 0,
+          description: '',
           createDate: Timestamp.now(),
           ...doc.data(),
           uid: doc.id

@@ -32,6 +32,9 @@ const ProductCard = () => {
           </li>
         </ul>
       </div>
+      <div>
+        <div className="description" dangerouslySetInnerHTML={{ __html: myProduct.description }} />
+      </div>
     </div>
   );
 };

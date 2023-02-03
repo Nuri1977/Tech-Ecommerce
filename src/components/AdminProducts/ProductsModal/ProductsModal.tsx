@@ -1,4 +1,5 @@
 import { nanoid } from '@reduxjs/toolkit';
+import { CKEditor } from 'ckeditor4-react';
 import { Timestamp } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { Category, Product } from '../../../config/interfaces/intefaces';
@@ -28,6 +29,7 @@ const ProductsModal = ({
   const [productName, setProductName] = useState(selectedProduct?.name || '');
   const [productThumbnail, setProductThumbnail] = useState(selectedProduct?.imageUrl || '');
   const [productPrice, setProductPrice] = useState(selectedProduct?.price || 0);
+  const [description, setDescription] = useState(selectedProduct?.description || '');
 
   useEffect(() => {
     setProductCategory(selectedProduct?.category || { uid: '', name: '' });
@@ -46,7 +48,8 @@ const ProductsModal = ({
           imageUrl: productThumbnail,
           price: productPrice,
           category: productCategory,
-          createDate: Timestamp.now()
+          createDate: Timestamp.now(),
+          description
         })
       );
     } else {
@@ -57,7 +60,8 @@ const ProductsModal = ({
           imageUrl: productThumbnail,
           price: productPrice,
           category: productCategory,
-          createDate: Timestamp.now()
+          createDate: Timestamp.now(),
+          description
         })
       );
     }
@@ -65,6 +69,7 @@ const ProductsModal = ({
     setProductName('');
     setProductThumbnail('');
     setProductPrice(0);
+    setDescription('');
     toggleModal();
   };
 
@@ -116,6 +121,8 @@ const ProductsModal = ({
               value={productPrice}
               onChange={(e: any) => setProductPrice(e.target.value)}
             />
+
+            <CKEditor onChange={(e) => setDescription(e.editor.getData())} />
 
             <Button type="submit">{selectedProduct?.uid ? 'Edit Product' : 'Add product'}</Button>
           </form>
