@@ -1,0 +1,26 @@
+.productCard {
+  max-width: 80rem;
+  margin: 0 auto 10rem;
+
+  .hero {
+    display: block;
+    width: 100%;
+    margin: 2rem auto;
+
+    img {
+      display: block;
+      width: 100%;
+      margin: 0;
+    }
+  }
+
+  .productDetails {
+    h3 {
+      padding: 0 0 10px;
+    }
+  }
+
+  .addToCard {
+    max-width: 200px;
+  }
+}

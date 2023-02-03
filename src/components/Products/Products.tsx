@@ -53,8 +53,6 @@ const Products = () => {
     }
   };
 
-  console.log({ paginateArray, setPageSize });
-
   if (productsError) return <h2>{productsError}</h2>;
 
   return (
