@@ -3,11 +3,12 @@ import './Button.scss';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
+  disabled?: boolean;
 }
 
-const Button: FC<ButtonProps> = ({ children, ...otherProps }) => {
+const Button: FC<ButtonProps> = ({ children, disabled = false, ...otherProps }) => {
   return (
-    <button className="btn" {...otherProps}>
+    <button className={`btn ${disabled && 'disabled'}`} {...otherProps}>
       {children}
     </button>
   );

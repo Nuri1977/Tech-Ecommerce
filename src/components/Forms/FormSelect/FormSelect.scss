@@ -1,5 +1,6 @@
 .formRow {
   display: inline-block;
+  margin-right: 15px;
   width: 100%;
 
   label {
@@ -16,7 +17,7 @@
     line-height: 1;
     font-weight: 400;
     text-align: left;
-    padding: 5px;
+    padding: 5px 10px;
     margin: 10px auto;
     border: 1px solid #ccc;
     outline: none;
