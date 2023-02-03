@@ -10,7 +10,7 @@ interface SelectProps extends InputHTMLAttributes<HTMLSelectElement> {
 
 const FormSelect: FC<SelectProps> = ({ options, name, label, ...otherProps }) => {
   if (!Array.isArray(options) || options.length < 1) return null;
-  console.log(name);
+  console.error(name);
   return (
     <div className="formRow">
       {label && <label>{label}</label>}

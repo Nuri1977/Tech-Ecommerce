@@ -25,6 +25,7 @@ export interface Product {
   imageUrl: string;
   price: number;
   createDate: Timestamp;
+  description: string;
 }
 
 export interface ProductState {

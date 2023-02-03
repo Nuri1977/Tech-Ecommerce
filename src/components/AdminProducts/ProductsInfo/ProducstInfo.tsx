@@ -17,7 +17,8 @@ const ProductsInfo = ({ categories }: { categories: Category[] }) => {
     imageUrl: '',
     category: { uid: '', name: '' },
     price: 0,
-    createDate: Timestamp.now()
+    createDate: Timestamp.now(),
+    description: ''
   });
   const [page, satePage] = useState(1);
   const [pageSize, setPageSize] = useState(8);

@@ -38,7 +38,6 @@ export const fetchProductsApi = createAsyncThunk(
     pageSize: number;
     categoryUid?: string;
   }) => {
-    console.log('Ardit:', pagNext);
     const productsRef = collection(db, 'products');
     let first = query(productsRef, orderBy('createDate', 'desc'), limit(pageSize));
 
@@ -86,6 +85,7 @@ export const fetchProductsApi = createAsyncThunk(
           category: { uid: '', name: '' },
           imageUrl: '',
           price: 0,
+          description: '',
           createDate: Timestamp.now(),
           ...doc.data(),
           uid: doc.id

@@ -16,6 +16,7 @@ import WithAuth from './pages/HOC/WithAuth';
 import AdminLayout from './Layouts/AdminLayout';
 import DashboardLayout from './Layouts/DashboardLayout';
 import Search from './pages/search/Search';
+import ProductDetail from './pages/ProductDetail/ProductDetail';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,6 +37,7 @@ function App() {
               <Route path="/recovery" element={<Recovery />} />
               <Route path="/search" element={<Search />} />
               <Route path="/search/:filter" element={<Search />} />
+              <Route path="/product/:productId" element={<ProductDetail />} />
               <Route element={<WithAuth />}>
                 <Route path="/myaccount" element={<MyAccount />} />
               </Route>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Product } from '../../../config/interfaces/intefaces';
 import Button from '../../Forms/Button/Button';
 
@@ -7,10 +8,14 @@ const OneProduct = ({ product }: { product: Product }) => {
   return (
     <div className="product">
       <div className="thumb">
-        <img src={imageUrl} alt="name" />
+        <Link to={`/product/${product.uid}`}>
+          <img src={imageUrl} alt="name" />
+        </Link>
       </div>
       <div className="details">
-        <div className="name">{name}</div>
+        <Link to={`/product/${product.uid}`}>
+          <div className="name">{name}</div>
+        </Link>
 
         <div className="price">${price}</div>
       </div>
