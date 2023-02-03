@@ -38,16 +38,19 @@ const Products = () => {
   }, []);
 
   const paginate = () => {
-    dispatch(fetchProductsApi({ pagNext: paginateNext, pageSize, categoryUid: filterValue }));
-    if (paginateNext !== undefined) satePage(page + 1);
+    if (products.length >= pageSize) {
+      dispatch(fetchProductsApi({ pagNext: paginateNext, pageSize, categoryUid: filterValue }));
+      if (paginateNext !== undefined) satePage(page + 1);
+    }
   };
 
   const goBack = () => {
-    console.log('nuri:', paginateArray[page - 1]);
-    dispatch(
-      fetchProductsApi({ pagNext: paginateArray[page - 2], pageSize, categoryUid: filterValue })
-    );
-    if (paginateNext !== undefined) satePage(page - 1);
+    if (page >= 2) {
+      dispatch(
+        fetchProductsApi({ pagNext: paginateArray[page - 2], pageSize, categoryUid: filterValue })
+      );
+      if (paginateNext !== undefined) satePage(page - 1);
+    }
   };
 
   console.log({ paginateArray, setPageSize });
@@ -89,7 +92,7 @@ const Products = () => {
             Back
           </Button>
           <span>{page}</span>
-          <Button onClick={() => paginate()} disabled={products.length < 4}>
+          <Button onClick={() => paginate()} disabled={products.length < pageSize}>
             Next
           </Button>
         </div>
