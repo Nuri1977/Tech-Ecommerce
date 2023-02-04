@@ -46,3 +46,11 @@ export interface CategoryState {
   loading: boolean;
   categoriesError: string | undefined;
 }
+
+export interface CartItem extends Product {
+  quantity: number;
+}
+
+export interface CartState {
+  cartItems: CartItem[];
+}

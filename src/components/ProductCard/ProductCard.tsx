@@ -1,10 +1,13 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import useProducts from '../../hooks/useProducts';
+import { addCartItem } from '../../redux/cart/cartSlice';
 import Button from '../Forms/Button/Button';
 import './ProductCard.scss';
 
 const ProductCard = () => {
+  const dispatch = useDispatch();
   const { productId } = useParams();
   const { products } = useProducts();
 
@@ -27,7 +30,9 @@ const ProductCard = () => {
           </li>
           <li>
             <div className="addToCard">
-              <Button type="button">Add to cart</Button>
+              <Button type="button" onClick={() => dispatch(addCartItem(myProduct))}>
+                Add to cart
+              </Button>
             </div>
           </li>
         </ul>
