@@ -61,6 +61,30 @@
         display: inline-block;
         margin-left: 1.5rem;
 
+        .cart {
+          position: relative;
+
+          .cartQuantity {
+            position: absolute;
+            top: -13px;
+            right: -13px;
+            background-color: red;
+            border-radius: 50%;
+            color: white;
+            width: 25px;
+            height: 25px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3px;
+
+            .items {
+              padding: 3px;
+            }
+          }
+        }
+
         a {
           font-size: 1.8rem;
           line-height: 1;

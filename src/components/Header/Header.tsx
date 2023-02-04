@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { signOutFun } from '../../redux/authentication/authThunk';
 import { useAppDispatch } from '../../redux/app/hooks';
 import useAuth from '../../hooks/useAuth';
+import { BsFillCartFill } from 'react-icons/bs';
 
 const Header = () => {
   const { currentUser, isAdmin } = useAuth();
@@ -60,6 +61,14 @@ const Header = () => {
                 <span onClick={() => dispatch(signOutFun())}>Logout</span>
               </li>
             )}
+            <li>
+              <div className="cart">
+                <BsFillCartFill size="24px" />
+                <div className="cartQuantity">
+                  <div className="items">20</div>
+                </div>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
