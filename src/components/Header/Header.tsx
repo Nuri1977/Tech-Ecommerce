@@ -3,14 +3,17 @@ import './Header.scss';
 import Logo from '../../assets/images/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { signOutFun } from '../../redux/authentication/authThunk';
-import { useAppDispatch } from '../../redux/app/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
 import useAuth from '../../hooks/useAuth';
 import { BsCart3 } from 'react-icons/bs';
+import { selectCartItemsCount } from '../../redux/cart/cartSlice';
 
 const Header = () => {
   const { currentUser, isAdmin } = useAuth();
+  const cartartItemsCount = useAppSelector(selectCartItemsCount);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   return (
     <header className="header">
       <div className="wrap">
@@ -64,9 +67,11 @@ const Header = () => {
             <li>
               <div className="cart">
                 <BsCart3 size="24px" />
-                <div className="cartQuantity">
-                  <div className="items">2</div>
-                </div>
+                {cartartItemsCount > 0 && (
+                  <div className="cartQuantity">
+                    <div className="items">{cartartItemsCount}</div>
+                  </div>
+                )}
               </div>
             </li>
           </ul>

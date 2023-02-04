@@ -4,17 +4,21 @@ import './FormSelect.scss';
 
 interface SelectProps extends InputHTMLAttributes<HTMLSelectElement> {
   options: Category[] | number[];
-  name?: string;
+  name: string;
   label?: string;
 }
 
 const FormSelect: FC<SelectProps> = ({ options, name, label, ...otherProps }) => {
   if (!Array.isArray(options) || options.length < 1) return null;
-  console.error(name);
+
   return (
     <div className="formRow">
       {label && <label>{label}</label>}
+
       <select className="formSelect" {...otherProps}>
+        <option key={'deafult'} value={''}>
+          {`${name.toLowerCase()} `}
+        </option>
         {options.map((option) => {
           if (typeof option === 'number') {
             return (
