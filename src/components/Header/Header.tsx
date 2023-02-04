@@ -65,7 +65,7 @@ const Header = () => {
               <div className="cart">
                 <BsFillCartFill size="24px" />
                 <div className="cartQuantity">
-                  <div className="items">20</div>
+                  <div className="items">2</div>
                 </div>
               </div>
             </li>
