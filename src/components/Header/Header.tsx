@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Header.scss';
 import Logo from '../../assets/images/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,6 +10,7 @@ import { selectCartItemsCount } from '../../redux/cart/cartSlice';
 
 const Header = () => {
   const { currentUser, isAdmin } = useAuth();
+  const [showModal, setShowModal] = useState(false);
   const cartartItemsCount = useAppSelector(selectCartItemsCount);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -65,11 +66,19 @@ const Header = () => {
               </li>
             )}
             <li>
-              <div className="cart">
+              <div
+                className="cart"
+                onMouseEnter={() => setShowModal(true)}
+                onMouseLeave={() => setShowModal(false)}>
                 <BsCart3 size="24px" />
                 {cartartItemsCount > 0 && (
                   <div className="cartQuantity">
                     <div className="items">{cartartItemsCount}</div>
+                  </div>
+                )}
+                {showModal && (
+                  <div className="cartModal">
+                    <div className="cartItems">Cart items</div>
                   </div>
                 )}
               </div>

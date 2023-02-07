@@ -64,6 +64,7 @@
         .cart {
           position: relative;
 
+
           .cartQuantity {
             position: absolute;
             top: -5px;
@@ -81,6 +82,22 @@
 
             .items {
               padding: 3px;
+            }
+          }
+
+          .cartModal {
+            position: absolute;
+            top: 30px;
+            right: 0px;
+            z-index: 4;
+            background-color: transparent;
+            width: 400px;
+
+            .cartItems {
+              margin-top: 20px;
+              background-color: white;
+              min-height: 400px;
+              box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
             }
           }
         }
