@@ -17,6 +17,7 @@ import AdminLayout from './Layouts/AdminLayout';
 import DashboardLayout from './Layouts/DashboardLayout';
 import Search from './pages/search/Search';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
+import Checkout from './pages/Checkout/Checkout';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,7 +30,7 @@ function App() {
         ) : (
           <Routes>
             <Route path="/" element={<HomepageLayout />}>
-              <Route index path="/" element={<Homepage />} />
+              <Route path="/" element={<Homepage />} />
             </Route>
             <Route path="/" element={<MainLayout />}>
               <Route path="/registration" element={<Registration />} />
@@ -40,6 +41,7 @@ function App() {
               <Route path="/product/:productId" element={<ProductDetail />} />
               <Route element={<WithAuth />}>
                 <Route path="/myaccount" element={<MyAccount />} />
+                <Route path="/checkout" element={<Checkout />} />
               </Route>
             </Route>
             <Route path="/" element={<AdminLayout />}>

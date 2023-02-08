@@ -1,15 +1,19 @@
 import React from 'react';
 import { useAppSelector } from '../../../redux/app/hooks';
-import { selectCartItems, selectCartTotal } from '../../../redux/cart/cartSlice';
+import { removeCartItem, selectCartItems, selectCartTotal } from '../../../redux/cart/cartSlice';
 import Button from '../../Forms/Button/Button';
 import { TiDeleteOutline } from 'react-icons/ti';
 import './CartModal.scss';
 import { formatNumT1 } from '../../../utils/formatNumber';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const CartModal = () => {
   const cartItems = useAppSelector(selectCartItems);
   const CartTotal = useAppSelector(selectCartTotal);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   return (
     <div className="cartModalDetail">
       {cartItems.length > 0 && (
@@ -25,14 +29,14 @@ const CartModal = () => {
                 </div>
                 <div className="quantity">{`x ${product.quantity}`}</div>
                 <div className="price">${formatNumT1(product.price)}</div>
-                <div className="deleteIcon">
+                <div className="deleteIcon" onClick={() => dispatch(removeCartItem(product.uid))}>
                   <TiDeleteOutline size={20} />
                 </div>
               </div>
             ))}
           </div>
           <div className="checkout">
-            <div className="checkoutBtn">
+            <div className="checkoutBtn" onClick={() => navigate('/checkout')}>
               <Button>Checkout</Button>
             </div>
             <div>Total ${formatNumT1(CartTotal)}</div>
