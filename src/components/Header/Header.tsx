@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
 import useAuth from '../../hooks/useAuth';
 import { BsCart3 } from 'react-icons/bs';
 import { selectCartItemsCount } from '../../redux/cart/cartSlice';
+import CartModal from '../ProductCart/CartModal/CartModal';
 
 const Header = () => {
   const { currentUser, isAdmin } = useAuth();
@@ -70,7 +71,7 @@ const Header = () => {
                 className="cart"
                 onMouseEnter={() => setShowModal(true)}
                 onMouseLeave={() => setShowModal(false)}>
-                <BsCart3 size="24px" />
+                <BsCart3 size="24px" className="cartIcon" />
                 {cartartItemsCount > 0 && (
                   <div className="cartQuantity">
                     <div className="items">{cartartItemsCount}</div>
@@ -78,7 +79,7 @@ const Header = () => {
                 )}
                 {showModal && (
                   <div className="cartModal">
-                    <div className="cartItems">Cart items</div>
+                    <CartModal />
                   </div>
                 )}
               </div>

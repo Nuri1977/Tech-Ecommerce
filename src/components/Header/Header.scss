@@ -37,6 +37,9 @@
           display: inline-block;
           height: 100%;
           margin: 0 1rem;
+          &:hover {
+            opacity: 0.6;
+          }
 
           a {
             font-size: 1.8rem;
@@ -60,10 +63,17 @@
       li {
         display: inline-block;
         margin-left: 1.5rem;
+        height: fit-content;
 
         .cart {
           position: relative;
 
+          .cartIcon {
+            cursor: pointer;
+            &:hover {
+              opacity: 0.7;
+            }
+          }
 
           .cartQuantity {
             position: absolute;
@@ -90,15 +100,7 @@
             top: 30px;
             right: 0px;
             z-index: 4;
-            background-color: transparent;
             width: 400px;
-
-            .cartItems {
-              margin-top: 20px;
-              background-color: white;
-              min-height: 400px;
-              box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
-            }
           }
         }
 
@@ -107,6 +109,9 @@
           line-height: 1;
           color: black;
           text-transform: uppercase;
+          &:hover {
+            opacity: 0.7;
+          }
         }
 
         span {
@@ -115,6 +120,9 @@
           color: black;
           text-transform: uppercase;
           cursor: pointer;
+          &:hover {
+            opacity: 0.7;
+          }
         }
       }
     }
