@@ -37,6 +37,9 @@
           display: inline-block;
           height: 100%;
           margin: 0 1rem;
+          &:hover {
+            opacity: 0.6;
+          }
 
           a {
             font-size: 1.8rem;
@@ -60,12 +63,55 @@
       li {
         display: inline-block;
         margin-left: 1.5rem;
+        height: fit-content;
+
+        .cart {
+          position: relative;
+
+          .cartIcon {
+            cursor: pointer;
+            &:hover {
+              opacity: 0.7;
+            }
+          }
+
+          .cartQuantity {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: red;
+            border-radius: 50%;
+            color: white;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3px;
+
+            .items {
+              padding: 3px;
+            }
+          }
+
+          .cartModal {
+            position: absolute;
+            top: 30px;
+            right: 0px;
+            z-index: 4;
+            width: 400px;
+          }
+        }
 
         a {
           font-size: 1.8rem;
           line-height: 1;
           color: black;
           text-transform: uppercase;
+          &:hover {
+            opacity: 0.7;
+          }
         }
 
         span {
@@ -74,6 +120,9 @@
           color: black;
           text-transform: uppercase;
           cursor: pointer;
+          &:hover {
+            opacity: 0.7;
+          }
         }
       }
     }

@@ -1,10 +1,13 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import useProducts from '../../hooks/useProducts';
+import { addCartItem } from '../../redux/cart/cartSlice';
 import Button from '../Forms/Button/Button';
-import './ProductCard.scss';
+import './ProductCart.scss';
 
-const ProductCard = () => {
+const ProductCart = () => {
+  const dispatch = useDispatch();
   const { productId } = useParams();
   const { products } = useProducts();
 
@@ -13,7 +16,7 @@ const ProductCard = () => {
   if (!myProduct) return <div>Noe product was found</div>;
 
   return (
-    <div className="productCard">
+    <div className="productCart">
       <div className="hero">
         <img src={myProduct.imageUrl} alt={myProduct.name} />
       </div>
@@ -26,8 +29,10 @@ const ProductCard = () => {
             <h3>${myProduct.price}</h3>
           </li>
           <li>
-            <div className="addToCard">
-              <Button type="button">Add to cart</Button>
+            <div className="addToCart">
+              <Button type="button" onClick={() => dispatch(addCartItem(myProduct))}>
+                Add to cart
+              </Button>
             </div>
           </li>
         </ul>
@@ -39,4 +44,4 @@ const ProductCard = () => {
   );
 };
 
-export default ProductCard;
+export default ProductCart;

@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Header.scss';
 import Logo from '../../assets/images/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { signOutFun } from '../../redux/authentication/authThunk';
-import { useAppDispatch } from '../../redux/app/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
 import useAuth from '../../hooks/useAuth';
+import { BsCart3 } from 'react-icons/bs';
+import { selectCartItemsCount } from '../../redux/cart/cartSlice';
+import CartModal from '../ProductCart/CartModal/CartModal';
 
 const Header = () => {
   const { currentUser, isAdmin } = useAuth();
+  const [showModal, setShowModal] = useState(false);
+  const cartartItemsCount = useAppSelector(selectCartItemsCount);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   return (
     <header className="header">
       <div className="wrap">
@@ -60,6 +66,24 @@ const Header = () => {
                 <span onClick={() => dispatch(signOutFun())}>Logout</span>
               </li>
             )}
+            <li>
+              <div
+                className="cart"
+                onMouseEnter={() => setShowModal(true)}
+                onMouseLeave={() => setShowModal(false)}>
+                <BsCart3 size="24px" className="cartIcon" />
+                {cartartItemsCount > 0 && (
+                  <div className="cartQuantity">
+                    <div className="items">{cartartItemsCount}</div>
+                  </div>
+                )}
+                {showModal && (
+                  <div className="cartModal">
+                    <CartModal />
+                  </div>
+                )}
+              </div>
+            </li>
           </ul>
         </div>
       </div>

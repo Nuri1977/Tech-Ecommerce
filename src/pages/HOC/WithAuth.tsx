@@ -7,7 +7,7 @@ const WithAuth = () => {
   const { currentUser } = useAuth();
 
   useEffect(() => {
-    if (!currentUser) navigate('/');
+    if (!currentUser) navigate('/login');
   }, [currentUser]);
 
   return (
