@@ -18,6 +18,7 @@ import DashboardLayout from './Layouts/DashboardLayout';
 import Search from './pages/search/Search';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Checkout from './pages/Checkout/Checkout';
+import Payment from './pages/Payment/Payment';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -42,6 +43,7 @@ function App() {
               <Route element={<WithAuth />}>
                 <Route path="/myaccount" element={<MyAccount />} />
                 <Route path="/checkout" element={<Checkout />} />
+                <Route path="/payments" element={<Payment />} />
               </Route>
             </Route>
             <Route path="/" element={<AdminLayout />}>
