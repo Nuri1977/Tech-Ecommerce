@@ -1,10 +1,19 @@
 import React from 'react';
 import { CountryDropdown } from 'react-country-region-selector';
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import Button from '../Forms/Button/Button';
 import Input from '../Forms/Input/Input';
 import './PaymentDetail.scss';
+import { StripeCardElementOptions } from '@stripe/stripe-js';
+import { axiosIns } from '../../utils/axiosIns';
+import { selectCartTotal } from '../../redux/cart/cartSlice';
+import { useAppSelector } from '../../redux/app/hooks';
 
 const PaymentDetail = () => {
+  const elements = useElements();
+  const stripe = useStripe();
+  const amount = useAppSelector(selectCartTotal);
+  console.log('amount:', amount);
   const [paymentForm, setPaymentForm] = React.useState({
     shipingName: '',
     shipingAdress: '',
@@ -20,8 +29,53 @@ const PaymentDetail = () => {
     billingCountry: ''
   });
 
-  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const cardElement = elements?.getElement('card');
+    // Getitng the payment intent from the server
+    axiosIns
+      .post('payments/create', {
+        amount: (amount * 100).toFixed(0),
+        shipping: {
+          name: paymentForm.shipingName,
+          address: {
+            line1: paymentForm.shipingAdress,
+            city: paymentForm.shipingCity,
+            state: paymentForm.shipingState,
+            postal_code: paymentForm.shipingPostalCode,
+            country: paymentForm.shipingCountry
+          }
+        }
+      })
+      .then((data) => {
+        console.log({ data });
+        stripe
+          ?.createPaymentMethod({
+            type: 'card',
+            card: cardElement!,
+            billing_details: {
+              name: paymentForm.billingName,
+              address: {
+                line1: paymentForm.billingAdress,
+                city: paymentForm.billingCity,
+                state: paymentForm.billingState,
+                postal_code: paymentForm.billingPostalCode,
+                country: paymentForm.billingCountry
+              }
+            }
+          })
+          .then((paymentMethodResult) => {
+            // Confirming the payment
+            stripe
+              .confirmCardPayment(data.data, {
+                payment_method: paymentMethodResult.paymentMethod?.id
+              })
+              .then((paymentIntentResult) => console.log({ paymentIntentResult }))
+              .catch((err) => console.log(err));
+          })
+          .catch((error) => console.log({ error }));
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +83,16 @@ const PaymentDetail = () => {
     setPaymentForm({ ...paymentForm, [name]: value });
   };
 
-  console.log(paymentForm);
+  const configCardElement: StripeCardElementOptions | undefined = {
+    iconStyle: 'solid',
+    style: {
+      base: {
+        fontSize: '16px'
+      }
+    },
+    hidePostalCode: true
+  };
+
   return (
     <div className="paymentDetail">
       <form onSubmit={handleOnSubmit} className="paymentForm">
@@ -124,6 +187,7 @@ const PaymentDetail = () => {
         </div>
         <div className="group">
           <h2>Card details</h2>
+          <CardElement options={configCardElement} />
         </div>
 
         <Button>Submit</Button>
