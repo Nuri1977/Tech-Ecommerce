@@ -6,14 +6,16 @@ import Input from '../Forms/Input/Input';
 import './PaymentDetail.scss';
 import { StripeCardElementOptions } from '@stripe/stripe-js';
 import { axiosIns } from '../../utils/axiosIns';
-import { selectCartTotal } from '../../redux/cart/cartSlice';
-import { useAppSelector } from '../../redux/app/hooks';
+import { clearCart, selectCartTotal } from '../../redux/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
+import { useNavigate } from 'react-router-dom';
 
 const PaymentDetail = () => {
   const elements = useElements();
   const stripe = useStripe();
   const amount = useAppSelector(selectCartTotal);
-  console.log('amount:', amount);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [paymentForm, setPaymentForm] = React.useState({
     shipingName: '',
     shipingAdress: '',
@@ -48,7 +50,7 @@ const PaymentDetail = () => {
         }
       })
       .then((data) => {
-        console.log({ data });
+        // Creating the payment method
         stripe
           ?.createPaymentMethod({
             type: 'card',
@@ -70,7 +72,15 @@ const PaymentDetail = () => {
               .confirmCardPayment(data.data, {
                 payment_method: paymentMethodResult.paymentMethod?.id
               })
-              .then((paymentIntentResult) => console.log({ paymentIntentResult }))
+              .then((paymentIntentResult) => {
+                if (paymentIntentResult.paymentIntent?.amount === amount * 100) {
+                  dispatch(clearCart());
+                  // here add order and payment history
+                  navigate('/myaccount');
+                } else {
+                  console.log('Payed ammount is not equal to the total');
+                }
+              })
               .catch((err) => console.log(err));
           })
           .catch((error) => console.log({ error }));
