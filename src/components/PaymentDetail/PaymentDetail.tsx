@@ -89,7 +89,7 @@ const PaymentDetail = () => {
                       items: cartItems,
                       amount,
                       createDate: Timestamp.now(),
-                      payment: paymentIntentResult
+                      payment: paymentIntentResult.paymentIntent
                     })
                   );
                   navigate('/orders');

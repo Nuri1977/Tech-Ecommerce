@@ -1,3 +1,4 @@
+import { PaymentIntent } from '@stripe/stripe-js';
 import { DocumentData, QueryDocumentSnapshot, Timestamp } from 'firebase/firestore';
 
 export interface CurrentUser {
@@ -61,7 +62,7 @@ export interface Order {
   items: CartItem[];
   amount: number;
   createDate: Timestamp;
-  payment: any;
+  payment: PaymentIntent | undefined;
 }
 
 export interface OrderState {
