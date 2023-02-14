@@ -54,3 +54,18 @@ export interface CartItem extends Product {
 export interface CartState {
   cartItems: CartItem[];
 }
+
+export interface Order {
+  uid: string;
+  user: CurrentUser | null;
+  items: CartItem[];
+  amount: number;
+  createDate: Timestamp;
+  payment: any;
+}
+
+export interface OrderState {
+  orders: Order[];
+  loading: boolean;
+  ordersError: string | undefined;
+}
