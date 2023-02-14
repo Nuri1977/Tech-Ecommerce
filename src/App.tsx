@@ -20,6 +20,7 @@ import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Checkout from './pages/Checkout/Checkout';
 import Payment from './pages/Payment/Payment';
 import Orders from './pages/Orders/Orders';
+import Categories from './components/AdminCategories/Categories';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -49,6 +50,8 @@ function App() {
             <Route path="/" element={<AdminLayout />}>
               <Route element={<WithAdminAuth />}>
                 <Route path="/admin" element={<Admin />} />
+                <Route path="/categories" element={<Categories />} />
+                <Route path="/admin-orders" element={<Orders />} />
               </Route>
             </Route>
             <Route path="/" element={<DashboardLayout />}>

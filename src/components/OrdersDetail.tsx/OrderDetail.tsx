@@ -13,7 +13,7 @@ const OrderDetail = ({ order }: { order: Order }) => {
         <div className="toggleIcon" onClick={() => setShowDetail(!showDetail)}>
           {showDetail ? <MdExpandLess fontSize="24px" /> : <MdExpandMore fontSize="24px" />}
         </div>
-        <div className="orderUid">{order.uid}</div>
+        <div className="orderUid">{order.user?.email}</div>
         <div className="orderDate">{order.createDate.toDate().toLocaleDateString()}</div>
         <div className="orderAmount">
           {`${order.payment?.currency} ${

@@ -19,6 +19,12 @@ const AdminLayout = () => {
                 <Link to="/admin">Home</Link>
               </li>
               <li>
+                <Link to="/categories">Categories</Link>
+              </li>
+              <li>
+                <Link to="/admin-orders">Order History</Link>
+              </li>
+              <li>
                 <span className="signOut" onClick={() => dispatch(signOutFun())}>
                   Sign Out
                 </span>

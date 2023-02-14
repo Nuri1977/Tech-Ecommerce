@@ -1,4 +1,4 @@
-import { addOrderApi, deleteOrderApi, fetchOrdersApi } from './ordersThunk';
+import { addOrderApi, deleteOrderApi, fetchOrdersApi, fetchUserOrdersApi } from './ordersThunk';
 import { createSlice } from '@reduxjs/toolkit';
 import { OrderState } from '../../config/interfaces/intefaces';
 import { RootState } from '../app/store';
@@ -60,6 +60,19 @@ const ordersSlice = createSlice({
         state.ordersError = '';
       })
       .addCase(deleteOrderApi.rejected, (state, action) => {
+        state.loading = false;
+        state.ordersError = action.error.message;
+      })
+      .addCase(fetchUserOrdersApi.pending, (state) => {
+        state.loading = true;
+        state.ordersError = '';
+      })
+      .addCase(fetchUserOrdersApi.fulfilled, (state, action) => {
+        state.orders = action.payload;
+        state.loading = false;
+        state.ordersError = '';
+      })
+      .addCase(fetchUserOrdersApi.rejected, (state, action) => {
         state.loading = false;
         state.ordersError = action.error.message;
       });
