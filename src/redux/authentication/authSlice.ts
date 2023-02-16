@@ -36,14 +36,7 @@ const authSlice = createSlice({
         state.authError = '';
       })
       .addCase(signInPopup.fulfilled, (state, action) => {
-        const { uid, displayName, email, userRoles } = action.payload;
-        state.currentUser = {
-          uid,
-          displayName,
-          email,
-          userRoles
-        };
-
+        state.currentUser = action.payload;
         state.loading = false;
       })
       .addCase(signInPopup.rejected, (state, action) => {

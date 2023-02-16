@@ -10,6 +10,7 @@ export interface CurrentUser {
   confirmPassword?: string;
   timeStamp?: string | null;
   userRoles?: string[];
+  isAdmin?: boolean;
 }
 
 export interface UserState {

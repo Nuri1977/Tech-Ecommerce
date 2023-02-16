@@ -9,7 +9,7 @@ const useAuth = () => {
   if (!currentUser || !Array.isArray(currentUser.userRoles)) {
     isAdmin = false;
   } else {
-    if (currentUser.userRoles.includes('admin')) {
+    if (currentUser?.isAdmin) {
       isAdmin = true;
     } else {
       isAdmin = false;
