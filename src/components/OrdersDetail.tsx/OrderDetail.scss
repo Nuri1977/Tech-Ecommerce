@@ -1,0 +1,104 @@
+.orderItem {
+  display: flex;
+  justify-content: flex-start;
+
+  div {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+
+  .toggleIcon {
+    width: 50px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  .orderUid {
+    width: 450px;
+  }
+
+  .orderDate{
+    width: 200x;
+  }
+
+  .orderAmount {
+    width: 200px;
+  }
+
+  .orderUser {
+    width: 200px;
+  }
+
+  .orderAddress {
+    width: 200px;
+  }
+}
+
+.cartItems {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  background-color: #f9f9f9;
+  max-height: 300px;
+  overflow: auto;
+  padding: 10px;
+
+  .cartItem {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 10px;
+    background-color: #f9f9f9;
+
+    .itemImg {
+      width: 100px;
+      text-align: center;
+      img {
+        width: auto;
+        height: 30px;
+      }
+    }
+
+    .product {
+      width: 350px;
+      text-align: center;
+      padding: 0 5px;
+
+      a {
+        font-size: 16px;
+        color: #1f4056;
+        font-weight: bolder;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+
+    .quantity {
+      width: 50px;
+      text-align: right;
+      padding: 0 5px;
+      font-size: 16px;
+    }
+    .price {
+      width: 120px;
+      text-align: right;
+      padding: 0 10px;
+      font-size: 16px;
+    }
+
+    .deleteIcon {
+      padding: 5px 10px 0;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}

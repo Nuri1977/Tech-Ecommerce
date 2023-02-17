@@ -47,18 +47,13 @@ const Header = () => {
               </>
             )}
             {currentUser && isAdmin && (
-              <>
-                <li>
-                  <Link to="/admin">Admin</Link>
-                </li>
-                <li>
-                  <Link to="/dashboard">Dashboard</Link>
-                </li>
-              </>
+              <li>
+                <Link to="/admin">Admin</Link>
+              </li>
             )}
             {currentUser && !isAdmin && (
               <li>
-                <Link to="/myaccount">My account</Link>
+                <Link to="/dashboard">Dashboard</Link>
               </li>
             )}
             {currentUser && (

@@ -47,7 +47,12 @@ export const signInEmailPassword = createAsyncThunk(
   'users/signInEmailPassword',
   async ({ email, password }: { email: string; password: string }) => {
     const response = await signInWithEmailAndPassword(auth, email, password);
-    return response.user;
+
+    if (response.user) {
+      const res: any = await registerUserApi(response.user);
+      return res;
+    }
+    return response;
   }
 );
 

@@ -20,6 +20,12 @@ const DashboardLayout = () => {
                 <Link to="/dashboard">Home</Link>
               </li>
               <li>
+                <Link to="/orders">Order History</Link>
+              </li>
+              <li>
+                <Link to="/myacount">My Account</Link>
+              </li>
+              <li>
                 <span className="signOut" onClick={() => dispatch(signOutFun())}>
                   Sign Out
                 </span>

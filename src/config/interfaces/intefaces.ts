@@ -1,3 +1,4 @@
+import { PaymentIntent } from '@stripe/stripe-js';
 import { DocumentData, QueryDocumentSnapshot, Timestamp } from 'firebase/firestore';
 
 export interface CurrentUser {
@@ -9,6 +10,7 @@ export interface CurrentUser {
   confirmPassword?: string;
   timeStamp?: string | null;
   userRoles?: string[];
+  isAdmin?: boolean;
 }
 
 export interface UserState {
@@ -53,4 +55,19 @@ export interface CartItem extends Product {
 
 export interface CartState {
   cartItems: CartItem[];
+}
+
+export interface Order {
+  uid: string;
+  user: CurrentUser | null;
+  items: CartItem[];
+  amount: number;
+  createDate: Timestamp;
+  payment: PaymentIntent | undefined;
+}
+
+export interface OrderState {
+  orders: Order[];
+  loading: boolean;
+  ordersError: string | undefined;
 }

@@ -2,6 +2,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import authSlice from '../authentication/authSlice';
 import cartSlice from '../cart/cartSlice';
 import categoriesSlice from '../categories/categoriesSlice';
+import ordersSlice from '../orders/ordersSlice';
 import productsSlice from '../products/productsSlice';
 
 export const store = configureStore({
@@ -9,7 +10,8 @@ export const store = configureStore({
     authUser: authSlice,
     products: productsSlice,
     categories: categoriesSlice,
-    cart: cartSlice
+    cart: cartSlice,
+    orders: ordersSlice
   }
 });
 

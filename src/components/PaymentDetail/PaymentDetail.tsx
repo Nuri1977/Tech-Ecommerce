@@ -6,14 +6,20 @@ import Input from '../Forms/Input/Input';
 import './PaymentDetail.scss';
 import { StripeCardElementOptions } from '@stripe/stripe-js';
 import { axiosIns } from '../../utils/axiosIns';
-import { clearCart, selectCartTotal } from '../../redux/cart/cartSlice';
+import { clearCart, selectCartItems, selectCartTotal } from '../../redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
 import { useNavigate } from 'react-router-dom';
+import { addOrderApi } from '../../redux/orders/ordersThunk';
+import { nanoid } from '@reduxjs/toolkit';
+import { Timestamp } from 'firebase/firestore';
+import useAuth from '../../hooks/useAuth';
 
 const PaymentDetail = () => {
   const elements = useElements();
   const stripe = useStripe();
   const amount = useAppSelector(selectCartTotal);
+  const cartItems = useAppSelector(selectCartItems);
+  const { currentUser } = useAuth();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [paymentForm, setPaymentForm] = React.useState({
@@ -76,7 +82,17 @@ const PaymentDetail = () => {
                 if (paymentIntentResult.paymentIntent?.amount === amount * 100) {
                   dispatch(clearCart());
                   // here add order and payment history
-                  navigate('/myaccount');
+                  dispatch(
+                    addOrderApi({
+                      uid: nanoid(),
+                      user: currentUser,
+                      items: cartItems,
+                      amount,
+                      createDate: Timestamp.now(),
+                      payment: paymentIntentResult.paymentIntent
+                    })
+                  );
+                  navigate('/orders');
                 } else {
                   console.log('Payed ammount is not equal to the total');
                 }
