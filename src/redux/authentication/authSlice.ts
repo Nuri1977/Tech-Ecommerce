@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { UserState } from '../../config/interfaces/intefaces';
+import { AuthState } from '../../config/interfaces/intefaces';
 import { RootState } from '../app/store';
 import {
   signInEmailPassword,
@@ -9,7 +9,7 @@ import {
   sendResetPassword
 } from './authThunk';
 
-const initialState: UserState = {
+const initialState: AuthState = {
   currentUser: null,
   loading: false,
   authError: '',

@@ -28,8 +28,7 @@ const ordersSlice = createSlice({
         state.loading = true;
         state.ordersError = '';
       })
-      .addCase(addOrderApi.fulfilled, (state, action) => {
-        state.orders.push(action.payload);
+      .addCase(addOrderApi.fulfilled, (state) => {
         state.loading = false;
         state.ordersError = '';
       })
