@@ -32,10 +32,10 @@ export const fetchUsersApi = createAsyncThunk(
     pageSize: number;
   }) => {
     const usersRef = collection(db, 'users');
-    let first = query(usersRef, orderBy('createDate', 'desc'), limit(pageSize));
+    let first = query(usersRef, orderBy('email', 'desc'), limit(pageSize));
 
     if (pagNext) {
-      first = query(usersRef, orderBy('createDate', 'desc'), startAfter(pagNext), limit(pageSize));
+      first = query(usersRef, orderBy('email', 'desc'), startAfter(pagNext), limit(pageSize));
     }
 
     const response = await getDocs(first).then((documentSnapshots) => {

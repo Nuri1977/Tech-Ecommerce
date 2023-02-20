@@ -21,6 +21,7 @@ import Checkout from './pages/Checkout/Checkout';
 import Payment from './pages/Payment/Payment';
 import Orders from './pages/Orders/Orders';
 import Categories from './components/AdminCategories/Categories';
+import Users from './pages/Users/Users';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -52,6 +53,7 @@ function App() {
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/categories" element={<Categories />} />
                 <Route path="/admin-orders" element={<Orders />} />
+                <Route path="/users" element={<Users />} />
               </Route>
             </Route>
             <Route path="/" element={<DashboardLayout />}>
