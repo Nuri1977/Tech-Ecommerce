@@ -2,7 +2,7 @@ import { PaymentIntent } from '@stripe/stripe-js';
 import { DocumentData, QueryDocumentSnapshot, Timestamp } from 'firebase/firestore';
 
 export interface CurrentUser {
-  uid?: string;
+  uid: string;
   displayName: string | null;
   email: string | null;
   photoUrl?: string | null;
@@ -13,11 +13,18 @@ export interface CurrentUser {
   isAdmin?: boolean;
 }
 
-export interface UserState {
+export interface AuthState {
   currentUser: CurrentUser | null;
   loading: boolean;
   authError: string | undefined;
   resetPassword: string | undefined;
+}
+
+export interface UsersState {
+  users: CurrentUser[];
+  loading: boolean;
+  usersError: string | undefined;
+  paginateNext: QueryDocumentSnapshot<DocumentData> | null;
 }
 
 export interface Product {

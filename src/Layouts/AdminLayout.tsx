@@ -25,6 +25,9 @@ const AdminLayout = () => {
                 <Link to="/admin-orders">Order History</Link>
               </li>
               <li>
+                <Link to="/users">Users</Link>
+              </li>
+              <li>
                 <span className="signOut" onClick={() => dispatch(signOutFun())}>
                   Sign Out
                 </span>

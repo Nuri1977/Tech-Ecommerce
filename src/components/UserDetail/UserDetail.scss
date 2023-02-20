@@ -1,0 +1,43 @@
+.user {
+  display: flex;
+  justify-self: flex-start;
+  align-items: center;
+  height: 48px;
+
+  div {
+    padding: 10px;
+    border: 1px solid #ccc;
+    min-height: 48px;
+    text-align: left;
+  }
+
+  .userImg {
+    cursor: pointer;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    &:hover {
+      opacity: 0.7;
+    }
+
+    img {
+      height: 20px;
+      padding: 0;
+    }
+  }
+
+  .userName {
+    width: 300px;
+  }
+
+  .userEmail{
+    width: 400px;
+    overflow: auto;
+  }
+
+  .userRoles {
+    width: 200px;
+  }
+}
