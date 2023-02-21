@@ -1,14 +1,17 @@
 .header {
   height: 6.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   padding: 0 2rem;
   margin: 0;
+  
+  .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1450px;
+    margin: 0 auto;
 
     .logo {
-
 
       img {
         width: 100%;
@@ -70,7 +73,7 @@
               top: 48px;
               right: 0px;
               z-index: 4;
-              width: 400px;
+              width: 500px;
             }
           }
   
@@ -80,7 +83,8 @@
               background-color: #d3d3d3;
             }
             font-size: 1.8rem;
-            color: black;
+            color: #272422;
+            font-weight: bolder;
             text-transform: uppercase;
             padding: 2rem 1rem 2.1rem 1rem;  
           }
@@ -88,7 +92,8 @@
           span {
             font-size: 1.8rem;
             line-height: 1;
-            color: black;
+            color: #272422;
+            font-weight: bolder;
             text-transform: uppercase;
             cursor: pointer;
             padding: 0 1rem;
@@ -96,6 +101,7 @@
         }
       }
     }
+  }
 }
 
 .active {

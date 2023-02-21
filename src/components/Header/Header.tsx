@@ -18,82 +18,88 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div className="logo" onClick={() => navigate('/')}>
-        <Link to="/">
-          <img src={Logo} alt="SimpleTut Logo" />
-        </Link>
-      </div>
-      <nav>
-        <ul className="navList">
-          <li>
-            <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/search" className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
-              E-shop
-            </NavLink>
-          </li>
-          {!currentUser && (
-            <>
-              <li>
-                <NavLink
-                  to="/registration"
-                  className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
-                  Registration
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/login"
-                  className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
-                  Login
-                </NavLink>
-              </li>
-            </>
-          )}
-          {currentUser && isAdmin && (
+      <div className="wrap">
+        <div className="logo" onClick={() => navigate('/')}>
+          <Link to="/">
+            <img src={Logo} alt="SimpleTut Logo" />
+          </Link>
+        </div>
+        <nav>
+          <ul className="navList">
             <li>
-              <NavLink to="/admin" className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
-                Admin
+              <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
+                Home
               </NavLink>
             </li>
-          )}
-          {currentUser && !isAdmin && (
             <li>
               <NavLink
-                to="/dashboard"
+                to="/search"
                 className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
-                Dashboard
+                E-shop
               </NavLink>
             </li>
-          )}
-          {currentUser && (
+            {!currentUser && (
+              <>
+                <li>
+                  <NavLink
+                    to="/registration"
+                    className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
+                    Registration
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/login"
+                    className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
+                    Login
+                  </NavLink>
+                </li>
+              </>
+            )}
+            {currentUser && isAdmin && (
+              <li>
+                <NavLink
+                  to="/admin"
+                  className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
+                  Admin
+                </NavLink>
+              </li>
+            )}
+            {currentUser && !isAdmin && (
+              <li>
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
+                  Dashboard
+                </NavLink>
+              </li>
+            )}
+            {currentUser && (
+              <li>
+                <span onClick={() => dispatch(signOutFun())}>Logout</span>
+              </li>
+            )}
             <li>
-              <span onClick={() => dispatch(signOutFun())}>Logout</span>
+              <div
+                className="cart"
+                onMouseEnter={() => setShowModal(true)}
+                onMouseLeave={() => setShowModal(false)}>
+                <BsCart3 size="24px" className="cartIcon" />
+                {cartartItemsCount > 0 && (
+                  <div className="cartQuantity">
+                    <div className="items">{cartartItemsCount}</div>
+                  </div>
+                )}
+                {showModal && (
+                  <div className="cartModal">
+                    <CartModal />
+                  </div>
+                )}
+              </div>
             </li>
-          )}
-          <li>
-            <div
-              className="cart"
-              onMouseEnter={() => setShowModal(true)}
-              onMouseLeave={() => setShowModal(false)}>
-              <BsCart3 size="24px" className="cartIcon" />
-              {cartartItemsCount > 0 && (
-                <div className="cartQuantity">
-                  <div className="items">{cartartItemsCount}</div>
-                </div>
-              )}
-              {showModal && (
-                <div className="cartModal">
-                  <CartModal />
-                </div>
-              )}
-            </div>
-          </li>
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 };

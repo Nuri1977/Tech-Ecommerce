@@ -29,18 +29,23 @@
       }
 
       .product {
-        width: 150px;
+        width: 250px;
+        display: flex;
         text-align: center;
         padding: 0 5px;
 
         a {
           font-size: 16px;
-          color: #1f4056;
           font-weight: bolder;
           cursor: pointer;
+          white-space: pre-wrap;
+          line-height: 1.1;
+          text-overflow: ellipsis; /* enables ellipsis */
+
 
           &:hover {
-            opacity: 0.7;
+            background-color: #fff;
+            color: #1f4056;
           }
         }
       }
