@@ -1,46 +1,88 @@
-# Getting Started with Create React App
+#  Electronic E-Commerce Store
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+> This demo site showcases an electronic e-commerce store built using a variety of modern web development technologies. The site features a fully functional front-end with a responsive user interface that allows customers to browse, search, and purchase electronic products. The back-end is built on Google Firestore, which provides a scalable and reliable NoSQL database solution. The site also includes authentication and authorization features to ensure that only authorized users can access certain parts of the site. Finally, Stripe payment integration allows customers to securely make payments and complete their purchases.
 
-## Available Scripts
+## Built With
 
-In the project directory, you can run:
+- REACT
+- Redux-Toolkit
+- Firebase Authentication
+- Google Firestore
+- Stripe API 
+- Jest
 
-### `yarn start`
+## Live version
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[link](https://shopping-87340.web.app)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting Started
 
-### `yarn test`
+To get a local copy up and running follow these simple example steps.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
+- A text editor(preferably Visual Studio Code)
+- Node
+- Web browser
 
-### `yarn build`
+### Install
+- [Git](https://git-scm.com/downloads)
+- [Node](https://nodejs.org/en/download/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Using it Locally
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Clone the project
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash 
+git clone git@github.com:Nuri1977/Tech-Ecommerce.git
 
-### `yarn eject`
+cd Tech-Ecommerce
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Install dependencies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm i 
+or
+npm install
+```
+- To Start the development server
+```bash
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- To test the project
+```bash
+npm run test
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Google Firestore
+  - Create .env file and save you google firebase configuration variables
+  - Copy the firestore rules file from root to your cloud database
 
-## Learn More
+## Author
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+👤 **NURI LACKA**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- GitHub: [@Nuri1977](https://github.com/Nuri1977)
+- LinkedIn: [@Nuri](https://www.linkedin.com/in/nuri-lacka-7141b01ba/)
+- Twitter: [@LackaNuri](https://twitter.com/LackaNuri)
+
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](https://github.com/clintonjosephs/book-a-doctor-frontend/issues).
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## Acknowledgments
+
+- Inspired by original design for Creative Commons by [Murat Korkmaz](https://www.behance.net/muratk) on [Behance](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign).
+- Inspiration: Microverse
+
+## 📝 License
+
+This project is [MIT](./LICENSE.md) licensed.
