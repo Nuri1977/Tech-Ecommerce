@@ -1,0 +1,61 @@
+.brandsContainer {
+  position: relative;
+
+  .brands {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding: 5px;
+    margin-bottom: 30px;
+  
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 273px;
+      padding: 24px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 450ms;
+  
+      &:hover {
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 6px 0 rgba(0, 0, 0, 0.19);
+        border-color: rgba(0, 0, 0, 0);
+        transform: scale(1.01);
+      }
+  
+      img {
+        height: 80px;
+      }
+    }
+  
+  }
+  
+  .brands::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollIcon {
+    position: absolute;
+    top: 30%;
+    background-color: black;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .scrollBack {
+    left: 20px;
+  }
+
+  .scrollNext {
+    right: 20px;
+  }
+}
+

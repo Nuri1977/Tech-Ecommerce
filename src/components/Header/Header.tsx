@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Header.scss';
-import Logo from '../../assets/images/logo.png';
-import { Link, useNavigate } from 'react-router-dom';
+import Logo from '../../assets/images/tm_new_logo_new.png';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { signOutFun } from '../../redux/authentication/authThunk';
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
 import useAuth from '../../hooks/useAuth';
@@ -25,35 +25,53 @@ const Header = () => {
           </Link>
         </div>
         <nav>
-          <ul>
+          <ul className="navList">
             <li>
-              <Link to="/">Home</Link>
+              <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
+                Home
+              </NavLink>
             </li>
             <li>
-              <Link to="/search">Search</Link>
+              <NavLink
+                to="/search"
+                className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
+                E-shop
+              </NavLink>
             </li>
-          </ul>
-        </nav>
-        <div className="callToActions">
-          <ul>
             {!currentUser && (
               <>
                 <li>
-                  <Link to="/registration">Registration</Link>
+                  <NavLink
+                    to="/registration"
+                    className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
+                    Registration
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/login">Login</Link>
+                  <NavLink
+                    to="/login"
+                    className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
+                    Login
+                  </NavLink>
                 </li>
               </>
             )}
             {currentUser && isAdmin && (
               <li>
-                <Link to="/admin">Admin</Link>
+                <NavLink
+                  to="/admin"
+                  className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
+                  Admin
+                </NavLink>
               </li>
             )}
             {currentUser && !isAdmin && (
               <li>
-                <Link to="/dashboard">Dashboard</Link>
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
+                  Dashboard
+                </NavLink>
               </li>
             )}
             {currentUser && (
@@ -80,7 +98,7 @@ const Header = () => {
               </div>
             </li>
           </ul>
-        </div>
+        </nav>
       </div>
     </header>
   );
