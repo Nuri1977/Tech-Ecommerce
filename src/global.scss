@@ -1,0 +1,29 @@
+
+$primaryColor: #e0342f;
+$secondaryColor: #f2a6a4;
+$terciaryColor: #272422;
+$quaternaryColor: #494745;
+$neutralColor1: #f2f2f2;
+$neutralColor2: #dddddd;
+$strongText: #000000;
+$mediumText: #272422;
+$lightText: #696969;
+$lightestText: #5c5c5c;
+$black: #000000;
+$white: #ffffff;
+
+
+$widthSM: 768px;
+
+@mixin mobile {
+  @media (max-width: #{$widthSM}) {
+    @content
+  }
+}
+
+@mixin myHover {
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transform: scale(0.95);
+  }
+}

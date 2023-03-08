@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import './Header.scss';
-import Logo from '../../assets/images/tm_new_logo_new.png';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { signOutFun } from '../../redux/authentication/authThunk';
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
 import useAuth from '../../hooks/useAuth';
 import { BsCart3 } from 'react-icons/bs';
 import { selectCartItemsCount } from '../../redux/cart/cartSlice';
 import CartModal from '../ProductCart/CartModal/CartModal';
+import { ReactComponent as CollectionSvg } from '../../assets/images/tm_new_logo_new.svg';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const { currentUser, isAdmin } = useAuth();
@@ -20,9 +20,15 @@ const Header = () => {
     <header className="header">
       <div className="wrap">
         <div className="logo" onClick={() => navigate('/')}>
-          <Link to="/">
-            <img src={Logo} alt="SimpleTut Logo" />
-          </Link>
+          <div className="logoLink" onClick={() => navigate('/')}>
+            <CollectionSvg
+              style={{
+                width: '100%',
+                height: '36px',
+                color: 'inherit'
+              }}
+            />
+          </div>
         </div>
         <nav>
           <ul className="navList">
