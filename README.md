@@ -72,7 +72,7 @@ npm run test
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/clintonjosephs/book-a-doctor-frontend/issues).
+Feel free to check the [issues page](https://github.com/Nuri1977/Tech-Ecommerce/issues).
 
 ## Show your support
 
