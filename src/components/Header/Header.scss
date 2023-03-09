@@ -15,45 +15,41 @@
     justify-content: space-between;
     max-width: 1450px;
     margin: 0 auto;
+    height: 6.5rem;
 
     .logo {
 
       .logoLink {
         color: $white;
         cursor: pointer;
-        @include myHover;
       }
     }
 
-    nav {
+    .navigation {
       height: 100%;
 
       .navList {
-        height: 100%;
         display: flex;
         align-items: center;
-        align-content: center;
-        justify-content: space-between;
+        justify-content: flex-end;
+        height: 6.5rem;
         
 
-        li {
-
-          height: 6.5rem;
-          line-height: 6.5rem;
+        .navItem {
           text-align: center;
-          @include myHover;
-          
+
           .cart {
             position: relative;
             padding: 0 1rem;
   
             .cartIcon {
               cursor: pointer;
+              height: 6.3rem;
             }
   
             .cartQuantity {
               position: absolute;
-              top: 5px;
+              top: 10px;
               right: 0;
               background-color: $black;
               border-radius: 50%;
@@ -80,24 +76,35 @@
               color: $black;
             }
           }
+
+          .user {
+            position: relative;
+            padding: 0 1rem;
+            height: 6.3rem;
   
-          a {
+            .userIcon {
+              cursor: pointer;
+              height: 6.3rem;
+            }
+  
+            .userModal {
+              position: absolute;
+              top: 48px;
+              right: 0px;
+              z-index: 4;
+              width: 200px;
+              color: $black;
+              border: none;
+            }
+          }
+  
+          .navLink {
             text-align: center;
             font-size: 1.8rem;
             color: $white;
             font-weight: bolder;
             text-transform: uppercase;
             padding: 2rem 1rem 2.1rem 1rem;
-          }
-  
-          span {
-            font-size: 1.8rem;
-            line-height: 1;
-            color: $white;
-            font-weight: bolder;
-            text-transform: uppercase;
-            cursor: pointer;
-            padding: 0 1rem;
           }
         }
       }
