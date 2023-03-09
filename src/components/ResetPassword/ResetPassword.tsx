@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Button from '../../components/Forms/Button/Button';
-import Input from '../../components/Forms/Input/Input';
+import Button from '../../common/Forms/Button/Button';
+import Input from '../../common/Forms/Input/Input';
 import useAuth from '../../hooks/useAuth';
 import { sendResetPassword } from '../../redux/authentication/authThunk';
 import './ResetPassword.scss';

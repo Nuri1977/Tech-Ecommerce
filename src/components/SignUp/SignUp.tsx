@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './SignUp.scss';
-import Button from '../Forms/Button/Button';
-import Input from '../Forms/Input/Input';
+import Button from '../../common/Forms/Button/Button';
+import Input from '../../common/Forms/Input/Input';
 import { clearAuthErrors } from '../../redux/authentication/authSlice';
 import { signUpEmailPassword } from '../../redux/authentication/authThunk';
 import useAuth from '../../hooks/useAuth';

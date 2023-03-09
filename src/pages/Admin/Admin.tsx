@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ProductsInfo from '../../components/AdminProducts/ProductsInfo/ProducstInfo';
 import ProductsModal from '../../components/AdminProducts/ProductsModal/ProductsModal';
-import Button from '../../components/Forms/Button/Button';
+import Button from '../../common/Forms/Button/Button';
 import useCategories from '../../hooks/useCategory';
 import { useAppDispatch } from '../../redux/app/hooks';
 import { fetchCategoriesApi } from '../../redux/categories/categoriesThunk';

@@ -1,8 +1,8 @@
 import React from 'react';
 import { CountryDropdown } from 'react-country-region-selector';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import Button from '../Forms/Button/Button';
-import Input from '../Forms/Input/Input';
+import Button from '../../common/Forms/Button/Button';
+import Input from '../../common/Forms/Input/Input';
 import './PaymentDetail.scss';
 import { StripeCardElementOptions } from '@stripe/stripe-js';
 import { axiosIns } from '../../utils/axiosIns';

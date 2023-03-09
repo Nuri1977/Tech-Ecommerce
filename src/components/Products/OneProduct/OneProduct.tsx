@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Product } from '../../../config/interfaces/intefaces';
 import { addCartItem } from '../../../redux/cart/cartSlice';
-import Button from '../../Forms/Button/Button';
+import Button from '../../../common/Forms/Button/Button';
 
 const OneProduct = ({ product }: { product: Product }) => {
   const dispatch = useDispatch();

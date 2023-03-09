@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './SignIn.scss';
-import Input from '../Forms/Input/Input';
-import Button from '../Forms/Button/Button';
+import Input from '../../common/Forms/Input/Input';
+import Button from '../../common/Forms/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { signInEmailPassword, signInPopup } from '../../redux/authentication/authThunk';
 import { clearAuthErrors } from '../../redux/authentication/authSlice';

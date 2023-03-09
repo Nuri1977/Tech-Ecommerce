@@ -1,3 +1,72 @@
-.recomandations {
-  background-color: bisque;
+.recommendations {
+  margin: 30px 0 30px;
+
+  .recommendationsTitle {
+    color: #0f0f0f;
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: bolder;
+    letter-spacing: 0.4px;
+    margin-bottom: 20px;
+  }
+
+  .recommendationsContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+
+    .recommendationsCard {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      min-width: 250px;
+      
+
+      .recommendationsImg {
+        height: 150px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+        margin-bottom: 20px;
+
+        img {
+          max-width: 100%;
+          max-height: 150px;
+          object-fit: cover;
+          border-radius: 5px;
+          align-self: center;
+        }
+      }
+
+      .recommendationsTitle {
+        margin: 0px;
+        color: rgb(0, 0, 0);
+        font-size: 16px;
+        line-height: 24px;
+        font-family: SourceSansPro, Arial, sans-serif;
+        font-weight: 400;
+        letter-spacing: 0.2px;
+        white-space: normal;
+        overflow: hidden;
+        height: 50px;
+        -webkit-line-clamp: 2;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        border: '1px solid red';
+        width: 100%;
+      }
+
+      .recommendationsPrice {
+        padding: 30px 0 5px;
+        color: #0f0f0f;
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: normal;
+      }
+    }
+  }
 }
