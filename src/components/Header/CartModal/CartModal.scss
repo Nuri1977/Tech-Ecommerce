@@ -1,3 +1,5 @@
+@import '../../../global.scss';
+
 .cartModalDetail {
   margin-top: 18px;
   background-color: white;
@@ -14,7 +16,7 @@
       align-items: center;
       justify-content: flex-start;
       border-bottom: 1px solid #ccc;
-      padding: 0 10px;
+      padding: 20px 10px;
       background-color: white;
 
       .itemImg {
@@ -36,17 +38,13 @@
 
         a {
           font-size: 16px;
+          color: $mediumText;
           font-weight: bolder;
           cursor: pointer;
           white-space: pre-wrap;
           line-height: 1.1;
           text-overflow: ellipsis; /* enables ellipsis */
-
-
-          &:hover {
-            background-color: #fff;
-            color: #1f4056;
-          }
+          @include myHover;
         }
       }
 

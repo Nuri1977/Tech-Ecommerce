@@ -1,8 +1,13 @@
+@import '../../global.scss';
+
 .header {
   height: 6.5rem;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   padding: 0 2rem;
   margin: 0;
+  background-color: $primaryColor;
+  color: $white;
+  
   
   .wrap {
     display: flex;
@@ -10,49 +15,43 @@
     justify-content: space-between;
     max-width: 1450px;
     margin: 0 auto;
+    height: 6.5rem;
 
     .logo {
 
-      img {
-        width: 100%;
-        height: 36px;
-        margin: 0;
+      .logoLink {
+        color: $white;
+        cursor: pointer;
       }
     }
 
-    nav {
+    .navigation {
       height: 100%;
 
       .navList {
-        height: 100%;
         display: flex;
         align-items: center;
-        align-content: center;
-        justify-content: space-between;
+        justify-content: flex-end;
+        height: 6.5rem;
         
 
-        li {
-
-          height: 6.5rem;
-          line-height: 6.5rem;
+        .navItem {
           text-align: center;
-          &:hover {
-            background-color: #d3d3d3;
-          }
-          
+
           .cart {
             position: relative;
             padding: 0 1rem;
   
             .cartIcon {
               cursor: pointer;
+              height: 6.3rem;
             }
   
             .cartQuantity {
               position: absolute;
-              top: 5px;
+              top: 10px;
               right: 0;
-              background-color: red;
+              background-color: $black;
               border-radius: 50%;
               color: white;
               width: 20px;
@@ -74,29 +73,38 @@
               right: 0px;
               z-index: 4;
               width: 500px;
+              color: $black;
             }
           }
-  
-          a {
-            text-align: center;
-            &:hover {
-              background-color: #d3d3d3;
-            }
-            font-size: 1.8rem;
-            color: #272422;
-            font-weight: bolder;
-            text-transform: uppercase;
-            padding: 2rem 1rem 2.1rem 1rem;  
-          }
-  
-          span {
-            font-size: 1.8rem;
-            line-height: 1;
-            color: #272422;
-            font-weight: bolder;
-            text-transform: uppercase;
-            cursor: pointer;
+
+          .user {
+            position: relative;
             padding: 0 1rem;
+            height: 6.3rem;
+  
+            .userIcon {
+              cursor: pointer;
+              height: 6.3rem;
+            }
+  
+            .userModal {
+              position: absolute;
+              top: 48px;
+              right: 0px;
+              z-index: 4;
+              width: 200px;
+              color: $black;
+              border: none;
+            }
+          }
+  
+          .navLink {
+            text-align: center;
+            font-size: 1.8rem;
+            color: $white;
+            font-weight: bolder;
+            text-transform: uppercase;
+            padding: 2rem 1rem 2.1rem 1rem;
           }
         }
       }
@@ -105,6 +113,10 @@
 }
 
 .active {
-  background-color: #d3d3d3;
+  padding-bottom: 1px;
+  border-right: 1px solid $white;
+  border-left: 1px solid $white;
+  text-shadow: 2px 2px 4px $secondaryColor;
+  font-weight: bolder !important;
 }
 

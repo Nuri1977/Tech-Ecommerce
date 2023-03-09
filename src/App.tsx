@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import './default.scss';
+import './App.scss';
 import Homepage from './pages/Homepage/Homepage';
 import Registration from './pages/Registration/Registration';
 import MainLayout from './Layouts/MainLayout';
