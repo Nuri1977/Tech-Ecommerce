@@ -57,7 +57,7 @@ const Products = () => {
 
   return (
     <div className="productsContainer">
-      <h1>Browse products</h1>
+      <h1 className="productsTitle">Browse products</h1>
       <div className="selectBoxes">
         <FormSelect
           options={categories}
@@ -78,23 +78,25 @@ const Products = () => {
           {products.length > 0 ? (
             products.map((product) => <OneProduct product={product} key={product.uid} />)
           ) : (
-            <div>No products</div>
+            <h1 className="productsTitle">No products</h1>
           )}
         </div>
       ) : (
-        <div>Loading...</div>
+        <h1 className="productsTitle">Loading...</h1>
       )}
-      <div className="pagination">
-        <div className="paginationWraper">
-          <Button onClick={() => goBack()} disabled={page < 2}>
-            Back
-          </Button>
-          <span>{page}</span>
-          <Button onClick={() => paginate()} disabled={products.length < pageSize}>
-            Next
-          </Button>
+      {!loading && products.length > 0 && (
+        <div className="pagination">
+          <div className="paginationWraper">
+            <Button onClick={() => goBack()} disabled={page < 2}>
+              Back
+            </Button>
+            <span>{page}</span>
+            <Button onClick={() => paginate()} disabled={products.length < pageSize}>
+              Next
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

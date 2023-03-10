@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Card from '../../common/Card/Card';
 import Button from '../../common/Forms/Button/Button';
 import Input from '../../common/Forms/Input/Input';
 import useAuth from '../../hooks/useAuth';
@@ -23,9 +24,9 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="signIn">
+    <Card className="reserPassword">
       <div className="wrap">
-        <h2>Recover Password</h2>
+        <h2 className="title">Recover Password</h2>
         {errors.length > 0 && errors.map((error, index) => <span key={index}>{error}</span>)}
         {authError && <span>{authError}</span>}
         {resetPassword && <div>{resetPassword}</div>}
@@ -45,7 +46,7 @@ const ResetPassword = () => {
           </form>
         </div>
       </div>
-    </div>
+    </Card>
   );
 };
 
