@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Card from '../../../common/Card/Card';
 import useProducts from '../../../hooks/useProducts';
 import { useAppDispatch } from '../../../redux/app/hooks';
 import { fetchProductsApi } from '../../../redux/products/productsThunk';
@@ -11,7 +12,7 @@ const DailyHighlights = () => {
   const { products } = useProducts();
 
   useEffect(() => {
-    dispatch(fetchProductsApi({ pagNext: null, pageSize: 5 }));
+    dispatch(fetchProductsApi({ pagNext: null, pageSize: 30 }));
   }, []);
 
   const filteredProducts = products.slice(0, 5);
@@ -20,7 +21,7 @@ const DailyHighlights = () => {
       <h2 className="highlightsTitle">daily highlights</h2>
       <div className="highlightsContainer">
         {filteredProducts.map((product) => (
-          <div
+          <Card
             key={product.uid}
             className="highlightsCard"
             onClick={() => navigate(`/product/${product.uid}`)}>
@@ -29,7 +30,7 @@ const DailyHighlights = () => {
             </div>
             <p className="highlightsTitle">{product.name}</p>
             <p className="highlightsPrice">${product.price}</p>
-          </div>
+          </Card>
         ))}
       </div>
     </div>

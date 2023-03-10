@@ -4,8 +4,8 @@ import { Category, Product } from '../../../config/interfaces/intefaces';
 import useProducts from '../../../hooks/useProducts';
 import { useAppDispatch } from '../../../redux/app/hooks';
 import { deleteProductApi, fetchProductsApi } from '../../../redux/products/productsThunk';
-import Button from '../../Forms/Button/Button';
-import FormSelect from '../../Forms/FormSelect/FormSelect';
+import Button from '../../../common/Forms/Button/Button';
+import FormSelect from '../../../common/Forms/FormSelect/FormSelect';
 import ProductsModal from '../ProductsModal/ProductsModal';
 
 const ProductsInfo = ({ categories }: { categories: Category[] }) => {

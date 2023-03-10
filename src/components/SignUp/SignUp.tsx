@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './SignUp.scss';
-import Button from '../Forms/Button/Button';
-import Input from '../Forms/Input/Input';
+import Button from '../../common/Forms/Button/Button';
+import Input from '../../common/Forms/Input/Input';
 import { clearAuthErrors } from '../../redux/authentication/authSlice';
 import { signUpEmailPassword } from '../../redux/authentication/authThunk';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import Card from '../../common/Card/Card';
 
 const SignUp = () => {
   const { currentUser, authError, loading, dispatch } = useAuth();
@@ -64,9 +65,9 @@ const SignUp = () => {
   };
 
   return (
-    <div className="signUp">
+    <Card className="signUp">
       <div className="wrap">
-        <h2>Signup</h2>
+        <h2 className="title">Signup</h2>
         {errors.length > 0 && errors.map((error, index) => <span key={index}>{error}</span>)}
 
         <div className="formWrap">
@@ -103,7 +104,7 @@ const SignUp = () => {
           </form>
         </div>
       </div>
-    </div>
+    </Card>
   );
 };
 

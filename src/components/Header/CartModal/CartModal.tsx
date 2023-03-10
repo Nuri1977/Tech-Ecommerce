@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppSelector } from '../../../redux/app/hooks';
 import { removeCartItem, selectCartItems, selectCartTotal } from '../../../redux/cart/cartSlice';
-import Button from '../../Forms/Button/Button';
+import Button from '../../../common/Forms/Button/Button';
 import { TiDeleteOutline } from 'react-icons/ti';
 import './CartModal.scss';
 import { formatNumT1 } from '../../../utils/formatNumber';

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './SignIn.scss';
-import Input from '../Forms/Input/Input';
-import Button from '../Forms/Button/Button';
+import Input from '../../common/Forms/Input/Input';
+import Button from '../../common/Forms/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { signInEmailPassword, signInPopup } from '../../redux/authentication/authThunk';
 import { clearAuthErrors } from '../../redux/authentication/authSlice';
 import useAuth from '../../hooks/useAuth';
+import Card from '../../common/Card/Card';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -51,9 +52,9 @@ const SignIn = () => {
   };
 
   return (
-    <div className="signIn">
+    <Card className="signIn">
       <div className="wrap">
-        <h2>LogIn</h2>
+        <h2 className="title">LogIn</h2>
         {errors.length > 0 && errors.map((error, index) => <span key={index}>{error}</span>)}
 
         <div className="formWrap">
@@ -72,9 +73,11 @@ const SignIn = () => {
               onChange={(event) => setPassword(event.target.value)}
               placeholder="Password"
             />
-            <Button type="submit" disabled={loading}>
-              {loading ? 'Loading..' : 'Login'}
-            </Button>
+            <div className="btnLogin">
+              <Button type="submit" disabled={loading}>
+                {loading ? 'Loading..' : 'Login'}
+              </Button>
+            </div>
 
             <div className="socialSignIn">
               <div className="row">
@@ -89,7 +92,7 @@ const SignIn = () => {
           </form>
         </div>
       </div>
-    </div>
+    </Card>
   );
 };
 

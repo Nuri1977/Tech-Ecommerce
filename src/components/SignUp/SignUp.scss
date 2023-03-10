@@ -1,24 +1,29 @@
+@import '../../global.scss';
+
 .signUp {
   display: block;
   width: 100%;
   max-width: 40rem;
-  border: 1px solid black;
   margin: 4rem auto 6rem;
-  border: 1px solid black;
 
   .wrap {
     padding: 1rem;
 
-    h2 {
+    .title {
       font-size: 2.2rem;
       line-height: 1;
-      font-weight: 400;
+      font-weight: 800;
       text-transform: uppercase;
       text-align: center;
       display: block;
       width: 100%;
       padding: 0;
       margin: 0 auto;
+      color: $mediumText;
+    }
+
+    button {
+      margin-top: 20px;
     }
 
     span {

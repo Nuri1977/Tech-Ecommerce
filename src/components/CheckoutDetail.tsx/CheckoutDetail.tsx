@@ -13,7 +13,7 @@ import {
   substractCartItem
 } from '../../redux/cart/cartSlice';
 import { formatNumT1 } from '../../utils/formatNumber';
-import Button from '../Forms/Button/Button';
+import Button from '../../common/Forms/Button/Button';
 import './CheckoutDetail.scss';
 
 const CheckoutDetail = () => {

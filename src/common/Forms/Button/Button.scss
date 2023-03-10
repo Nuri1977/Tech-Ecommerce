@@ -1,0 +1,29 @@
+@import '../../../global.scss';
+
+.btn {
+  display: block;
+  width: 100%;
+  background: $primaryColor;
+  color: $white;
+  margin: 0 auto;
+  padding: 1rem;
+  font-size: 1.8rem;
+  line-height: 1;
+  font-weight: 300;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background: $primaryAccent;
+    text-decoration: none;
+    box-shadow:  0px 3px 4px 0px rgba(0, 0, 0, 0.07), 0px 3px 3px -2px  rgba(0, 0, 0, 0.06),  0px 1px 8px 0px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.disabled {
+  cursor: auto;
+  background: #ccc;
+}
