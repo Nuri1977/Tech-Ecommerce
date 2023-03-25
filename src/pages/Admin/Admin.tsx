@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ProductsInfo from '../../components/AdminProducts/ProductsInfo/ProducstInfo';
+import ProductsInfo from '../../components/AdminProducts/ProductsInfo/ProductsInfo';
 import ProductsModal from '../../components/AdminProducts/ProductsModal/ProductsModal';
 import Button from '../../common/Forms/Button/Button';
 import useCategories from '../../hooks/useCategory';
