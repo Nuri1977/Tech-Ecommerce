@@ -25,7 +25,7 @@ export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
 
 let db_check;
-if (!isTestEnv) {
+if (isTestEnv) {
   db_check = getFirestore(app);
   connectFirestoreEmulator(db_check, 'localhost', 8080);
   connectAuthEmulator(auth, 'http://localhost:9099');
