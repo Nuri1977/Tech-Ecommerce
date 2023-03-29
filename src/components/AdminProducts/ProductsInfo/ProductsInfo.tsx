@@ -86,7 +86,7 @@ const ProductsInfo = ({ categories }: { categories: Category[] }) => {
               <h5>{product.category?.name}</h5>
               <h5>{product.price}</h5>
               <div className="buttons">
-                <Button onClick={() => toggleModal(product)}>
+                <Button onClick={() => toggleModal(product)} data-testid="edit">
                   {loading ? 'Loading...' : 'Edit'}
                 </Button>
                 <Button onClick={() => dispatch(deleteProductApi(product.uid))}>

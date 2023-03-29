@@ -81,8 +81,7 @@ const ProductsModal = ({
             {selectedProduct?.uid ? <h2>Edit poduct</h2> : <h2>Add new product</h2>}
             <FormSelect
               name="category"
-              label="Category"
-              defaultValue={''}
+              label="category"
               value={productCategory.uid}
               options={categories}
               onChange={(e) => {
@@ -101,6 +100,7 @@ const ProductsModal = ({
               type="text"
               value={productName}
               onChange={(e) => setProductName(e.target.value)}
+              data-testid="name"
             />
 
             <Input
@@ -122,7 +122,7 @@ const ProductsModal = ({
               onChange={(e: any) => setProductPrice(e.target.value)}
             />
 
-            <CKEditor onChange={(e) => setDescription(e.editor.getData())} />
+            <CKEditor onChange={(e) => setDescription(e.editor.getData())} data-testid="ckeditor" />
 
             <Button type="submit">{selectedProduct?.uid ? 'Edit Product' : 'Add product'}</Button>
           </form>

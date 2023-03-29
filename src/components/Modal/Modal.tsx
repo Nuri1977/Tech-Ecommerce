@@ -15,7 +15,9 @@ const Modal = ({
   return (
     <>
       <div className="modalOverlay" onClick={() => toggleModal()} />
-      <div className="modal">{children}</div>
+      <div className="modal" data-testid="modal">
+        {children}
+      </div>
     </>
   );
 };
