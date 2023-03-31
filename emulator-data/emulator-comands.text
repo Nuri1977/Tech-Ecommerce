@@ -1,0 +1,4 @@
+
+firebase emulators:export /home/nuri/tutorials/react/Tech-Ecommerce/emulator-data
+
+firebase emulators:start --import /home/nuri/tutorials/react/Tech-Ecommerce/emulator-data
