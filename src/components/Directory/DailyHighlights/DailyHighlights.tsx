@@ -19,7 +19,7 @@ const DailyHighlights = () => {
   return (
     <div className="highlights">
       <h2 className="highlightsTitle">daily highlights</h2>
-      <div className="highlightsContainer">
+      <ul className="highlightsContainer">
         {filteredProducts.map((product) => (
           <Card
             key={product.uid}
@@ -32,7 +32,7 @@ const DailyHighlights = () => {
             <p className="highlightsPrice">${product.price}</p>
           </Card>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
