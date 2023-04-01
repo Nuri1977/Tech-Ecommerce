@@ -29,7 +29,10 @@ const CartModal = () => {
                 </div>
                 <div className="quantity">{`x ${product.quantity}`}</div>
                 <div className="price">${formatNumT1(product.price)}</div>
-                <div className="deleteIcon" onClick={() => dispatch(removeCartItem(product.uid))}>
+                <div
+                  className="deleteIcon"
+                  onClick={() => dispatch(removeCartItem(product.uid))}
+                  data-testid="delete-icon">
                   <TiDeleteOutline size={24} />
                 </div>
               </div>

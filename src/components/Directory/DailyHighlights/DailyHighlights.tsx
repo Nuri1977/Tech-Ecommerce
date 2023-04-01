@@ -17,7 +17,7 @@ const DailyHighlights = () => {
 
   const filteredProducts = products.slice(0, 5);
   return (
-    <div className="highlights">
+    <div className="highlights" data-testid="daily-highlights">
       <h2 className="highlightsTitle">daily highlights</h2>
       <ul className="highlightsContainer">
         {filteredProducts.map((product) => (

@@ -36,7 +36,7 @@ const PopularBrands = () => {
   }, []);
 
   useEffect(() => {
-    scrollViewRef.current?.scrollTo({ left: screenWidth, behavior: 'smooth' });
+    // scrollViewRef.current?.scrollTo({ left: screenWidth, behavior: 'smooth' });
   }, [screenWidth]);
 
   const toNextPage = () => {
@@ -55,7 +55,8 @@ const PopularBrands = () => {
     <div
       className="brandsContainer"
       onMouseEnter={() => setShowArrow(true)}
-      onMouseLeave={() => setShowArrow(false)}>
+      onMouseLeave={() => setShowArrow(false)}
+      data-testid="popular-brands">
       <div className="brands" ref={scrollViewRef}>
         <div>
           <img src={LG} alt="lg" />
