@@ -62,7 +62,7 @@
       }
 
       .deleteIcon {
-        padding: 5px 10px 0px;
+        padding: 5px 10px 0;
         cursor: pointer;
 
         &:hover {
@@ -83,5 +83,15 @@
     .checkoutBtn {
       width: 130px;
     }
+  }
+
+  .emptyCart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    font-size: 20px;
+    font-weight: 600;
+    color: $mediumText;
   }
 }

@@ -1,22 +1,21 @@
 import React from 'react';
-import { useAppSelector } from '../../../redux/app/hooks';
+import { useAppSelector, useAppDispatch } from '../../../redux/app/hooks';
 import { removeCartItem, selectCartItems, selectCartTotal } from '../../../redux/cart/cartSlice';
 import Button from '../../../common/Forms/Button/Button';
 import { TiDeleteOutline } from 'react-icons/ti';
 import './CartModal.scss';
 import { formatNumT1 } from '../../../utils/formatNumber';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
 const CartModal = () => {
   const cartItems = useAppSelector(selectCartItems);
   const CartTotal = useAppSelector(selectCartTotal);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   return (
     <div className="cartModalDetail">
-      {cartItems.length > 0 && (
+      {cartItems.length > 0 ? (
         <>
           <div className="cartItems">
             {cartItems.map((product) => (
@@ -45,6 +44,10 @@ const CartModal = () => {
             <div>Total ${formatNumT1(CartTotal)}</div>
           </div>
         </>
+      ) : (
+        <div className="emptyCart">
+          <div className="emptyCartText">Your cart is empty</div>
+        </div>
       )}
     </div>
   );

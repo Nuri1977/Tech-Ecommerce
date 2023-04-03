@@ -18,7 +18,7 @@ const UserModal = () => {
               Registration
             </NavLink>
           </li>
-          <li className="navItem">
+          <li className="navItem" data-testid="login">
             <NavLink to="/login" className="navLink">
               Login
             </NavLink>
