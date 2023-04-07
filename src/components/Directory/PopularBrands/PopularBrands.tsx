@@ -55,7 +55,8 @@ const PopularBrands = () => {
     <div
       className="brandsContainer"
       onMouseEnter={() => setShowArrow(true)}
-      onMouseLeave={() => setShowArrow(false)}>
+      onMouseLeave={() => setShowArrow(false)}
+      data-testid="popular-brands">
       <div className="brands" ref={scrollViewRef}>
         <div>
           <img src={LG} alt="lg" />

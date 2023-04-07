@@ -9,7 +9,7 @@ const Recomandations = () => {
 
   const filteredProducts = products.slice(5, 10);
   return (
-    <div className="recommendations">
+    <div className="recommendations" data-testid="recommendations">
       <h2 className="recommendationsTitle">recommendations</h2>
       <div className="recommendationsContainer">
         {filteredProducts.map((product) => (

@@ -52,7 +52,7 @@ const HomeSlider = () => {
   ];
 
   return (
-    <div className="slider">
+    <div className="slider" data-testid="home-slider">
       <ImageSlides slides={slides} />
     </div>
   );

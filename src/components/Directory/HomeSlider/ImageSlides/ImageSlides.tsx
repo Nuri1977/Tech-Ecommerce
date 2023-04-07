@@ -39,7 +39,7 @@ const ImageSlides = ({ slides }: { slides: any }) => {
       <div className="slideNavigation">
         <div className="slideDots">
           {slides.map((slide: any, index: number) => (
-            <div key={index} onClick={() => setCurrentIndex(index)}>
+            <div key={index} onClick={() => setCurrentIndex(index)} data-testid="slide">
               {index === currentIndex ? (
                 <GoPrimitiveDot color="red" fontSize={30} />
               ) : (
@@ -49,7 +49,7 @@ const ImageSlides = ({ slides }: { slides: any }) => {
           ))}
         </div>
         <div className="slideButtons">
-          <div onClick={previosSlide}>
+          <div onClick={previosSlide} data-testid="previos-slide">
             <FaChevronLeft
               style={{
                 fontSize: '20px',
@@ -57,7 +57,7 @@ const ImageSlides = ({ slides }: { slides: any }) => {
               }}
             />
           </div>
-          <div onClick={nextSlide}>
+          <div onClick={nextSlide} data-testid="next-slide">
             <FaChevronRight fontWeight="bolder" color="#cfcbca" fontSize={20} />
           </div>
         </div>

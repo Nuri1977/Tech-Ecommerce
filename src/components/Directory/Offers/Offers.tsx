@@ -10,7 +10,7 @@ import Image_06 from '../../../assets/images/offers/Home-Kachel_06.png';
 
 const Offers = () => {
   return (
-    <div className="offers">
+    <div className="offers" data-testid="offers">
       <Card>
         <div className="offerCard">
           <img src={Image_01} alt="" className="offerImg" />

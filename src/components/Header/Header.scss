@@ -7,8 +7,8 @@
   margin: 0;
   background-color: $primaryColor;
   color: $white;
-  
-  
+
+
   .wrap {
     display: flex;
     align-items: center;
@@ -33,7 +33,7 @@
         align-items: center;
         justify-content: flex-end;
         height: 6.5rem;
-        
+
 
         .navItem {
           text-align: center;
@@ -41,12 +41,12 @@
           .cart {
             position: relative;
             padding: 0 1rem;
-  
+
             .cartIcon {
               cursor: pointer;
               height: 6.3rem;
             }
-  
+
             .cartQuantity {
               position: absolute;
               top: 10px;
@@ -61,18 +61,27 @@
               align-items: center;
               justify-content: center;
               padding: 3px;
-  
+
               .items {
                 padding: 3px;
               }
             }
-  
+
             .cartModal {
               position: absolute;
               top: 48px;
-              right: 0px;
+              right: 0;
               z-index: 4;
               width: 500px;
+              color: $black;
+            }
+
+            .emptyCartModal {
+              position: absolute;
+              top: 48px;
+              right: 0;
+              z-index: 4;
+              width: 200px;
               color: $black;
             }
           }
@@ -81,12 +90,12 @@
             position: relative;
             padding: 0 1rem;
             height: 6.3rem;
-  
+
             .userIcon {
               cursor: pointer;
               height: 6.3rem;
             }
-  
+
             .userModal {
               position: absolute;
               top: 48px;
@@ -97,7 +106,7 @@
               border: none;
             }
           }
-  
+
           .navLink {
             text-align: center;
             font-size: 1.8rem;

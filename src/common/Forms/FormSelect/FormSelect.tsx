@@ -15,7 +15,7 @@ const FormSelect: FC<SelectProps> = ({ options, name, label, ...otherProps }) =>
     <div className="formRow">
       {label && <label>{label}</label>}
 
-      <select className="formSelect" {...otherProps}>
+      <select className="formSelect" {...otherProps} data-testid={name}>
         <option key={'deafult'} value={''}>
           {`${name.toLowerCase()} `}
         </option>

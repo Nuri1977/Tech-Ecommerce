@@ -10,12 +10,17 @@ const OrderDetail = ({ order }: { order: Order }) => {
   return (
     <>
       <div key={order.uid} className="orderItem">
-        <div className="toggleIcon" onClick={() => setShowDetail(!showDetail)}>
+        <div
+          className="toggleIcon"
+          onClick={() => setShowDetail(!showDetail)}
+          data-testid="toggle-icon">
           {showDetail ? <MdExpandLess fontSize="24px" /> : <MdExpandMore fontSize="24px" />}
         </div>
         <div className="orderUid">{order.user?.email}</div>
-        <div className="orderDate">{order.createDate.toDate().toLocaleDateString()}</div>
-        <div className="orderAmount">
+        <div className="orderDate" data-testid="order-date">
+          {order.createDate.toDate().toLocaleDateString()}
+        </div>
+        <div className="orderAmount" data-testid="order-amount">
           {`${order.payment?.currency} ${
             order.payment?.amount && formatNumT1(order.payment?.amount / 100)
           }`}
