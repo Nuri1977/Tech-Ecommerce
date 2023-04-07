@@ -23,7 +23,7 @@ const ProductCart = () => {
       <div className="productDetails">
         <ul>
           <li>
-            <h1>{myProduct.name}</h1>
+            <h1 data-testid="product-name">{myProduct.name}</h1>
           </li>
           <li>
             <h3>${myProduct.price}</h3>

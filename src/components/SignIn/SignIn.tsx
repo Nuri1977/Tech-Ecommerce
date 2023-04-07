@@ -55,7 +55,12 @@ const SignIn = () => {
     <Card className="signIn">
       <div className="wrap">
         <h2 className="title">LogIn</h2>
-        {errors.length > 0 && errors.map((error, index) => <span key={index}>{error}</span>)}
+        {errors.length > 0 &&
+          errors.map((error, index) => (
+            <span key={index} data-testid="error">
+              {error}
+            </span>
+          ))}
 
         <div className="formWrap">
           <form onSubmit={(event) => onSubmitHandler(event)}>
@@ -74,7 +79,7 @@ const SignIn = () => {
               placeholder="Password"
             />
             <div className="btnLogin">
-              <Button type="submit" disabled={loading}>
+              <Button type="submit" disabled={loading} data-testid="login-btn">
                 {loading ? 'Loading..' : 'Login'}
               </Button>
             </div>

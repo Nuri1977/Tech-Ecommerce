@@ -14,7 +14,7 @@ const OneProduct = ({ product }: { product: Product }) => {
   return (
     <Card className="product">
       <div className="thumb" onClick={() => navigate(`/product/${product.uid}`)}>
-        <img src={imageUrl} alt="name" />
+        <img src={imageUrl} alt={product.name} />
       </div>
       <div className="details">
         <Link to={`/product/${product.uid}`}>

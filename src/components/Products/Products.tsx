@@ -67,7 +67,7 @@ const Products = () => {
         />
         <FormSelect
           options={[4, 5, 8, 10, 20, 50]}
-          name=""
+          name="Items per page"
           value={pageSize}
           onChange={(e) => setPageSize(+e.target.value)}
         />

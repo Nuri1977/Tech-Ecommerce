@@ -8,7 +8,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button: FC<ButtonProps> = ({ children, disabled = false, ...otherProps }) => {
   return (
-    <button className={`btn ${disabled && 'disabled'}`} {...otherProps}>
+    <button className={`btn ${disabled && 'disabled'}`} {...otherProps} disabled={disabled}>
       {children}
     </button>
   );
