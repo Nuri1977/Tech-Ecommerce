@@ -36,7 +36,7 @@ const PopularBrands = () => {
   }, []);
 
   useEffect(() => {
-    // scrollViewRef.current?.scrollTo({ left: screenWidth, behavior: 'smooth' });
+    scrollViewRef.current?.scrollTo({ left: screenWidth, behavior: 'smooth' });
   }, [screenWidth]);
 
   const toNextPage = () => {
