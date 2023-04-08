@@ -1,5 +1,8 @@
+@import '../../../../global.scss';
+
 .slide {
   width: 100%;
+
 
   .slideCard {
     display: flex;
@@ -7,6 +10,10 @@
     align-items: center;
     width: 100%;
     height: 400px;
+    @include media-breakpoint-down(sm) {
+      flex-direction: column-reverse;
+      height: 400px;
+    }
 
     .slideInfo {
       flex: 1;
@@ -16,7 +23,12 @@
     .slideImage {
       display: flex;
       flex: 2;
+      width: 100%;
       height: 400px;
+      @include media-breakpoint-down(sm) {
+        height: 200px;
+        flex: 2;
+      }
 
       img {
         width: 100%;
@@ -37,8 +49,17 @@
     }
 
     .slideDescription {
-      font-weight: 200;
       color: #6a6866;
+      font-size: 16px;
+      line-height: 28px;
+      font-weight: 400;
+      letter-spacing: normal;
+      white-space: normal;
+      overflow: hidden;
+      max-height: calc(84px);
+      -webkit-line-clamp: 3;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
     }
   }
 
