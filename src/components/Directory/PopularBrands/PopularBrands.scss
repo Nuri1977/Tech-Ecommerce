@@ -10,7 +10,7 @@
     overflow-x: scroll;
     padding: 5px;
     margin-bottom: 30px;
-  
+
     div {
       display: flex;
       justify-content: center;
@@ -20,20 +20,20 @@
       border-radius: 5px;
       cursor: pointer;
       transition: transform 450ms;
-  
+
       &:hover {
         box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 6px 0 rgba(0, 0, 0, 0.19);
         border-color: rgba(0, 0, 0, 0);
         transform: scale(1.01);
       }
-  
+
       img {
         height: 80px;
       }
     }
-  
+
   }
-  
+
   .brands::-webkit-scrollbar {
     display: none;
   }
