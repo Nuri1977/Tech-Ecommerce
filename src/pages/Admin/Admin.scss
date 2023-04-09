@@ -1,67 +1,14 @@
+@import '../../global.scss';
+
 .admin {
   padding: 10px;
+  @include media-breakpoint-down(sm) {
+    padding: 0;
+  }
+
 
   .callToActions {
     width: 250px;
     padding: 5px;
-  }
-
-  .selectBoxes {
-    width: 200px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
-
-  .productsInfo {
-    display: grid;
-    grid-template-columns: 1fr;
-
-    .productCard {
-      display: grid;
-      grid-template-columns: auto 1fr 1fr 1fr 1fr;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      margin: 5px;
-      border: 1px solid #ccc;
-
-      .productImage {
-        height: 50px;
-      }
-
-      h5 {
-        border-right: 1px solid #ccc;
-      }
-
-      .buttons {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0 5px 0 0;
-
-        button {
-          margin-left: 5px;
-        }
-      }
-    }
-  }
-
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 0;
-
-    .paginationWraper {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      width: 300px;
-
-      span {
-        padding: 4px 5px;
-      }
-    }
   }
 }

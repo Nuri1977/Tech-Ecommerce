@@ -4,7 +4,7 @@ $secondaryColor: #f2a6a4;
 $terciaryColor: #272422;
 $quaternaryColor: #ccc;
 $neutralColor1: #f2f2f2;
-$neutralColor2: #dddddd;
+$neutralColor2: #f9f9f9;
 $primaryAccent: #cc2f2a;
 $strongText: #000000;
 $mediumText: #272422;
@@ -14,17 +14,35 @@ $black: #000000;
 $white: #ffffff;
 
 
-$widthSM: 768px;
+$breakpoints: (
+  xs: 0px,
+  sm: 600px,
+  md: 900px,
+  lg: 1200px,
+  xl: 1536px
+);
 
-@mixin mobile {
-  @media (max-width: #{$widthSM}) {
-    @content
+@mixin media-breakpoint-up($breakpoint) {
+  @media (min-width: map-get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($breakpoint) {
+  @media (max-width: (map-get($breakpoints, $breakpoint) - 1px)) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-between($lower, $upper) {
+  @media (min-width: map-get($breakpoints, $lower)) and (max-width: (map-get($breakpoints, $upper) - 1px)) {
+    @content;
   }
 }
 
 @mixin myHover {
   transition: all 0.3s ease-in-out;
   &:hover {
-    transform: scale(0.95);
+    transform: scale(1.01);
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
 import Header from '../components/Header/Header';
 import VertikalNav from '../components/VertikalNav/VertikalNav';
@@ -16,16 +16,32 @@ const AdminLayout = () => {
           <VertikalNav>
             <ul>
               <li>
-                <Link to="/admin">Home</Link>
+                <NavLink
+                  to="/admin"
+                  className={({ isActive }) => (isActive ? 'active-item' : 'inactive')}>
+                  Home
+                </NavLink>
               </li>
               <li>
-                <Link to="/categories">Categories</Link>
+                <NavLink
+                  to="/categories"
+                  className={({ isActive }) => (isActive ? 'active-item' : 'inactive')}>
+                  Categories
+                </NavLink>
               </li>
               <li>
-                <Link to="/admin-orders">Order History</Link>
+                <NavLink
+                  to="/admin-orders"
+                  className={({ isActive }) => (isActive ? 'active-item' : 'inactive')}>
+                  Order History
+                </NavLink>
               </li>
               <li>
-                <Link to="/users">Users</Link>
+                <NavLink
+                  to="/users"
+                  className={({ isActive }) => (isActive ? 'active-item' : 'inactive')}>
+                  Users
+                </NavLink>
               </li>
               <li>
                 <span className="signOut" onClick={() => dispatch(signOutFun())}>

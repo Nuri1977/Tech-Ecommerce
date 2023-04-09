@@ -11,62 +11,95 @@
   }
 
   .recommendationsContainer {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
+    position: relative;
 
-    .recommendationsCard {
+    .recommendProducts {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      min-width: 250px;
-      
+      justify-content: flex-start;
+      align-items: center;
+      gap: 10px;
+      overflow-y: hidden;
+      overflow-x: scroll;
+      padding: 5px;
+      margin-bottom: 30px;
 
-      .recommendationsImg {
-        height: 150px;
-        border-radius: 5px;
+      .recommendationsCard {
         display: flex;
+        flex-direction: column;
         justify-content: center;
-        align-items: center;
-        justify-content: center;
-        align-self: center;
-        margin-bottom: 20px;
+        align-items: flex-start;
+        min-width: 250px;
 
-        img {
-          max-width: 100%;
-          max-height: 150px;
-          object-fit: cover;
+
+        .recommendationsImg {
+          height: 150px;
           border-radius: 5px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          justify-content: center;
           align-self: center;
+          margin-bottom: 20px;
+
+          img {
+            max-width: 100%;
+            max-height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            align-self: center;
+          }
+        }
+
+        .recommendationsTitle {
+          margin: 0px;
+          color: rgb(0, 0, 0);
+          font-size: 16px;
+          line-height: 24px;
+          font-family: SourceSansPro, Arial, sans-serif;
+          font-weight: 400;
+          letter-spacing: 0.2px;
+          white-space: normal;
+          overflow: hidden;
+          height: 50px;
+          -webkit-line-clamp: 2;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          border: '1px solid red';
+          width: 100%;
+        }
+
+        .recommendationsPrice {
+          padding: 30px 0 5px;
+          color: #0f0f0f;
+          font-size: 24px;
+          font-weight: 600;
+          letter-spacing: normal;
         }
       }
-
-      .recommendationsTitle {
-        margin: 0px;
-        color: rgb(0, 0, 0);
-        font-size: 16px;
-        line-height: 24px;
-        font-family: SourceSansPro, Arial, sans-serif;
-        font-weight: 400;
-        letter-spacing: 0.2px;
-        white-space: normal;
-        overflow: hidden;
-        height: 50px;
-        -webkit-line-clamp: 2;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        border: '1px solid red';
-        width: 100%;
-      }
-
-      .recommendationsPrice {
-        padding: 30px 0 5px;
-        color: #0f0f0f;
-        font-size: 24px;
-        font-weight: 600;
-        letter-spacing: normal;
-      }
     }
+    .recommendProducts::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scrollIcon {
+      position: absolute;
+      top: 30%;
+      background-color: black;
+      padding: 10px;
+      border-radius: 5px;
+      color: white;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    .scrollBack {
+      left: 20px;
+    }
+
+    .scrollNext {
+      right: 20px;
+    }
+
   }
 }

@@ -7,6 +7,7 @@ import { deleteProductApi, fetchProductsApi } from '../../../redux/products/prod
 import Button from '../../../common/Forms/Button/Button';
 import FormSelect from '../../../common/Forms/FormSelect/FormSelect';
 import ProductsModal from '../ProductsModal/ProductsModal';
+import './ProductsInfo.scss';
 
 const ProductsInfo = ({ categories }: { categories: Category[] }) => {
   const dispatch = useAppDispatch();
@@ -81,8 +82,10 @@ const ProductsInfo = ({ categories }: { categories: Category[] }) => {
         {products &&
           products.map((product) => (
             <li key={product.uid} className="productCard">
-              <img src={product.imageUrl} alt={product.name} className="productImage" />
-              <h5>{product.name}</h5>
+              <div className="imageContainer">
+                <img src={product.imageUrl} alt={product.name} className="productImage" />
+              </div>
+              <h4 className="productText">{product.name}</h4>
               <h5>{product.category?.name}</h5>
               <h5>{product.price}</h5>
               <div className="buttons">

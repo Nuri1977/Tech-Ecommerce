@@ -8,81 +8,96 @@ import CartModal from './CartModal/CartModal';
 import { ReactComponent as CollectionSvg } from '../../assets/images/tm_new_logo_new.svg';
 import { NavLink, useNavigate } from 'react-router-dom';
 import UserModal from './UserModal/UserModal';
+import { SlMenu } from 'react-icons/sl';
+import { VscChromeClose } from 'react-icons/vsc';
+import MobileMenu from './MobileMenu/MobileMenu';
 
 const Header = () => {
   const [showModal, setShowModal] = useState(false);
   const [userModal, setUserModal] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
   const cartartItemsCount = useAppSelector(selectCartItemsCount);
   const navigate = useNavigate();
 
   return (
-    <header className="header">
-      <div className="wrap">
-        <div className="logo" onClick={() => navigate('/')}>
-          <div className="logoLink" onClick={() => navigate('/')}>
-            <CollectionSvg
-              style={{
-                width: '100%',
-                height: '36px',
-                color: 'inherit'
-              }}
-              data-testid="logo"
-            />
+    <>
+      <div style={{ height: '6.5rem', width: '100%' }} />
+      <header className="header">
+        <div className="wrap">
+          <div className="logo" onClick={() => navigate('/')}>
+            <div className="logoLink" onClick={() => navigate('/')}>
+              <CollectionSvg
+                style={{
+                  width: '100%',
+                  height: '36px',
+                  color: 'inherit'
+                }}
+                data-testid="logo"
+              />
+            </div>
           </div>
-        </div>
-        <nav className="navigation">
-          <ul className="navList">
-            <li className="navItem" data-testid="home">
-              <NavLink
-                to="/"
-                className={({ isActive }) => (isActive ? 'active navLink' : 'inactive navLink')}>
-                Home
-              </NavLink>
-            </li>
-            <li className="navItem" data-testid="products">
-              <NavLink
-                to="/search"
-                className={({ isActive }) => (isActive ? 'active navLink' : 'inactive navLink')}>
-                Products
-              </NavLink>
-            </li>
-            <li className="navItem">
-              <div
-                className="user"
-                onMouseEnter={() => setUserModal(true)}
-                onMouseLeave={() => setUserModal(false)}
-                data-testid="user">
-                <BiUserCircle size="32px" className="userIcon" />
+          <nav className="navigation">
+            <ul className="navList">
+              <li className="navItem" data-testid="home">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) => (isActive ? 'active navLink' : 'inactive navLink')}>
+                  Home
+                </NavLink>
+              </li>
+              <li className="navItem" data-testid="products">
+                <NavLink
+                  to="/search"
+                  className={({ isActive }) => (isActive ? 'active navLink' : 'inactive navLink')}>
+                  Products
+                </NavLink>
+              </li>
+              <li className="navItem">
+                <div
+                  className="user"
+                  onMouseEnter={() => setUserModal(true)}
+                  onMouseLeave={() => setUserModal(false)}
+                  data-testid="user">
+                  <BiUserCircle size="32px" className="userIcon" />
 
-                {userModal && (
-                  <div className="userModal">
-                    <UserModal />
-                  </div>
-                )}
-              </div>
-            </li>
-            <li className="navItem">
-              <div
-                className="cart"
-                onMouseEnter={() => setShowModal(true)}
-                onMouseLeave={() => setShowModal(false)}>
-                <BsCart3 size="28px" className="cartIcon" data-testid="cart" />
-                {cartartItemsCount > 0 && (
-                  <div className="cartQuantity">
-                    <div className="items">{cartartItemsCount}</div>
-                  </div>
-                )}
-                {showModal && (
-                  <div className={cartartItemsCount === 0 ? 'emptyCartModal' : 'cartModal'}>
-                    <CartModal />
-                  </div>
-                )}
-              </div>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+                  {userModal && (
+                    <div className="userModal">
+                      <UserModal />
+                    </div>
+                  )}
+                </div>
+              </li>
+              <li className="navItem">
+                <div
+                  className="cart"
+                  onMouseEnter={() => setShowModal(true)}
+                  onMouseLeave={() => setShowModal(false)}>
+                  <BsCart3 size="28px" className="cartIcon" data-testid="cart" />
+                  {cartartItemsCount > 0 && (
+                    <div className="cartQuantity">
+                      <div className="items">{cartartItemsCount}</div>
+                    </div>
+                  )}
+                  {showModal && (
+                    <div className={cartartItemsCount === 0 ? 'emptyCartModal' : 'cartModal'}>
+                      <CartModal />
+                    </div>
+                  )}
+                </div>
+              </li>
+            </ul>
+          </nav>
+          <nav className="hamburger">
+            {mobileMenu ? (
+              <VscChromeClose fontSize={20} fill="white" onClick={() => setMobileMenu(false)} />
+            ) : (
+              <SlMenu fontSize={20} onClick={() => setMobileMenu(true)} />
+            )}
+          </nav>
+        </div>
+      </header>
+      {mobileMenu && <MobileMenu mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} />}
+    </>
   );
 };
 

@@ -7,7 +7,7 @@ const VertikalNav = ({ children }: { children: React.ReactNode }) => {
     <div className="verticalNav">
       <UserProfile />
 
-      <div className="menu">{children}</div>
+      <div className="menu-vertical">{children}</div>
     </div>
   );
 };

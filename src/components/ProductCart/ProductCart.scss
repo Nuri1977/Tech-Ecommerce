@@ -1,3 +1,5 @@
+@import '../../global.scss';
+
 .productCart {
   max-width: 80rem;
   margin: 0 auto 10rem;
@@ -6,11 +8,16 @@
     display: block;
     width: 100%;
     margin: 2rem auto;
+    @include media-breakpoint-down(sm) {
+      max-height: 300px;
+      max-width: 100%;
+    }
 
-    img {
+    .heroImage {
       display: block;
-      width: 100%;
-      margin: 0;
+      max-width: 100%;
+      max-height: 300px;
+      margin: 0 auto;
     }
   }
 

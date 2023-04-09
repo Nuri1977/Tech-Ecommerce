@@ -4,6 +4,7 @@
   align-items: center;
   height: 48px;
 
+
   div {
     padding: 10px;
     border: 1px solid #ccc;
@@ -13,11 +14,11 @@
 
   .userImg {
     cursor: pointer;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     &:hover {
       opacity: 0.7;
     }

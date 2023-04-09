@@ -1,3 +1,5 @@
+@import './global.scss';
+
 *,
 ::before,
 ::after {
@@ -50,41 +52,13 @@ a:hover {
   width: 100%;
   flex-grow: 1;
   max-width: 1450px;
-  padding: 0 10px;
+  padding: 0 15px;
   margin: 0 auto;
 }
 
 li {
   list-style: none;
 }
-
-// h1 {
-//   display: block;
-//   width: 100%;
-//   padding: 0;
-//   margin: 0 auto 2rem;
-//   font-size: 3rem;
-//   line-height: 3.2rem;
-//   color: #000;
-//   text-align: left;
-//   font-weight: 400;
-//   text-transform: uppercase;
-//   border-bottom: #d3d3d3;
-// }
-
-// h2 {
-//   display: block;
-//   width: 100%;
-//   padding: 0;
-//   margin: 0 auto 2rem;
-//   font-size: 2.5rem;
-//   line-height: 2.7rem;
-//   color: #000;
-//   text-align: left;
-//   font-weight: 400;
-//   text-transform: uppercase;
-//   border-bottom: #d3d3d3;
-// }
 
 a {
   text-decoration: none;
@@ -102,10 +76,15 @@ a:hover {
 .controlPanel {
   display: flex;
   max-width: 1450px;
-  padding: 0 10px;
+  padding: 0 15px;
   margin: 0 auto;
   width: 100%;
   flex-grow: 1;
+
+  @include media-breakpoint-down(sm) {
+    flex-direction: column;
+    height: 100%;
+  }
 
   .sidebar {
     width: 25rem;
@@ -120,27 +99,28 @@ a:hover {
     flex-grow: 1;
     max-height: calc(100vh - 13rem);
     overflow: auto;
+
+    @include media-breakpoint-down(sm) {
+      max-height: none;
+      overflow: hidden;
+      flex-grow: unset;
+    }
+
   }
 }
 
-.adminLayout {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-.dashboardLayout {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
+.adminLayout,
+.dashboardLayout,
 .mainLayout {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
 
+  .active-item {
+    background: $neutralColor2;
+    font-weight: 800;
+  }
+}
 
 @media only screen and (max-width: 980px) {
   html {
@@ -148,7 +128,7 @@ a:hover {
   }
 
   .controlPanel {
-    padding: 0 10px;
+    padding: 0 15px;
 
     .sidebar {
       position: relative;

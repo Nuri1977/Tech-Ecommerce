@@ -7,7 +7,11 @@
   margin: 0;
   background-color: $primaryColor;
   color: $white;
-
+  z-index: 20;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 
   .wrap {
     display: flex;
@@ -27,6 +31,9 @@
 
     .navigation {
       height: 100%;
+      @include media-breakpoint-down(sm) {
+        display: none;
+      }
 
       .navList {
         display: flex;
@@ -111,21 +118,29 @@
             text-align: center;
             font-size: 1.8rem;
             color: $white;
-            font-weight: bolder;
+            font-weight: 500;
             text-transform: uppercase;
             padding: 2rem 1rem 2.1rem 1rem;
+
+            &:hover {
+              @include myHover;
+            }
           }
         }
+      }
+    }
+    .hamburger {
+      display: none;
+      @include media-breakpoint-down(sm) {
+        display: block;
+        cursor: pointer;
+        color: $white;
       }
     }
   }
 }
 
 .active {
-  padding-bottom: 1px;
-  border-right: 1px solid $white;
-  border-left: 1px solid $white;
-  text-shadow: 2px 2px 4px $secondaryColor;
   font-weight: bolder !important;
 }
 
