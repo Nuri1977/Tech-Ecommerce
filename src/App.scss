@@ -1,3 +1,5 @@
+@import './global.scss';
+
 *,
 ::before,
 ::after {
@@ -107,6 +109,11 @@ a:hover {
   width: 100%;
   flex-grow: 1;
 
+  @include media-breakpoint-down(sm) {
+    flex-direction: column;
+    height: 100%;
+  }
+
   .sidebar {
     width: 25rem;
     height: 100%;
@@ -120,6 +127,13 @@ a:hover {
     flex-grow: 1;
     max-height: calc(100vh - 13rem);
     overflow: auto;
+
+    @include media-breakpoint-down(sm) {
+      max-height: none;
+      overflow: hidden;
+      flex-grow: unset;
+    }
+
   }
 }
 
@@ -132,7 +146,7 @@ a:hover {
 .dashboardLayout {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .mainLayout {
@@ -148,7 +162,7 @@ a:hover {
   }
 
   .controlPanel {
-    padding: 0 10px;
+    padding: 0 15px;
 
     .sidebar {
       position: relative;
