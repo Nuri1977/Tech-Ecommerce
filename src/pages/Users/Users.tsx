@@ -11,6 +11,7 @@ const Users = () => {
 
   useEffect(() => {
     dispatch(fetchUsersApi({ pagNext: null, pageSize: 50 }));
+    document.title = 'Users';
   }, []);
 
   if (loading) return <div>Loading...</div>;

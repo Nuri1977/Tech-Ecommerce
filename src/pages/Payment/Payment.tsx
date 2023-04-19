@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PaymentDetail from '../../components/PaymentDetail/PaymentDetail';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
@@ -10,6 +10,10 @@ const stripePromise = loadStripe(
 );
 
 const Payment = () => {
+  useEffect(() => {
+    document.title = 'Payment';
+  }, []);
+
   return (
     <Elements stripe={stripePromise}>
       <PaymentDetail />
