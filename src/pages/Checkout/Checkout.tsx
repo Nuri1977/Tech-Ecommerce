@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import CheckoutDetail from '../../components/CheckoutDetail.tsx/CheckoutDetail';
 
-useEffect(() => {
-  document.title = 'Checkout';
-}, []);
-
 const Checkout = () => {
+  useEffect(() => {
+    document.title = 'Checkout';
+  }, []);
+
   return (
     <div>
       <CheckoutDetail />
