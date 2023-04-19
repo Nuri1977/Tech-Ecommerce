@@ -4,10 +4,16 @@ import useAuth from '../../../hooks/useAuth';
 import { useAppDispatch } from '../../../redux/app/hooks';
 import { signOutFun } from '../../../redux/authentication/authThunk';
 import './UserModal.scss';
+import { clearCart } from '../../../redux/cart/cartSlice';
 
 const UserModal = () => {
   const { currentUser, isAdmin } = useAuth();
   const dispatch = useAppDispatch();
+
+  const logoutUser = () => {
+    dispatch(signOutFun());
+    dispatch(clearCart());
+  };
 
   return (
     <ul className="userModalDetail">
@@ -41,7 +47,7 @@ const UserModal = () => {
       )}
       {currentUser && (
         <li className="navItem">
-          <a onClick={() => dispatch(signOutFun())} className="navLink">
+          <a onClick={() => logoutUser()} className="navLink">
             Logout
           </a>
         </li>

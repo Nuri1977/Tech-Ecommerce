@@ -81,7 +81,7 @@ a:hover {
   width: 100%;
   flex-grow: 1;
 
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-down(md) {
     flex-direction: column;
     height: 100%;
   }
@@ -100,7 +100,7 @@ a:hover {
     max-height: calc(100vh - 13rem);
     overflow: auto;
 
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(md) {
       max-height: none;
       overflow: hidden;
       flex-grow: unset;

@@ -20,7 +20,7 @@
     margin: 5px;
     border: 1px solid $quaternaryColor;
 
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(md) {
       grid-template-columns: auto 1fr 1fr 1fr;
     }
 
@@ -51,7 +51,7 @@
       display: -webkit-box;
       -webkit-box-orient: vertical;
       width: 100%;
-      @include media-breakpoint-down(sm) {
+      @include media-breakpoint-down(md) {
         height: 75px;
         -webkit-line-clamp: 3;
       }
@@ -66,7 +66,7 @@
       justify-content: center;
       align-items: center;
       padding: 0 5px 0 0;
-      @include media-breakpoint-down(sm) {
+      @include media-breakpoint-down(md) {
         grid-column: 3/ 5;
         padding-bottom: 10px;
       }
