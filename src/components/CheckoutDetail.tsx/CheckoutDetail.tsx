@@ -31,23 +31,27 @@ const CheckoutDetail = () => {
             <div className="cartItems">
               {cartItems.map((product: any) => (
                 <div key={product.uid} className="cartItem">
-                  <div className="itemImg">
-                    <img src={product.imageUrl} alt={product.name} />
+                  <div className="cartPart1">
+                    <div className="itemImg">
+                      <img src={product.imageUrl} alt={product.name} />
+                    </div>
+                    <div className="product">
+                      <Link to={`/product/${product.uid}`}>{product.name}</Link>
+                    </div>
                   </div>
-                  <div className="product">
-                    <Link to={`/product/${product.uid}`}>{product.name}</Link>
-                  </div>
-                  <div className="crudIcon" onClick={() => dispatch(addCartItem(product))}>
-                    <AiOutlinePlusCircle />
-                  </div>
-                  <div className="quantity">{`${product.quantity}`}</div>
-                  <div className="crudIcon" onClick={() => dispatch(substractCartItem(product))}>
-                    <AiOutlineMinusCircle />
-                  </div>
-                  <div className="price">${formatNumT1(product.price)}</div>
-                  <div className="amount">${formatNumT1(product.price * product.quantity)}</div>
-                  <div className="crudIcon" onClick={() => dispatch(removeCartItem(product.uid))}>
-                    <TiDeleteOutline size={22} />
+                  <div className="cartPart2">
+                    <div className="crudIcon" onClick={() => dispatch(addCartItem(product))}>
+                      <AiOutlinePlusCircle />
+                    </div>
+                    <div className="quantity">{`${product.quantity}`}</div>
+                    <div className="crudIcon" onClick={() => dispatch(substractCartItem(product))}>
+                      <AiOutlineMinusCircle />
+                    </div>
+                    <div className="price">${formatNumT1(product.price)}</div>
+                    <div className="amount">${formatNumT1(product.price * product.quantity)}</div>
+                    <div className="crudIcon" onClick={() => dispatch(removeCartItem(product.uid))}>
+                      <TiDeleteOutline size={22} />
+                    </div>
                   </div>
                 </div>
               ))}

@@ -14,6 +14,7 @@ const Orders = () => {
   useEffect(() => {
     if (currentUser?.uid && !isAdmin) dispatch(fetchUserOrdersApi(currentUser.uid));
     if (currentUser?.uid && isAdmin) dispatch(fetchOrdersApi());
+    document.title = 'Orders';
   }, []);
 
   if (loading) return <div>Loading ..</div>;

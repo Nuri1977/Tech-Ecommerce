@@ -15,6 +15,7 @@ const Admin = () => {
 
   useEffect(() => {
     dispatch(fetchCategoriesApi());
+    document.title = 'Admin';
   }, []);
 
   const toggleModal = () => setHideModal(!hideModal);

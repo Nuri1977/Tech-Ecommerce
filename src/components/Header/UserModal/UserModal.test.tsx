@@ -87,6 +87,7 @@ describe('UserModal component', () => {
     await userEvent.click(logoutLink);
     expect(store.getActions().map((action: any) => action.type)).toEqual([
       'users/signOutFun/pending',
+      'cart/clearCart',
       'users/signOutFun/fulfilled'
     ]);
   });

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './ImageSlides.scss';
 import { RxDotFilled } from 'react-icons/rx';
 import { GoPrimitiveDot } from 'react-icons/go';
@@ -23,6 +23,13 @@ const ImageSlides = ({ slides }: { slides: any }) => {
     }
     setCurrentIndex(currentIndex + 1);
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [currentIndex]);
 
   return (
     <div className="slide">

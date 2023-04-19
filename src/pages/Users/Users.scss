@@ -8,7 +8,7 @@
     overflow: auto;
     border: 1px solild #ccc;
 
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(md) {
       overflow: scroll;
     }
   }

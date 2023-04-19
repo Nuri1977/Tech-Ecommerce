@@ -1,8 +1,13 @@
+@import '../../global.scss';
+
 .checkout {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  @include media-breakpoint-down(md) {
+
+  }
 
   .cartModalDetail1 {
     margin-top: 18px;
@@ -10,12 +15,21 @@
     border: 1px solid #ccc;
     min-width: 800px;
 
+    @include media-breakpoint-down(md) {
+      min-width: 100%;
+    }
+
     h2 {
       padding: 20px;
       text-align: center;
       border-bottom: 1px solid #ccc;
       margin: 0;
       background-color: #f9f9f9;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 16px;
+        padding: 10px;
+      }
     }
 
     .cartItems {
@@ -31,55 +45,109 @@
         padding: 5px 20px;
         background-color: white;
         height: 60px;
+        @include media-breakpoint-down(sm) {
+          flex-direction: column;
+          height: 100px;
+        }
 
-        .itemImg {
-          width: 100px;
-          padding: 0;
-          margin: 0;
+        .cartPart1 {
           display: flex;
           align-items: center;
-          justify-content: center;
-          img {
-            height: 55px;
-            max-width: 100px;
+          justify-content: flex-start;
+
+          .itemImg {
+            width: 100px;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+              height: 55px;
+              max-width: 100px;
+            }
+          }
+
+          .product {
+            width: 300px;
+            text-align: center;
+            padding: 0 5px;
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 900;
+            letter-spacing: 0.2px;
+            white-space: normal;
+            overflow: hidden;
+            height: 50px;
+            -webkit-line-clamp: 2;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+
+            @include media-breakpoint-between(sm, md) {
+              width: 200px;
+            }
+
+            @include media-breakpoint-down(sm) {
+              width: 100%;
+            }
           }
         }
 
-        .product {
-          width: 300px;
-          text-align: center;
-          padding: 0 5px;
-        }
-
-        .quantity {
-          width: 50px;
-          text-align: center;
-          padding: 0 5px;
-          font-size: 16px;
-        }
-        .price {
-          width: 120px;
-          text-align: right;
-          padding: 0 10px;
-          font-size: 16px;
-        }
-
-        .amount {
-          width: 120px;
-          text-align: right;
-          padding: 0 20px;
-          font-size: 16px;
-        }
-
-        .crudIcon {
-          width: 20px;
-          cursor: pointer;
+        .cartPart2 {
           display: flex;
-          justify-content: center;
           align-items: center;
+          justify-content: flex-start;
+          @include media-breakpoint-down(sm) {
+            margin-top: 10px;
+          }
 
-          &:hover {
-            opacity: 0.7;
+          .quantity {
+            width: 50px;
+            text-align: center;
+            padding: 0 5px;
+            font-size: 16px;
+            @include media-breakpoint-down(sm) {
+              width: 100%;
+              margin-right: 5px;
+            }
+          }
+          .price {
+            width: 120px;
+            text-align: right;
+            padding: 0 10px;
+            font-size: 16px;
+            @include media-breakpoint-down(sm) {
+              width: 100%;
+              margin-right: 5px;
+            }
+          }
+
+          .amount {
+            width: 120px;
+            text-align: right;
+            padding: 0 20px;
+            font-size: 16px;
+            @include media-breakpoint-down(sm) {
+              width: 100%;
+              margin-right: 5px;
+            }
+          }
+
+          .crudIcon {
+            width: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            @include media-breakpoint-down(sm) {
+              width: 100%;
+              margin-right: 5px;
+            }
+
+            &:hover {
+              opacity: 0.7;
+            }
           }
         }
       }
@@ -94,10 +162,18 @@
 
       .checkoutBtn {
         width: 130px;
+        @include media-breakpoint-down(sm) {
+          width: 100%;
+          margin-right: 5px;
+        }
       }
 
       .emtptyBtn {
         width: 200px;
+        @include media-breakpoint-down(sm) {
+          width: 100%;
+          margin-right: 5px;
+        }
       }
     }
   }
